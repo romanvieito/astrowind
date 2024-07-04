@@ -17,97 +17,50 @@ const metadata = {
 
   <HeroText
     tagline="Pricing"
-    title="Stellar Pricing for Every Journey"
+    title="A perfect fit for busy people"
     subtitle="Choose the perfect plan that aligns with your cosmic goals."
   />
 
   <!-- Pricing Widget ******************* -->
 
   <Prices
-    title="Our prices"
-    subtitle="Only pay for what you need"
-    prices={[
-      {
-        title: 'basic',
-        subtitle: 'Optimal choice for personal use',
-        price: 29,
-        period: 'per month',
-        items: [
-          {
-            description: 'Etiam in libero, et volutpat',
-          },
-          {
-            description: 'Aenean ac nunc dolor tristique',
-          },
-          {
-            description: 'Cras scelerisque accumsan lib',
-          },
-          {
-            description: 'In hac habitasse',
-          },
-        ],
-        callToAction: {
-          target: '_blank',
-          text: 'Get started',
-          href: '#',
-        },
+  prices={[
+    {
+      title: 'free forever',
+      subtitle: 'Access to some features and try the app',
+      price: '0',
+      period: '/ month',
+      callToAction: {
+        target: '_blank',
+        text: 'Get Started for Free',
+        href: '#',
       },
-      {
-        title: 'standard',
-        subtitle: 'Optimal choice for small teams',
-        price: 69,
-        period: 'Per Month',
-        items: [
-          {
-            description: 'Proin vel laoreet',
-          },
-          {
-            description: 'Ut efficitur habitasse egestas',
-          },
-          {
-            description: 'Volutpat hac curabitur',
-          },
-          {
-            description: 'Pellentesque blandit ut nibh',
-          },
-          {
-            description: 'Donec fringilla sem',
-          },
-        ],
-        callToAction: {
-          target: '_blank',
-          text: 'Get started',
-          href: '#',
-        },
-        hasRibbon: true,
-        ribbonTitle: 'popular',
+    },
+    {
+      title: 'pro',
+      subtitle: 'Real time feedback and advanced AI coach',
+      price: 10,
+      period: '/ Month',
+      callToAction: {
+        target: '_blank',
+        text: 'Upgrade to Pro',
+        href: '#',
       },
-      {
-        title: 'premium',
-        subtitle: 'Optimal choice for companies',
-        price: 199,
-        period: 'Per Month',
-        items: [
-          {
-            description: 'Curabitur suscipit risus',
-          },
-          {
-            description: 'Aliquam habitasse malesuada',
-          },
-          {
-            description: 'Suspendisse sit amet blandit',
-          },
-          {
-            description: 'Suspendisse auctor blandit dui',
-          },
-        ],
-        callToAction: {
-          target: '_blank',
-          text: 'Get started',
-          href: '#',
-        },
+      hasRibbon: true,
+      ribbonTitle: 'popular',
+    },
+    {
+      title: 'Enterprise',
+      subtitle: 'Api Access. For custom requirements',
+      price: "Custom",
+      period: '/ Month',
+      callToAction: {
+        target: '_blank',
+        text: "Let's talk",
+        href: '#',
       },
-    ]}
+    },
+  ]}
   />
 
   <!-- Features3 Widget ************** -->
@@ -143,8 +96,8 @@ const metadata = {
         icon: 'tabler:chevrons-up',
       },
       {
-        title: '24H support',
-        description: 'Questions answered via live chat, email or phone, every calendar day.',
+        title: 'Premium support',
+        description: 'Questions answered via chat or email, every calendar day.',
         icon: 'tabler:headset',
       },
     ]}
@@ -183,7 +136,7 @@ const metadata = {
         icon: 'tabler:number-6',
       },
       {
-        title: 'Download and start using the template(s)',
+        title: 'Download and start using the app',
         icon: 'tabler:number-7',
       },
     ]}
@@ -208,12 +161,12 @@ const metadata = {
       {
         title: 'Is there a trial period for the different plans?',
         description:
-          "Unfortunately, we don't offer trial periods for the plans. However, you can check out our demo section to preview the quality of our templates.",
+          "While we don’t offer trial periods for our plans, you can use the app free forever to access the basic features.",
       },
       {
         title: 'Can I switch between plans?',
         description:
-          'Certainly! You can easily upgrade or downgrade your plan, at any time, to find the one that best suits your evolving requirements.',
+          'Certainly! You can easily upgrade or downgrade your plan, at any time, to find the one that best suits your needs.',
       },
       {
         title: 'What payment methods do you accept?',
@@ -223,7 +176,7 @@ const metadata = {
       {
         title: 'Are there any hidden fees beyond the displayed cost?',
         description:
-          'No, the subscription cost covers all the features and templates listed under each plan. There are no hidden fees or extra charges.',
+          'No, the subscription cost covers all the features listed under each plan. There are no hidden fees or extra charges.',
       },
     ]}
   />
@@ -231,8 +184,8 @@ const metadata = {
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
-    title="Ready to boost your projects?"
-    subtitle="Join our community of satisfied customers who have transformed their work with our templates."
+    title="Ready to boost your shape?"
+    subtitle="Join our community of satisfied members who want to transform their fitness with our app."
     actions={[
       {
         variant: 'primary',
