@@ -11,6 +11,7 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
 
 const metadata = {
   title: 'AbsIn5 — Free app for getting in shape',
@@ -309,6 +310,52 @@ const metadata = {
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Features2> -->
+
+   <!-- Pricing Widget ******************* -->
+
+   <Pricing
+   title="Flexible pricing plans"
+   classes={{ container: 'bg-blue-50 dark:bg-transparent' }}
+   prices={[
+     {
+       title: 'free forever',
+       subtitle: 'Access to some features and try the app',
+       price: '0',
+       period: '/ month',
+       callToAction: {
+         target: '_blank',
+         text: 'Get Started for Free',
+         href: '#',
+       },
+     },
+     {
+       title: 'pro',
+       subtitle: 'Real time feedback and advanced AI coach',
+       price: 10,
+       period: '/ Month',
+       callToAction: {
+         target: '_blank',
+         text: 'Upgrade to Pro',
+         href: '#',
+       },
+       hasRibbon: true,
+       ribbonTitle: 'popular',
+     },
+     {
+       title: 'Enterprise',
+       subtitle: 'Api Access. For custom requirements',
+       price: "Custom",
+       period: '/ Month',
+       callToAction: {
+         target: '_blank',
+         text: "Let's talk",
+         href: '#',
+       },
+     },
+   ]}
+ />
+
+ <!-- FAQs Widget ******************* -->
 
   <!-- HighlightedPosts Widget ******* -->
 
