@@ -92,26 +92,38 @@ export const headerData = {
     {
       text: 'Blog',
       links: [
+        // {
+        //   text: 'Blog List',
+        //   href: getBlogPermalink(),
+        // },
         {
-          text: 'Blog List',
-          href: getBlogPermalink(),
+          text: 'Revolutionizing Fitness',
+          href: getPermalink('1', 'post'),
         },
         {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          text: 'Transform Your Workout',
+          href: getPermalink('2', 'post'),
         },
         {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          text: 'AI Fitness Coaches',
+          href: getPermalink('3', 'post'),
         },
         {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
+          text: 'The Future of Fitness',
+          href: getPermalink('5', 'post'),
         },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
+        // {
+        //   text: 'Article (with MDX)',
+        //   href: getPermalink('markdown-elements-demo-post', 'post'),
+        // },
+        // {
+        //   text: 'Category Page',
+        //   href: getPermalink('tutorials', 'category'),
+        // },
+        // {
+        //   text: 'Tag Page',
+        //   href: getPermalink('astro', 'tag'),
+        // },
       ],
     },
   ],
