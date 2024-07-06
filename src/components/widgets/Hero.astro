@@ -1,7 +1,9 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
-import Background from '~/components/ui/Background.astro';
+//import Background from '~/components/ui/Background.astro';
+
+import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
 
 import type { Hero as Props } from '~/types';
 
@@ -11,7 +13,11 @@ const {
   tagline,
 
   content = await Astro.slots.render('content'),
-  actions = await Astro.slots.render('actions'),
+
+  actions_sign_in = await Astro.slots.render('actions_sign_in'),
+
+  actions_sign_out = await Astro.slots.render('actions_sign_out'),
+
   image = await Astro.slots.render('image'),
 
   id,
@@ -45,23 +51,42 @@ const {
             />
           )
         }
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-3xl mx-auto">          
           {subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />}
-          {
-            actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
-                {Array.isArray(actions) ? (
-                  actions.map((action) => (
-                    <div class="flex w-full sm:w-auto">
-                      <Button {...(action || {})} class="w-full sm:mb-0" />
-                    </div>
-                  ))
-                ) : (
-                  <Fragment set:html={actions} />
-                )}
-              </div>
-            )
-          }
+          <SignedIn>
+            {
+              actions_sign_in && (
+                <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
+                  {Array.isArray(actions_sign_in) ? (
+                    actions_sign_in.map((action) => (
+                      <div class="flex w-full sm:w-auto">
+                        <Button {...(action || {})} class="w-full sm:mb-0" />
+                      </div>
+                    ))
+                  ) : (
+                    <Fragment set:html={actions_sign_in} />
+                  )}
+                </div>
+              )
+            }
+          </SignedIn>
+          <SignedOut>
+            {
+              actions_sign_out && (
+                <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
+                  {Array.isArray(actions_sign_out) ? (
+                    actions_sign_out.map((action) => (
+                      <div class="flex w-full sm:w-auto">
+                        <Button {...(action || {})} class="w-full sm:mb-0" />
+                      </div>
+                    ))
+                  ) : (
+                    <Fragment set:html={actions_sign_out} />
+                  )}
+                </div>
+              )
+            }            
+          </SignedOut>
         </div>
         {content && <Fragment set:html={content} />}
       </div>

@@ -18,6 +18,9 @@ import {
   lazyImagesRehypePlugin,
 } from './src/utils/frontmatter.mjs';
 
+import vercel from "@astrojs/vercel/serverless";
+import clerk from "astro-clerk-auth";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
@@ -25,9 +28,23 @@ const whenExternalScripts = (items = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  output: 'static',
+  output: 'server', //static //server
 
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    speedInsights: {
+      enabled: true,
+    },
+  }),
+    
   integrations: [
+    clerk({
+      afterSignInUrl: "/",
+      afterSignUpUrl: "/",
+    }),
+
     tailwind({
       applyBaseStyles: false,
     }),

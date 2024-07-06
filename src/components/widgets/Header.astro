@@ -9,6 +9,8 @@ import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
 
+import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
+
 interface Link {
   text?: string;
   href?: string;
@@ -37,7 +39,8 @@ export interface Props {
 const {
   id = 'header',
   links = [],
-  actions = [],
+  actions_sign_in = [],
+  actions_sign_out = [],
   isSticky = false,
   isDark = false,
   isFullWidth = false,
@@ -149,17 +152,32 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             )
           }
         </div>
-        {
-          actions?.length ? (
-            <span class="ml-4 rtl:ml-0 rtl:mr-4">
-              {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
-              ))}
-            </span>
-          ) : (
-            ''
-          )
-        }
+        <SignedIn>
+          {
+            actions_sign_in?.length ? (
+              <span class="ml-4 rtl:ml-0 rtl:mr-4">
+                {actions_sign_in.map((btnProps) => (
+                  <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                ))}
+              </span>
+            ) : (
+              ''
+            )
+          }          
+        </SignedIn>
+        <SignedOut>
+          {
+            actions_sign_out?.length ? (
+              <span class="ml-4 rtl:ml-0 rtl:mr-4">
+                {actions_sign_out.map((btnProps) => (
+                  <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                ))}
+              </span>
+            ) : (
+              ''
+            )
+          }          
+        </SignedOut>
       </div>
     </div>
   </div>

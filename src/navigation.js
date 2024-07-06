@@ -127,7 +127,8 @@ export const headerData = {
       ],
     },
   ],
-  actions: [{ text: 'Join Waitlist', href: '#features' }],
+  actions_sign_in: [{ text: 'Join Waitlist', href: '#features' }],
+  actions_sign_out: [{ text: 'Sign in / up', href: '/sign-in' }],
 };
 
 export const footerData = {

@@ -1,0 +1,14 @@
+---
+import { SignIn } from "astro-clerk-auth/components/interactive";
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Sign in',
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="flex w-full h-full min-h-screen justify-center items-center p-5">    
+    <SignIn />
+  </div>
+</Layout>
