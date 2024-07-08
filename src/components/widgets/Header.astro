@@ -10,6 +10,7 @@ import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
 
 import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
+import { UserButton } from "astro-clerk-auth/components/interactive";
 
 interface Link {
   text?: string;
@@ -27,7 +28,8 @@ interface MenuLink extends Link {
 export interface Props {
   id?: string;
   links?: Array<MenuLink>;
-  actions?: Array<ActionLink>;
+  actions_sign_in?: Array<ActionLink>;
+  actions_sign_out?: Array<ActionLink>;
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
@@ -163,7 +165,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             ) : (
               ''
             )
-          }          
+          }
+          <span class="ml-4"><UserButton /></span>
         </SignedIn>
         <SignedOut>
           {
