@@ -1,7 +1,7 @@
 import { createSignal, createEffect } from 'solid-js';
 import type { TUserWaitList } from '~/types';
 
-const UsersWaitList = () => {
+const ViewUWL = () => {
   const [uwl, setUwl] = createSignal<TUserWaitList[]>([]);
 
   createEffect(() => {
@@ -39,4 +39,4 @@ const UsersWaitList = () => {
   );
 };
 
-export default UsersWaitList;
+export default ViewUWL;

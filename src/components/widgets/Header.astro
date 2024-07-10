@@ -12,6 +12,8 @@ import type { CallToAction } from '~/types';
 import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
 import { UserButton } from "astro-clerk-auth/components/interactive";
 
+import ButtonUWL from '~/components/BtnUsersWaitList'
+
 interface Link {
   text?: string;
   href?: string;
@@ -52,6 +54,9 @@ const {
 } = Astro.props;
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+
+const user = await Astro.locals.currentUser();
+
 ---
 
 <header
@@ -159,7 +164,18 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             actions_sign_in?.length ? (
               <span class="ml-4 rtl:ml-0 rtl:mr-4">
                 {actions_sign_in.map((btnProps) => (
-                  <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                  <>
+                  {
+                    btnProps.text === 'Join Waitlist' ? 
+                    <>
+                      <ButtonUWL fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={2} client:load/>
+                    </>
+                    :
+                    <>
+                      <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                    </>
+                  }
+                  </>                  
                 ))}
               </span>
             ) : (

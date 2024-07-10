@@ -4,7 +4,7 @@ import ItemGrid from '~/components/ui/ItemGrid.astro';
 import Headline from '~/components/ui/Headline.astro';
 import type { Features as Props } from '~/types';
 
-import UsersWaitList from '~/components/UsersWaitList'
+import ViewUWL from '~/components/ViewUsersWaitList'
 
 const {
   title = await Astro.slots.render('title'),
@@ -23,7 +23,7 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
-  <UsersWaitList client:load/>
+  <ViewUWL client:load/>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />    
   <ItemGrid
     items={items}

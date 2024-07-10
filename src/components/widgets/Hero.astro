@@ -1,6 +1,7 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
+import ButtonUWL from '~/components/BtnUsersWaitList'
 //import Background from '~/components/ui/Background.astro';
 
 import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
@@ -24,9 +25,7 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-const handleClick = () => {
-  console.log('a');
-}
+const user = await Astro.locals.currentUser();
 
 ---
 
@@ -68,7 +67,7 @@ const handleClick = () => {
                         {
                           action.text === 'Join Waitlist' ?
                           <>
-                            <Button {...(action || {})} class="w-full sm:mb-0" type='button' onclick="handleClick()"/>
+                            <ButtonUWL fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={1} client:load/>
                           </> 
                           : 
                           <>
