@@ -127,7 +127,7 @@ export const headerData = {
       ],
     },
   ],
-  actions_sign_in: [{ text: 'Join Waitlist', href: '#features' }],
+  actions_sign_in: [{ text: 'Join Waitlist' }],
   actions_sign_out: [{ text: 'Sign in / up', href: '/sign-in' }],
 };
 

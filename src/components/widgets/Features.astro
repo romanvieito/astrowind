@@ -4,6 +4,8 @@ import ItemGrid from '~/components/ui/ItemGrid.astro';
 import Headline from '~/components/ui/Headline.astro';
 import type { Features as Props } from '~/types';
 
+import UsersWaitList from '~/components/UsersWaitList'
+
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
@@ -21,7 +23,8 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
+  <UsersWaitList client:load/>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />    
   <ItemGrid
     items={items}
     columns={columns}
@@ -32,5 +35,5 @@ const {
       icon: 'text-white bg-primary rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4 rtl:ml-4 rtl:mr-0',
       ...((classes?.items as Record<string, never>) ?? {}),
     }}
-  />
+  />  
 </WidgetWrapper>

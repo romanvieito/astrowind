@@ -18,6 +18,8 @@ import {
   lazyImagesRehypePlugin,
 } from './src/utils/frontmatter.mjs';
 
+import react from "@astrojs/react";
+import solid from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
 import clerk from "astro-clerk-auth";
 
@@ -40,6 +42,8 @@ export default defineConfig({
   }),
     
   integrations: [
+    react(),
+    solid(),
     clerk({
       afterSignInUrl: "/",
       afterSignUpUrl: "/",

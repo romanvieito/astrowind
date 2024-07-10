@@ -8,6 +8,7 @@
 interface ImportMetaEnv {
     readonly PUBLIC_ASTRO_APP_CLERK_PUBLISHABLE_KEY?: string;
     readonly CLERK_SECRET_KEY?: string;
+    readonly POSTGRES_URL?: string;    
 }
 
 interface ImportMeta {

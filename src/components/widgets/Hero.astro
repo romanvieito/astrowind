@@ -23,6 +23,11 @@ const {
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const handleClick = () => {
+  console.log('a');
+}
+
 ---
 
 <section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
@@ -60,8 +65,17 @@ const {
                   {Array.isArray(actions_sign_in) ? (
                     actions_sign_in.map((action) => (
                       <div class="flex w-full sm:w-auto">
-                        <Button {...(action || {})} class="w-full sm:mb-0" />
-                      </div>
+                        {
+                          action.text === 'Join Waitlist' ?
+                          <>
+                            <Button {...(action || {})} class="w-full sm:mb-0" type='button' onclick="handleClick()"/>
+                          </> 
+                          : 
+                          <>
+                            <Button {...(action || {})} class="w-full sm:mb-0" />
+                          </>
+                        }                        
+                      </div>                      
                     ))
                   ) : (
                     <Fragment set:html={actions_sign_in} />
