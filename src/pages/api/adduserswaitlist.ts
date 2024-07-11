@@ -22,10 +22,12 @@ export const POST: APIRoute = async ({ request }) => {
       }
     });
   } catch (error) {
+    let error_status = 400;
+    if(error.message === 'The user already exists') error_status = 304;
     return new Response(JSON.stringify({
       message: error.message
     }), {
-      status: 400,
+      status: error_status,
     });    
   }
 };
