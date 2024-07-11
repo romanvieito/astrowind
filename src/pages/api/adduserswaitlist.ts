@@ -8,10 +8,11 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const useradded = await addUsersWaitList(data);
-    if (!isNaN(parseInt(useradded))) {
-      return new Response(null, {
-        status: 304,
-        statusText: 'The user already exists'
+    if (!isNaN(parseInt(useradded))) { // si es numerico
+      return new Response(JSON.stringify({
+        message: 'The user already exists'
+      }), {
+        status: 304
       });
     }
     return new Response(JSON.stringify(useradded), {
@@ -21,9 +22,10 @@ export const POST: APIRoute = async ({ request }) => {
       }
     });
   } catch (error) {
-    return new Response(null, {
+    return new Response(JSON.stringify({
+      message: error.message
+    }), {
       status: 400,
-      statusText: error.message
     });    
   }
 };
