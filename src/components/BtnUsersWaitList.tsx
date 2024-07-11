@@ -49,7 +49,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       setIsOpenProcess(false);
 
       if (!response.ok) {
-        const result = await response.json();
+        const result = response.status;
         console.log('2.5****', result);
         if(response.status === 304) {
           setTypeIcon('info');
