@@ -8,7 +8,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const useradded = await addUsersWaitList(data);
-    if (!Array.isArray(useradded)) {
+    if (!isNaN(parseInt(useradded))) {
       return new Response(null, {
         status: 304,
         statusText: 'The user already exists'
