@@ -37,5 +37,6 @@ export async function addUsersWaitList(data: TUserWaitList) {
     return res.rows[0];
   } catch (err) {
     console.error('Error inserting data:', err);
+    throw err;
   }
 }
