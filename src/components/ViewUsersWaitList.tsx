@@ -1,13 +1,13 @@
-import { createSignal, createEffect } from 'solid-js';
+import { /*createSignal,*/ createEffect } from 'solid-js';
 import type { TUserWaitList } from '~/types';
 
-interface ViewProps {
+/*interface ViewProps {
   email?: string;
-}
+}*/
 
-const ViewUWL = ({email}:ViewProps) => {
+const ViewUWL = (/*{email}:ViewProps*/) => {
 
-  const [uwl, setUwl] = createSignal<TUserWaitList[]>([]);
+  //const [uwl, setUwl] = createSignal<TUserWaitList[]>([]);
 
   createEffect(() => {
     const fetchData = async () => {
