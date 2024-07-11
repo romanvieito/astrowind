@@ -1,11 +1,11 @@
 import { createSignal, createEffect } from 'solid-js';
 import type { TUserWaitList } from '~/types';
 
-/*interface ViewProps {
+interface ViewProps {
   email?: string;
-}*/
+}
 
-const ViewUWL = (/*{email}:ViewProps*/) => {
+const ViewUWL = ({email}:ViewProps) => {
 
   const [uwl, setUwl] = createSignal<TUserWaitList>();
   const [numbWaitList, setNumbWaitList] = createSignal<number>(0);
@@ -13,9 +13,7 @@ const ViewUWL = (/*{email}:ViewProps*/) => {
   createEffect(() => {
     const fetchData = async () => {
 
-      const data = {
-        email: 'juan@example.com'
-      };
+      const data = { email: email };
     
       try {
         const response = await fetch('/api/getuserswaitlistbyemail', {
