@@ -4,7 +4,8 @@ import ItemGrid from '~/components/ui/ItemGrid.astro';
 import Headline from '~/components/ui/Headline.astro';
 import type { Features as Props } from '~/types';
 
-import ViewUWL from '~/components/ViewUsersWaitList'
+import ViewUWL from '~/components/ViewUsersWaitList.tsx'
+import type { load } from 'js-yaml';
 
 const {
   title = await Astro.slots.render('title'),

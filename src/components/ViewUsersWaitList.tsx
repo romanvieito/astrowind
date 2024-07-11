@@ -10,7 +10,9 @@ const ViewUWL = () => {
         const response = await fetch('/api/getuserswaitlist');
         const data = await response.json();
         const userwl: TUserWaitList[] = [];
-        //console.log('data from client:', data);
+
+        console.log('data from client:', data);
+        
         if (data) {
           data.forEach(item => {
             userwl.push({
@@ -30,6 +32,7 @@ const ViewUWL = () => {
 
   return (
     <div>
+      <p>ffff</p>
       <ul>
         {uwl().map((item, index) => (
           <li key={index}>{item.email} - {item.fullname}</li>

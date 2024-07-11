@@ -4,7 +4,8 @@ import { getUsersWaitList } from '../../utils/dbquery';
 export const GET: APIRoute = async () => {
     
   const users = await getUsersWaitList();
-  //console.log('data from server: ', users);
+  
+  console.log('data from server: ', users);
 
   if (!users) {
     return new Response(null, {

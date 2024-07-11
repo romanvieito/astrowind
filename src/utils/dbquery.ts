@@ -24,15 +24,20 @@ export async function getUsersWaitListByEmail(email: string) {
 }
 
 export async function addUsersWaitList(data: TUserWaitList) {
-  const keys = Object.keys(data).join(', ');
-  const values = Object.values(data);  
-  const placeholders = values.map((_, i) => `$${i + 1}`).join(', ');
-  const query = `INSERT INTO users_waitlist (${keys}) VALUES (${placeholders}) RETURNING *`;
-  try {
-    const res = await db.query(query, values);
-    return res.rows[0];
-  } catch (err) {
-    console.error('Error inserting data:', err);
-    throw err;
+
+  const temp = await getUsersWaitListByEmail(data.email!);
+  if (!temp) {
+    const keys = Object.keys(data).join(', ');
+    const values = Object.values(data);  
+    const placeholders = values.map((_, i) => `$${i + 1}`).join(', ');
+    const query = `INSERT INTO users_waitlist (${keys}) VALUES (${placeholders}) RETURNING *`;
+    try {
+      const res = await db.query(query, values);
+      return res.rows[0];
+    } catch (err) {
+      console.error('Error inserting data:', err);
+      throw err;
+    }
   }
+  else throw Error('The user already exists');
 }

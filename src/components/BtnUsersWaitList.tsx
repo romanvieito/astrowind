@@ -1,4 +1,5 @@
 import { createSignal } from 'solid-js';
+import Modal from './Modal';
 
 interface ButtonProps {
   fullname: string | null | undefined;
@@ -7,11 +8,12 @@ interface ButtonProps {
 }
 
 const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
-  const [message, setMessage] = createSignal('');
+  
+  const [isOpenQuestion, setIsOpenQuestion] = createSignal<boolean>(false);
+  const [isOpenProcess, setIsOpenProcess] = createSignal<boolean>(false);
 
   const handleClick = () => {
-    const data = fullname + " " + email;
-    setMessage(data);
+    setIsOpenQuestion(true);    
   };
 
   let caseclass = "w-full sm:mb-0 btn-secondary ";
@@ -20,6 +22,48 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   else if(incase === 2)
     caseclass += "ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto";
 
+  //---------------------------------------------------------------------------------------
+  
+
+  const handleYesQuestionClick = async () => {
+
+    setIsOpenQuestion(false);
+    setIsOpenProcess(true);
+    
+    const data = {
+      fullname: 'Juan',
+      email: 'juan@example.com'
+    };
+  
+    try {
+      const response = await fetch('/api/adduserswaitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      setIsOpenProcess(false);
+
+      if (!response.ok) {
+        throw new Error('Error en la solicitud');
+      }
+  
+      const result = await response.json();
+      console.log('Respuesta de la API:', result);
+    } catch (error) {
+      console.error('Error al llamar a la API:', error);
+    }
+  }
+
+  const handleNoQuestionClick = () => {
+    console.log("No clicked");
+    setIsOpenQuestion(false);
+  }
+
+  //---------------------------------------------------------------------------------------
+
   return (
     <div>
       <button 
@@ -27,7 +71,24 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         onClick={handleClick}>
         Join Waitlist
       </button>
-      {message && <p>{message()}</p>}
+      <div>
+      {isOpenQuestion() && 
+        <Modal
+          isOpen={isOpenQuestion()} 
+          icon='question' 
+          message='Are you sure you want to get on the waitlist?' 
+          onCancelClick={handleNoQuestionClick}
+          onConfirmClick={handleYesQuestionClick}
+        /> 
+      }
+      {isOpenProcess() && 
+        <Modal
+          isOpen={isOpenProcess()} 
+          icon='process' 
+          message='Processing...'
+        /> 
+      }      
+      </div>
     </div>
   );
 };
