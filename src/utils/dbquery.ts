@@ -27,7 +27,11 @@ export async function addUsersWaitList(data: TUserWaitList) {
 
   const temp = await getUsersWaitListByEmail(data.email!);
   if (temp) return 0;
-  return temp;
+  return [{
+    id: '0',
+    fullname: 'x',
+    email: 'x@x.com'
+  }];
 
   /*
   const keys = Object.keys(data).join(', ');
