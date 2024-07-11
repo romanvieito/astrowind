@@ -60,7 +60,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       } else {
         console.log('3****', response);
         const result = await response.json();
-        console.log('4****', result);
+        console.log('4****', result.length);
         if (result) {
           setTypeIcon('success');
           setTypeMsge('You have been successfully added to the waitlist');          
