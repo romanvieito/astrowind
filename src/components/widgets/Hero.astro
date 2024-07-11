@@ -103,9 +103,11 @@ const user = await Astro.locals.currentUser();
           </SignedOut>
         </div>
         {content && <Fragment set:html={content} />}
-        <div class="mt-2">
-          <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load/>
-        </div>
+        <SignedIn>
+          <div class="mt-2">
+            <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load/>
+          </div>
+        </SignedIn>
       </div>      
       <div>
         {
