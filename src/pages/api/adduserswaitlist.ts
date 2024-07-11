@@ -22,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );*/
 
-    return new Response(JSON.stringify(data), {
+    return new Response(JSON.stringify(useradded), {
         status: 200,
         headers: {
         "Content-Type": "application/json"
