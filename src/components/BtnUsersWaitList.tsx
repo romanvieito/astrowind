@@ -55,6 +55,17 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         console.error('Request error');
       } else {
         const result = await response.json();
+        if (result) {
+          setTypeIcon('success');
+          setTypeMsge('You have been successfully added to the waitlist');
+          setIsOpenResult(true);
+          console.error('Success');
+        } else {
+          setTypeIcon('error');
+          setTypeMsge('Not found result');
+          setIsOpenResult(true);
+          console.error('Not found result');          
+        }
         console.log('Respuesta de la API:', result);
       }
     } catch (error) {
