@@ -8,6 +8,7 @@ import type { TUserWaitList } from '~/types';
 const ViewUWL = (/*{email}:ViewProps*/) => {
 
   const [uwl, setUwl] = createSignal<TUserWaitList>();
+  const [numbWaitList, setNumbWaitList] = createSignal<number>(0);
 
   createEffect(() => {
     const fetchData = async () => {
@@ -25,70 +26,25 @@ const ViewUWL = (/*{email}:ViewProps*/) => {
           body: JSON.stringify(data)
         
         });
-  
-        console.log('response:', response);
 
         const result = await response.json() as TUserWaitList;
 
-        console.log('result:', result.fullname);
+        const n = 200 + parseInt(result.id);
+        setNumbWaitList(n);
 
-        setUwl(result);
-
-        /*
-        if(result.error!) {
-          if(result.error === 'The user already exists') {
-            setTypeIcon('info');
-          } else {
-            setTypeIcon('error');
-          }
-          setTypeMsge(result.error);
-        } else {
-          setTypeIcon('success');
-          setTypeMsge('You have been successfully added to the waitlist');        
-        }
-        */      
+        setUwl(result);   
   
-      } catch (error) {
-        /*
-        setTypeIcon('error');
-        setTypeMsge(error.message);
-        */
-      }
-
-
-
-
-
-      /*
-      try {
-        const response = await fetch('/api/getuserswaitlist');
-        const data = await response.json();
-        const userwl: TUserWaitList[] = [];
-
-        console.log('data from client:', data);
-        
-        if (data) {
-          data.forEach(item => {
-            userwl.push({
-              id: item.id,
-              email: item.email,
-              fullname: item.fullname
-            });
-          });        
-        }
-        setUwl(userwl);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }*/
+      } catch (error) { /* empty */ }
     };
     fetchData();
   }, []);
 
   return (
     <div>
-      <span className='font-bold leading-tighter tracking-tighter font-heading text-heading text-2xl'>
-        You’re {uwl()?.id} on the Waitlist
-      </span>
+     {uwl() && 
+        (<span className='font-bold leading-tighter tracking-tighter font-heading text-heading text-2xl'>
+          You’re #{numbWaitList()} on the Waitlist
+         </span>)} 
     </div>
   );
 };
