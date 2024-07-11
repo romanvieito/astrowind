@@ -57,7 +57,9 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           setTypeMsge('Request error');
         } 
       } else {
+        console.log('3****');
         const result = await response.json();
+        console.log('4****');
         if (result) {
           setTypeIcon('success');
           setTypeMsge('You have been successfully added to the waitlist');          
@@ -66,7 +68,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           setTypeMsge('Not found result');
         }
       }
-      console.log('3****');
+      console.log('5****');
     } catch (error) {
       setTypeIcon('error');
       setTypeMsge('Problems executing the API');
