@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-//import { addUsersWaitList } from '../../utils/dbquery';
+import { addUsersWaitList } from '../../utils/dbquery';
 import type { TUserWaitList } from '~/types';
 
 export const POST: APIRoute = async ({ request }) => {
@@ -7,8 +7,8 @@ export const POST: APIRoute = async ({ request }) => {
   const data = await request.json() as TUserWaitList;
 
   try {
-    /*const useradded = await addUsersWaitList(data);
-    if (!useradded) {
+    const useradded = await addUsersWaitList(data);
+    /*if (!useradded) {
       return new Response(null, {
         status: 404,
         statusText: 'Not add user waitlist'
