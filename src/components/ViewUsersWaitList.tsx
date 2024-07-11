@@ -32,7 +32,7 @@ const ViewUWL = () => {
 
   return (
     <div>
-      <p>ffff</p>
+      <p>Waitlist</p>
       <ul>
         {uwl().map((item, index) => (
           <li key={index}>{item.email} - {item.fullname}</li>

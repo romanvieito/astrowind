@@ -11,6 +11,9 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   
   const [isOpenQuestion, setIsOpenQuestion] = createSignal<boolean>(false);
   const [isOpenProcess, setIsOpenProcess] = createSignal<boolean>(false);
+  const [isOpenResult, setIsOpenResult] = createSignal<boolean>(false);
+  const [typeIcon, setTypeIcon] = createSignal<string>('');
+  const [typeMsge, setTypeMsge] = createSignal<string>('');
 
   const handleClick = () => {
     setIsOpenQuestion(true);    
@@ -22,10 +25,9 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   else if(incase === 2)
     caseclass += "ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto";
 
-  //---------------------------------------------------------------------------------------
-  
+  //---------------------------------------------------------------------------------------  
 
-  const handleYesQuestionClick = async () => {
+  const handleOkQuestionClick = async () => {
 
     setIsOpenQuestion(false);
     setIsOpenProcess(true);
@@ -47,6 +49,9 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       setIsOpenProcess(false);
 
       if (!response.ok) {
+        setTypeIcon('error');
+        setTypeMsge('Problems executing the API');
+        setIsOpenResult(true);
         throw new Error('Error en la solicitud');
       }
   
@@ -57,9 +62,12 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
     }
   }
 
-  const handleNoQuestionClick = () => {
-    console.log("No clicked");
+  const handleCancelQuestionClick = () => {
     setIsOpenQuestion(false);
+  }
+
+  const handleOkResultClick = () => {
+    setIsOpenResult(false);
   }
 
   //---------------------------------------------------------------------------------------
@@ -77,8 +85,8 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           isOpen={isOpenQuestion()} 
           icon='question' 
           message='Are you sure you want to get on the waitlist?' 
-          onCancelClick={handleNoQuestionClick}
-          onConfirmClick={handleYesQuestionClick}
+          onCancelClick={handleCancelQuestionClick}
+          onOkClick={handleOkQuestionClick}
         /> 
       }
       {isOpenProcess() && 
@@ -87,7 +95,15 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           icon='process' 
           message='Processing...'
         /> 
-      }      
+      }
+      {isOpenResult() && 
+        <Modal
+          isOpen={isOpenProcess()} 
+          icon={typeIcon()} 
+          message={typeMsge()}
+          onOkClick={handleOkResultClick}
+        /> 
+      }            
       </div>
     </div>
   );

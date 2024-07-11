@@ -2,11 +2,11 @@ interface ModalProps {
   isOpen: boolean;
   icon: string;  
   message: string;
-  onConfirmClick?: () => void;
+  onOkClick?: () => void;
   onCancelClick?: () => void;
 }
 
-const Modal = ({ isOpen, icon, message, onConfirmClick, onCancelClick }: ModalProps) => {
+const Modal = ({ isOpen, icon, message, onOkClick, onCancelClick }: ModalProps) => {
 
   let title = '';  
   switch (icon) {
@@ -27,8 +27,8 @@ const Modal = ({ isOpen, icon, message, onConfirmClick, onCancelClick }: ModalPr
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-          <div className="dialog bg-white rounded-lg shadow-lg p-6">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">          
+          <div className="dialog bg-blue-200 text-black rounded-lg shadow-lg p-6">
             <div className="flex items-center mb-4">
               <h2 className="text-lg font-bold">{title}</h2>
             </div>
@@ -60,20 +60,20 @@ const Modal = ({ isOpen, icon, message, onConfirmClick, onCancelClick }: ModalPr
               }
               <p className="mb-4">{message}</p>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end space-x-2">
               {
                 onCancelClick && 
                 <>
-                    <button className="btn btn-secondary mr-2 px-3 py-1 text-sm" onClick={onCancelClick}>
+                    <button className="btn bg-red-200 hover:bg-red-400 text-black px-3 py-2 text-sm" onClick={onCancelClick}>
                         Cancel
                     </button>
                 </>
               }              
               {
-                onConfirmClick &&
+                onOkClick &&
                 <>
-                    <button className="btn btn-primary px-3 py-1 text-sm" onClick={onConfirmClick}>
-                        Confirm
+                    <button className="btn bg-green-200 hover:bg-green-400 text-black px-3 py-2 text-sm" onClick={onOkClick}>
+                        OK
                     </button>                
                 </>
               }
