@@ -21,15 +21,9 @@ export const POST: APIRoute = async ({ request }) => {
       }
     });
   } catch (error) {
-    console.log('error', error);
-    return new Response(JSON.stringify({
-      message: "Error processing request",
-      error: error.message
-    }), {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      status: 400
+    return new Response(null, {
+      status: 400,
+      statusText: error.message
     });    
   }
 };
