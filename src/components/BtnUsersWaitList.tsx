@@ -49,31 +49,30 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       setIsOpenProcess(false);
 
       if (!response.ok) {
-        setTypeIcon('error');
-        setTypeMsge('Request error');
-        setIsOpenResult(true);
-        console.error('Request error:', response);
+        if(response.status === 304) {
+          setTypeIcon('info');
+          setTypeMsge('The user already exists');
+        } else {
+          setTypeIcon('error');
+          setTypeMsge('Request error');
+        } 
       } else {
         const result = await response.json();
         if (result) {
           setTypeIcon('success');
-          setTypeMsge('You have been successfully added to the waitlist');
-          setIsOpenResult(true);
-          console.error('Success');
+          setTypeMsge('You have been successfully added to the waitlist');          
         } else {
           setTypeIcon('error');
           setTypeMsge('Not found result');
-          setIsOpenResult(true);
-          console.error('kkkk', result);          
         }
-        console.log('Respuesta de la API:', result);
       }
     } catch (error) {
       setTypeIcon('error');
       setTypeMsge('Problems executing the API');
-      setIsOpenResult(true);      
       console.error('Error al llamar a la API:', error);
     }
+
+    setIsOpenResult(true);
   }
 
   const handleCancelQuestionClick = () => {
