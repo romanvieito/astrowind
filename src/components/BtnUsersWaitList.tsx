@@ -49,6 +49,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       setIsOpenProcess(false);
 
       if (!response.ok) {
+        console.log('2.5****', response);
         if(response.status === 304) {
           setTypeIcon('info');
           setTypeMsge('The user already exists');
