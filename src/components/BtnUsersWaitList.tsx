@@ -31,7 +31,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
     setIsOpenQuestion(false);
     setIsOpenProcess(true);
-    
+    console.log('1****');
     const data = {
       fullname: 'Juan',
       email: 'juana@example.com'
@@ -45,7 +45,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         },
         body: JSON.stringify(data)
       });
-  
+      console.log('2****');
       setIsOpenProcess(false);
 
       if (!response.ok) {
@@ -66,6 +66,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           setTypeMsge('Not found result');
         }
       }
+      console.log('3****');
     } catch (error) {
       setTypeIcon('error');
       setTypeMsge('Problems executing the API');
