@@ -1,5 +1,5 @@
-import { /*createSignal,*/ createEffect } from 'solid-js';
-//import type { TUserWaitList } from '~/types';
+import { createSignal, createEffect } from 'solid-js';
+import type { TUserWaitList } from '~/types';
 
 /*interface ViewProps {
   email?: string;
@@ -7,7 +7,7 @@ import { /*createSignal,*/ createEffect } from 'solid-js';
 
 const ViewUWL = (/*{email}:ViewProps*/) => {
 
-  //const [uwl, setUwl] = createSignal<TUserWaitList[]>([]);
+  const [uwl, setUwl] = createSignal<TUserWaitList>();
 
   createEffect(() => {
     const fetchData = async () => {
@@ -28,9 +28,11 @@ const ViewUWL = (/*{email}:ViewProps*/) => {
   
         console.log('response:', response);
 
-        const result = await response.json();
+        const result = await response.json() as TUserWaitList;
 
-        console.log('result:', result);
+        console.log('result:', result.fullname);
+
+        setUwl(result);
 
         /*
         if(result.error!) {
@@ -85,7 +87,7 @@ const ViewUWL = (/*{email}:ViewProps*/) => {
   return (
     <div>
       <span className='font-bold leading-tighter tracking-tighter font-heading text-heading text-2xl'>
-        You’re ? on the Waitlist
+        You’re {uwl()?.id} on the Waitlist
       </span>
     </div>
   );
