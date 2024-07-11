@@ -42,5 +42,5 @@ export async function addUsersWaitList(data: TUserWaitList) {
     }
     */
   }
-  else throw Error('The user already exists');
+  else throw new Error('The user already exists');
 }
