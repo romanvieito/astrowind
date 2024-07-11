@@ -13,7 +13,7 @@ const ViewUWL = (/*{email}:ViewProps*/) => {
     const fetchData = async () => {
 
       const data = {
-        email: 'ooo'
+        email: 'juan@example.com'
       };
     
       try {
@@ -29,7 +29,7 @@ const ViewUWL = (/*{email}:ViewProps*/) => {
         console.log('response:', response);
 
         const result = await response.json();
-        
+
         console.log('result:', result);
 
         /*
