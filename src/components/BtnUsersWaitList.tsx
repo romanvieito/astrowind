@@ -50,14 +50,17 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
       if (!response.ok) {
         setTypeIcon('error');
-        setTypeMsge('Problems executing the API');
+        setTypeMsge('Request error');
         setIsOpenResult(true);
-        throw new Error('Error en la solicitud');
+        console.error('Request error');
+      } else {
+        const result = await response.json();
+        console.log('Respuesta de la API:', result);
       }
-  
-      const result = await response.json();
-      console.log('Respuesta de la API:', result);
     } catch (error) {
+      setTypeIcon('error');
+      setTypeMsge('Problems executing the API');
+      setIsOpenResult(true);      
       console.error('Error al llamar a la API:', error);
     }
   }
