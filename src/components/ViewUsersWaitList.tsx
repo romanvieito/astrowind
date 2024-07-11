@@ -1,5 +1,5 @@
 import { /*createSignal,*/ createEffect } from 'solid-js';
-import type { TUserWaitList } from '~/types';
+//import type { TUserWaitList } from '~/types';
 
 /*interface ViewProps {
   email?: string;

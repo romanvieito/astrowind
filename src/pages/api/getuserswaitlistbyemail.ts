@@ -7,7 +7,9 @@ export const POST: APIRoute = async ({ request }) => {
   const data = await request.json() as TUserWaitList;
 
   try {
+    console.log('XXXX');
     const usersearch = await getUsersWaitListByEmail(data.email!);
+    console.log('ZZZZ');
     return new Response(JSON.stringify(usersearch), {
       status: 200,
       headers: {

@@ -27,7 +27,7 @@ const {
 } = Astro.props;
 
 const user = await Astro.locals.currentUser();
-
+//email={user?.emailAddresses[0].emailAddress} 
 ---
 
 <section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
@@ -105,7 +105,7 @@ const user = await Astro.locals.currentUser();
         {content && <Fragment set:html={content} />}
         <SignedIn>
           <div class="mt-2">
-            <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load/>
+            <ViewUWL client:load/>
           </div>
         </SignedIn>
       </div>      
