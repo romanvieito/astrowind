@@ -34,7 +34,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
     console.log('1****');
     const data = {
       fullname: 'Juan',
-      email: 'juan@example.com'
+      email: 'juana@example.com'
     };
   
     try {
