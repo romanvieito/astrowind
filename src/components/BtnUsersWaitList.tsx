@@ -62,30 +62,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         setTypeIcon('success');
         setTypeMsge('You have been successfully added to the waitlist');        
       }      
-/*
-      if (!response.ok) {
-        const result = response.status;
-        console.log('2.5****', result);
-        if(response.status === 304) {
-          setTypeIcon('info');
-          setTypeMsge('The user already exists');
-        } else {
-          setTypeIcon('error');
-          setTypeMsge('Request error');
-        } 
-      } else {
-        console.log('3****', response);
-        const result = await response.json();
-        console.log('4****', result.length);
-        if (result) {
-          setTypeIcon('success');
-          setTypeMsge('You have been successfully added to the waitlist');          
-        } else {
-          setTypeIcon('error');
-          setTypeMsge('Not found result');
-        }
-      }
-      console.log('5****');*/
+
     } catch (error) {
       setTypeIcon('error');
       setTypeMsge('Problems executing the API');
