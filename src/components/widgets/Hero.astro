@@ -7,6 +7,7 @@ import ButtonUWL from '~/components/BtnUsersWaitList'
 import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
 
 import type { Hero as Props } from '~/types';
+import ViewUWL from '../ViewUsersWaitList';
 
 const {
   title = await Astro.slots.render('title'),
@@ -102,7 +103,10 @@ const user = await Astro.locals.currentUser();
           </SignedOut>
         </div>
         {content && <Fragment set:html={content} />}
-      </div>
+        <div class="mt-2">
+          <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load/>
+        </div>
+      </div>      
       <div>
         {
           image && (
