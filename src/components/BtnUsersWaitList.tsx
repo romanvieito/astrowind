@@ -45,7 +45,10 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         },
         body: JSON.stringify(data)
       });
-      console.log('2****');
+
+      const result4 = await response.json();
+
+      console.log('2****', result4);
       setIsOpenProcess(false);
 
       if (!response.ok) {
