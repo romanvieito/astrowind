@@ -8,7 +8,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const useradded = await addUsersWaitList(data);
-    /*if (!useradded) {
+    if (!useradded) {
       return new Response(null, {
         status: 404,
         statusText: 'Not add user waitlist'
@@ -20,15 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
           "Content-Type": "application/json"
         }
       }
-    );*/
-
-    return new Response(JSON.stringify(useradded), {
-        status: 200,
-        headers: {
-        "Content-Type": "application/json"
-        }
-      }
-    );    
+    );   
   } catch (error) {
     console.log('error', error);
     return new Response(JSON.stringify({

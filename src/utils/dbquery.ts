@@ -26,9 +26,9 @@ export async function getUsersWaitListByEmail(email: string) {
 export async function addUsersWaitList(data: TUserWaitList) {
 
   const temp = await getUsersWaitListByEmail(data.email!);
-  return temp;
-  /*
   if (!temp) {
+    return temp;
+    /*
     const keys = Object.keys(data).join(', ');
     const values = Object.values(data);  
     const placeholders = values.map((_, i) => `$${i + 1}`).join(', ');
@@ -40,7 +40,7 @@ export async function addUsersWaitList(data: TUserWaitList) {
       console.error('Error inserting data:', err);
       throw err;
     }
+    */
   }
   else throw Error('The user already exists');
-  */
 }
