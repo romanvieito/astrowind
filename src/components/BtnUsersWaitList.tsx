@@ -57,7 +57,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           setTypeMsge('Request error');
         } 
       } else {
-        console.log('3****');
+        console.log('3****', response);
         const result = await response.json();
         console.log('4****');
         if (result) {
