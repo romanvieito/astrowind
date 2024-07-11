@@ -15,12 +15,11 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
     return new Response(JSON.stringify(useradded), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json"
-        }
+      status: 200,
+      headers: {
+        "Content-Type": "application/json"
       }
-    );   
+    });
   } catch (error) {
     console.log('error', error);
     return new Response(JSON.stringify({

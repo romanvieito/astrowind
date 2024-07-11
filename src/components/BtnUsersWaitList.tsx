@@ -52,7 +52,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         setTypeIcon('error');
         setTypeMsge('Request error');
         setIsOpenResult(true);
-        console.error('Request error');
+        console.error('Request error:', response);
       } else {
         const result = await response.json();
         if (result) {
