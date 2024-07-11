@@ -101,7 +101,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       }
       {isOpenResult() && 
         <Modal
-          isOpen={isOpenProcess()} 
+          isOpen={isOpenResult()} 
           icon={typeIcon()} 
           message={typeMsge()}
           onOkClick={handleOkResultClick}
