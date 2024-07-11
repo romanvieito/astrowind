@@ -31,10 +31,10 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
     setIsOpenQuestion(false);
     setIsOpenProcess(true);
-    console.log('1****');
+
     const data = {
-      fullname: 'Juan',
-      email: 'juana@example.com'
+      fullname: fullname,
+      email: email
     };
   
     try {
@@ -48,7 +48,6 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
       const result = await response.json();
 
-      console.log('result', result);
       setIsOpenProcess(false);
 
       if(result.error!) {
@@ -65,8 +64,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
     } catch (error) {
       setTypeIcon('error');
-      setTypeMsge('Problems executing the API');
-      console.error('Error al llamar a la API:', error);
+      setTypeMsge(error.message);
     }
 
     setIsOpenResult(true);
