@@ -64,7 +64,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           setTypeIcon('error');
           setTypeMsge('Not found result');
           setIsOpenResult(true);
-          console.error('Not found result');          
+          console.error('kkkk', result);          
         }
         console.log('Respuesta de la API:', result);
       }

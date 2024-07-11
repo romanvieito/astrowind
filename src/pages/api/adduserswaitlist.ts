@@ -10,8 +10,8 @@ export const POST: APIRoute = async ({ request }) => {
     const useradded = await addUsersWaitList(data);
     if (!useradded) {
       return new Response(null, {
-        status: 404,
-        statusText: 'Not add user waitlist'
+        status: 304,
+        statusText: 'The user already exists'
       });
     }
     return new Response(JSON.stringify(useradded), {
