@@ -46,11 +46,23 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         body: JSON.stringify(data)
       });
 
-      const result4 = await response.json();
+      const result = await response.json();
 
-      console.log('2****', result4);
+      console.log('result', result);
       setIsOpenProcess(false);
 
+      if(result.error!) {
+        if(result.error === 'The user already exists') {
+          setTypeIcon('info');
+        } else {
+          setTypeIcon('error');
+        }
+        setTypeMsge(result.error);
+      } else {
+        setTypeIcon('success');
+        setTypeMsge('You have been successfully added to the waitlist');        
+      }      
+/*
       if (!response.ok) {
         const result = response.status;
         console.log('2.5****', result);
@@ -73,7 +85,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           setTypeMsge('Not found result');
         }
       }
-      console.log('5****');
+      console.log('5****');*/
     } catch (error) {
       setTypeIcon('error');
       setTypeMsge('Problems executing the API');

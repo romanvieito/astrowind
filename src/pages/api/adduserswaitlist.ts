@@ -8,13 +8,6 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const useradded = await addUsersWaitList(data);
-    /*if (isNaN(useradded)) {
-      return new Response(JSON.stringify({
-        message: 'The user already exists'
-      }), {
-        status: 304
-      });
-    }*/
     return new Response(JSON.stringify(useradded), {
       status: 200,
       headers: {
