@@ -26,7 +26,7 @@ export async function getUsersWaitListByEmail(email: string) {
 export async function addUsersWaitList(data: TUserWaitList) {
 
   const temp = await getUsersWaitListByEmail(data.email!);
-  if (temp) return new Array([]);
+  if (temp) throw new Error('he user already exists');
   return [{
     id: '0',
     fullname: 'x',
