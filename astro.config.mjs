@@ -20,6 +20,7 @@ import {
 
 import react from "@astrojs/react";
 import solid from "@astrojs/solid-js";
+import alpinejs from "@astrojs/alpinejs";
 import vercel from "@astrojs/vercel/serverless";
 import clerk from "astro-clerk-auth";
 
@@ -42,6 +43,7 @@ export default defineConfig({
   }),
     
   integrations: [
+    alpinejs(),
     react(),
     solid(),
     clerk({

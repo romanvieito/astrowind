@@ -3,6 +3,7 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
 import Headline from '~/components/ui/Headline.astro';
 import type { Features as Props } from '~/types';
+import Gallery from '../Gallery.astro';
 
 const {
   title = await Astro.slots.render('title'),
@@ -20,7 +21,8 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>  
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+  <Gallery /><br/>  
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />    
   <ItemGrid
     items={items}
