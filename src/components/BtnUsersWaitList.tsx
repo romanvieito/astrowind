@@ -64,7 +64,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           user_id: 'HuDKypKBKI8cgahki', // public key
           template_params: {
             to_name: 'candy',//fullname,
-            to_email: 'adailygc96@gmail.com',//email,
+            to_email: 'adailyg96@gmail.com',//email,
             from_name: 'AbsIn5 Team',
             message: 'This email is the confirmation of registration on the waitlist. Thanks',
             reply_to: 'alber@front10.com'
@@ -92,7 +92,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         setIsOpenProcess(false);
 
         setTypeIcon('success');
-        setTypeMsge('You have been successfully added to the waitlist.<br/>'+message_email);
+        setTypeMsge('You have been successfully added to the waitlist.<br>'+message_email);
       }      
 
     } catch (error) {
