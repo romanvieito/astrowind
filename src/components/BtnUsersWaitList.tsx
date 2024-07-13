@@ -1,4 +1,5 @@
 import { createSignal } from 'solid-js';
+import { sendMail } from '~/utils/mail-mailtrap';
 import Modal from './Modal';
 
 interface ButtonProps {
@@ -57,16 +58,16 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         }
         setTypeMsge(result.error);
       } else {
-
+        /*
         const data_email = {
-          service_id: 'HuDKypKBKI8cgahki',
-          template_id: 'template_xbwszsl',
-          user_id: 'service_1duydvx',
+          service_id: '*',
+          template_id: '*',
+          user_id: '*',
           template_params: {
-            to_name: 'candy', // fullname,
+            to_name: fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            reply_to: 'adailyg96@gmail.com', // email
+            reply_to: email
           }
         };
       
@@ -87,6 +88,20 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           message_email = 'FAILED attempt to send confirmation email.';
           console.error('Error sending email:', error);
         });
+        */
+
+        let message_email = '';
+        try {
+          const result = await sendMail(
+            fullname ?? '', 
+            email ?? '', 
+            'Subcription on the Waitlist',
+            'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.');
+          console.log('result', result);
+        } catch (error) {
+          message_email = 'FAILED attempt to send confirmation email.';
+          console.error('Error sending email:', error);          
+        }
 
         setIsOpenProcess(false);
 

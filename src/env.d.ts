@@ -11,7 +11,8 @@ interface ImportMetaEnv {
     readonly POSTGRES_URL?: string;    
     readonly EMAILJS_PUBLIC_KEY_ID?: string;    
     readonly EMAILJS_TEMPLATE_ID?: string;    
-    readonly EMAILJS_SERVICE_ID?: string;    
+    readonly EMAILJS_SERVICE_ID?: string; 
+    readonly MAILTRAP_API_KEY?: string;       
 }
 
 interface ImportMeta {
