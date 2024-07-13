@@ -45,6 +45,11 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
       email: email
     };
   
+    console.log('0', data);
+    console.log('1', access.serviceId);
+    console.log('2', access.templateId);
+    console.log('3', access.publickeyId);
+
     try {
       const response = await fetch('/api/adduserswaitlist', {
         method: 'POST',
@@ -65,10 +70,6 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
         }
         setTypeMsge(result.error);
       } else {
-
-console.log('1', access.serviceId);
-console.log('2', access.templateId);
-console.log('3', access.publickeyId);
 
         const data_email = {
           service_id: import.meta.env.EMAILJS_SERVICE_ID,
