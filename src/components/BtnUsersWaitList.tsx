@@ -59,6 +59,10 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         setTypeMsge(result.error);
       } else {
 
+console.log('1', import.meta.env.EMAILJS_SERVICE_ID);
+console.log('2', import.meta.env.EMAILJS_TEMPLATE_ID);
+console.log('3', import.meta.env.EMAILJS_PUBLIC_KEY_ID);
+
         const data_email = {
           service_id: import.meta.env.EMAILJS_SERVICE_ID,
           template_id: import.meta.env.EMAILJS_TEMPLATE_ID,
