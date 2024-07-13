@@ -63,10 +63,10 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           template_id: import.meta.env.EMAILJS_TEMPLATE_ID,
           user_id: import.meta.env.EMAILJS_PUBLIC_KEY_ID,
           template_params: {
-            to_name: fullname,
+            to_name: 'candy', //fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            reply_to: email
+            reply_to: 'adailyg96@gmail.com' //email
           }
         };
       
