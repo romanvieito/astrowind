@@ -58,11 +58,11 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         }
         setTypeMsge(result.error);
       } else {
-        /*
+
         const data_email = {
-          service_id: '*',
-          template_id: '*',
-          user_id: '*',
+          service_id: import.meta.env.EMAILJS_SERVICE_ID,
+          template_id: import.meta.env.EMAILJS_TEMPLATE_ID,
+          user_id: import.meta.env.EMAILJS_PUBLIC_KEY_ID,
           template_params: {
             to_name: fullname,
             from_name: 'AbsIn5 Team',
@@ -88,8 +88,8 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           message_email = 'FAILED attempt to send confirmation email.';
           console.error('Error sending email:', error);
         });
-        */
 
+        /*
         let message_email = '';
         try {
           const result = await sendMail(
@@ -102,6 +102,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           message_email = 'FAILED attempt to send confirmation email.';
           console.error('Error sending email:', error);          
         }
+          */
 
         setIsOpenProcess(false);
 
