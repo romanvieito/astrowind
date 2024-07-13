@@ -59,14 +59,14 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       } else {
 
         const data_email = {
-          service_id: 'service_1duydvx',
-          template_id: 'template_xbwszsl',
-          user_id: 'HuDKypKBKI8cgahki', // public key
+          service_id: import.meta.env.EMAILJS_SERVICE_ID,
+          template_id: import.meta.env.EMAILJS_TEMPLATE_ID,
+          user_id: import.meta.env.EMAILJS_PUBLIC_KEY_ID,
           template_params: {
-            to_name: 'candy',//fullname,
+            to_name: fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            reply_to: 'adailyg96@gmail.com' //email
+            reply_to: email + ", alber@front10.com, romanvieito@gmail.com"
           }
         };
       
