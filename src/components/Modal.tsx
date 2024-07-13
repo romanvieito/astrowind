@@ -59,7 +59,7 @@ const Modal = ({ isOpen, icon, message, onOkClick, onCancelClick }: ModalProps) 
                 </>                
               }
               {
-                message.split('_').map((elem, index) => (
+                message.split('0').map((elem, index) => (
                   <p key={index} className="mb-4">{elem}</p>
                 ))
               }
