@@ -48,9 +48,8 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
       const result = await response.json();
 
-      setIsOpenProcess(false);
-
       if(result.error!) {
+        setIsOpenProcess(false);
         if(result.error === 'The user already exists') {
           setTypeIcon('info');
         } else {
@@ -58,8 +57,42 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         }
         setTypeMsge(result.error);
       } else {
+
+        const data_email = {
+          service_id: 'service_1duydvx',
+          template_id: 'template_xbwszsl',
+          user_id: 'HuDKypKBKI8cgahki', // public key
+          template_params: {
+            to_name: 'candy',//fullname,
+            to_email: 'adailygc96@gmail.com',//email,
+            from_name: 'AbsIn5 Team',
+            message: 'This email is the confirmation of registration on the waitlist. Thanks',
+            reply_to: 'alber@from10.com'
+          }
+        };
+      
+        let message_email = '';
+        await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data_email)
+        })
+        .then(response => response.json())
+        .then(result => {
+          message_email = 'SUCCESSFUL attempt to send confirmation email.';
+          console.log('Email sent successfully:', result);
+        })
+        .catch(error => {
+          message_email = 'FAILED attempt to send confirmation email.';
+          console.error('Error sending email:', error);
+        });
+
+        setIsOpenProcess(false);
+
         setTypeIcon('success');
-        setTypeMsge('You have been successfully added to the waitlist');        
+        setTypeMsge('You have been successfully added to the waitlist.'+message_email);        
       }      
 
     } catch (error) {
