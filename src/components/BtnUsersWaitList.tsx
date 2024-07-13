@@ -65,7 +65,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           template_params: {
             to_name: 'candy',//fullname,
             from_name: 'AbsIn5 Team',
-            message: 'This email is the confirmation of registration on the waitlist. Thanks',
+            message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
             reply_to: 'adailyg96@gmail.com' //email
           }
         };
@@ -124,7 +124,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         <Modal
           isOpen={isOpenQuestion()} 
           icon='question' 
-          message='Are you sure you want to get on the waitlist?' 
+          message='Are you sure you want| to get on the waitlist?' 
           onCancelClick={handleCancelQuestionClick}
           onOkClick={handleOkQuestionClick}
         /> 

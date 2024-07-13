@@ -22,9 +22,7 @@ const Modal = ({ isOpen, icon, message, onOkClick, onCancelClick }: ModalProps) 
         break;          
     default: title = 'Warning';
         break;
-  }  
-
-  const fullmsg = message.split('|');
+  }
 
   return (
     <>
@@ -61,7 +59,7 @@ const Modal = ({ isOpen, icon, message, onOkClick, onCancelClick }: ModalProps) 
                 </>                
               }
               {
-                fullmsg.map((elem, index) => (
+                message.split('|').map((elem, index) => (
                   <p key={index} className="mb-4">{elem}</p>
                 ))
               }
