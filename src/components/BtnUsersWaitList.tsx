@@ -1,14 +1,21 @@
 import { createSignal } from 'solid-js';
-import { sendMail } from '~/utils/mail-mailtrap';
+//import { sendMail } from '~/utils/mail-mailtrap';
 import Modal from './Modal';
 
+interface AccessProps {
+  serviceId: string;
+  templateId: string;
+  publickeyId: string;
+}
+
 interface ButtonProps {
+  access: AccessProps,
   fullname: string | null | undefined;
   email: string | null | undefined;
   incase: number
 }
 
-const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
+const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
   
   const [isOpenQuestion, setIsOpenQuestion] = createSignal<boolean>(false);
   const [isOpenProcess, setIsOpenProcess] = createSignal<boolean>(false);
@@ -59,9 +66,9 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         setTypeMsge(result.error);
       } else {
 
-console.log('1', import.meta.env.EMAILJS_SERVICE_ID);
-console.log('2', import.meta.env.EMAILJS_TEMPLATE_ID);
-console.log('3', import.meta.env.EMAILJS_PUBLIC_KEY_ID);
+console.log('1', access.serviceId);
+console.log('2', access.templateId);
+console.log('3', access.publickeyId);
 
         const data_email = {
           service_id: import.meta.env.EMAILJS_SERVICE_ID,
