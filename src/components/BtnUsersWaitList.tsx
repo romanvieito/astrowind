@@ -79,7 +79,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           },
           body: JSON.stringify(data_email)
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(result => {
           message_email = 'SUCCESSFUL attempt to send confirmation email.';
           console.log('Email sent successfully:', result);
