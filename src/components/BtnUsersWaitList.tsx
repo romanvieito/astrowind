@@ -63,10 +63,10 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
           template_id: 'template_xbwszsl',
           user_id: 'service_1duydvx',
           template_params: {
-            to_name: fullname,
+            to_name: 'candy', // fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            reply_to: email
+            reply_to: 'adailyg96@gmail.com', // email
           }
         };
       
@@ -95,6 +95,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
       }      
 
     } catch (error) {
+      setIsOpenProcess(false);
       setTypeIcon('error');
       setTypeMsge(error.message);
     }
