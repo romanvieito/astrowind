@@ -124,7 +124,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         <Modal
           isOpen={isOpenQuestion()} 
           icon='question' 
-          message='Are you0sure you want0to get on the0waitlist?' 
+          message='Are you sure you want to get on the waitlist?'
           onCancelClick={handleCancelQuestionClick}
           onOkClick={handleOkQuestionClick}
         /> 
