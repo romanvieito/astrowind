@@ -27,7 +27,13 @@ const {
 } = Astro.props;
 
 const user = await Astro.locals.currentUser();
- 
+
+const access = {
+  serviceId: import.meta.env.EMAILJS_SERVICE_ID ?? '', 
+  templateId: import.meta.env.EMAILJS_TEMPLATE_ID ?? '',
+  publickeyId: import.meta.env.EMAILJS_PUBLIC_KEY_ID ?? '',
+}
+
 ---
 
 <section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
@@ -68,7 +74,7 @@ const user = await Astro.locals.currentUser();
                         {
                           action.text === 'Join Waitlist' ?
                           <>
-                            <ButtonUWL fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={1} client:load/>
+                            <ButtonUWL access={access} fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={1} client:load/>
                           </> 
                           : 
                           <>

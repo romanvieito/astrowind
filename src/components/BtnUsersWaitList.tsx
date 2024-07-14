@@ -44,11 +44,6 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
       fullname: fullname,
       email: email
     };
-  
-    console.log('0', data);
-    console.log('1', access.serviceId);
-    console.log('2', access.templateId);
-    console.log('3', access.publickeyId);
 
     try {
       const response = await fetch('/api/adduserswaitlist', {
@@ -72,9 +67,9 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
       } else {
 
         const data_email = {
-          service_id: import.meta.env.EMAILJS_SERVICE_ID,
-          template_id: import.meta.env.EMAILJS_TEMPLATE_ID,
-          user_id: import.meta.env.EMAILJS_PUBLIC_KEY_ID,
+          service_id: access.serviceId,
+          template_id: access.templateId,
+          user_id: access.publickeyId,
           template_params: {
             to_name: fullname,
             from_name: 'AbsIn5 Team',
