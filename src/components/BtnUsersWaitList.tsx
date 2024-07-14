@@ -71,12 +71,12 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
           template_id: access.templateId,
           user_id: access.publickeyId,
           template_params: {
-            to_name: fullname,
+            to_name: 'Candy', // fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
             //reply_to: email, // no hace nada
             //cc: email, // rebota
-            to_email: email
+            to_email: 'adailyg96@gmail.com'
           }
         };
       
