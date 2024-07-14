@@ -74,9 +74,9 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
             to_name: 'Candy', // fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            //reply_to: email, // no hace nada
+            reply_to: 'adailyg96@gmail.com', //email, // no hace nada
             //cc: email, // rebota
-            to_email: 'adailyg96@gmail.com'
+            //to_email: email. '' //rebota
           }
         };
       
