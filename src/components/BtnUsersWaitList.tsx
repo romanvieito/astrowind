@@ -1,5 +1,9 @@
 import { createSignal } from 'solid-js';
-//import { sendMail } from '~/utils/mail-mailtrap';
+import { sendMail } from '~/utils/mail-mailtrap';
+
+//import Nodemailer from "nodemailer";
+//import { MailtrapTransport } from "mailtrap"
+
 import Modal from './Modal';
 
 interface AccessProps {
@@ -66,17 +70,18 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
         setTypeMsge(result.error);
       } else {
 
+        /*
         const data_email = {
           service_id: access.serviceId,
           template_id: access.templateId,
           user_id: access.publickeyId,
           template_params: {
-            to_name: 'Candy', // fullname,
+            to_name: fullname,
             from_name: 'AbsIn5 Team',
             message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            reply_to: 'alber@front10.com', //'adailyg96@gmail.com', //email, // no hace nada
-            //cc: email, // rebota
-            //to_email: email. '' //rebota
+            reply_to: 'alber@front10.com', 
+            cc: 'romanvieito@gmail.com',
+            to_email: email,
           }
         };
       
@@ -97,8 +102,8 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
           message_email = 'FAILED attempt to send confirmation email.';
           console.error('Error sending email:', error);
         });
+        */
 
-        /*
         let message_email = '';
         try {
           const result = await sendMail(
@@ -111,7 +116,6 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
           message_email = 'FAILED attempt to send confirmation email.';
           console.error('Error sending email:', error);          
         }
-          */
 
         setIsOpenProcess(false);
 
