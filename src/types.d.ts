@@ -7,6 +7,13 @@ export interface TUserWaitList {
   fullname?: string;
 }
 
+export interface TSendEmail {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;

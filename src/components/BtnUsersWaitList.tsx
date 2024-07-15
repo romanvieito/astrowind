@@ -106,12 +106,32 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
 
         let message_email = '';
         try {
-          const result = await sendMail(
+          
+          const data_email = {
+            name: fullname ?? '',
+            email: email ?? '',
+            subject: 'Subcription on the Waitlist',
+            message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
+          };
+
+          const response_email = await fetch('/api/sendmail-mailtrap', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data_email)
+          });
+
+          const result_email = await response_email.json();
+          console.log('result_email', result_email);
+
+          /*const result = await sendMail(
             fullname ?? '', 
             email ?? '', 
             'Subcription on the Waitlist',
             'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.');
-          console.log('result', result);
+          console.log('result', result);*/
+
         } catch (error) {
           message_email = 'FAILED attempt to send confirmation email.';
           console.error('Error sending email:', error);          
