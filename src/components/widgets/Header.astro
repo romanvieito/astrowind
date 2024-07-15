@@ -57,12 +57,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 const user = await Astro.locals.currentUser();
 
-const access = {
-  serviceId: import.meta.env.EMAILJS_SERVICE_ID ?? '', 
-  templateId: import.meta.env.EMAILJS_TEMPLATE_ID ?? '',
-  publickeyId: import.meta.env.EMAILJS_PUBLIC_KEY_ID ?? '',
-}
-
 ---
 
 <header
@@ -174,7 +168,7 @@ const access = {
                   {
                     btnProps.text === 'Join Waitlist' ? 
                     <>
-                      <ButtonUWL access={access} fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={2} client:load/>
+                      <ButtonUWL fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={2} client:load/>
                     </>
                     :
                     <>

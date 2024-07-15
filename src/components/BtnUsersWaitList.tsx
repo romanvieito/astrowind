@@ -1,25 +1,13 @@
 import { createSignal } from 'solid-js';
-import { sendMail } from '~/utils/mail-mailtrap';
-
-//import Nodemailer from "nodemailer";
-//import { MailtrapTransport } from "mailtrap"
-
 import Modal from './Modal';
 
-interface AccessProps {
-  serviceId: string;
-  templateId: string;
-  publickeyId: string;
-}
-
 interface ButtonProps {
-  access: AccessProps,
   fullname: string | null | undefined;
   email: string | null | undefined;
   incase: number
 }
 
-const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
+const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   
   const [isOpenQuestion, setIsOpenQuestion] = createSignal<boolean>(false);
   const [isOpenProcess, setIsOpenProcess] = createSignal<boolean>(false);
@@ -70,40 +58,6 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
         setTypeMsge(result.error);
       } else {
 
-        /*
-        const data_email = {
-          service_id: access.serviceId,
-          template_id: access.templateId,
-          user_id: access.publickeyId,
-          template_params: {
-            to_name: fullname,
-            from_name: 'AbsIn5 Team',
-            message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
-            reply_to: 'alber@front10.com', 
-            cc: 'romanvieito@gmail.com',
-            to_email: email,
-          }
-        };
-      
-        let message_email = '';
-        await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data_email)
-        })
-        .then(response => response.text())
-        .then(result => {
-          message_email = 'SUCCESSFUL attempt to send confirmation email.';
-          console.log('Email sent successfully:', result);
-        })
-        .catch(error => {
-          message_email = 'FAILED attempt to send confirmation email.';
-          console.error('Error sending email:', error);
-        });
-        */
-
         let message_email = '';
         try {
           
@@ -123,14 +77,8 @@ const ButtonUWL = ({access, fullname, email, incase}:ButtonProps) => {
           });
 
           const result_email = await response_email.json();
-          console.log('result_email', result_email);
-
-          /*const result = await sendMail(
-            fullname ?? '', 
-            email ?? '', 
-            'Subcription on the Waitlist',
-            'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.');
-          console.log('result', result);*/
+          if (result_email.success)
+            message_email = 'SUCCESSFUL attempt to send confirmation email.';
 
         } catch (error) {
           message_email = 'FAILED attempt to send confirmation email.';
