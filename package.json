@@ -34,6 +34,7 @@
     "framer-motion": "^11.2.14",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
+    "mixpanel-browser": "^2.53.0",
     "pg": "^8.12.0",
     "unpic": "^3.18.0"
   },
@@ -48,6 +49,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.merge": "^4.6.9",
+    "@types/mixpanel-browser": "^2.49.1",
     "@types/pg": "^8.11.6",
     "@types/react": "^18.3.3",
     "@typescript-eslint/eslint-plugin": "^7.13.1",

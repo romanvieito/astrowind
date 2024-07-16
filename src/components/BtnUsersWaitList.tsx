@@ -1,5 +1,6 @@
 import { createSignal } from 'solid-js';
 import Modal from './Modal';
+import mixpanel from '~/utils/mixpanel-config';
 
 interface ButtonProps {
   fullname: string | null | undefined;
@@ -28,6 +29,9 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   //---------------------------------------------------------------------------------------  
 
   const handleOkQuestionClick = async () => {
+
+    mixpanel.track("Join Waitlist Click Button", {
+    });
 
     setIsOpenQuestion(false);
     setIsOpenProcess(true);

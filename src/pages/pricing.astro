@@ -6,10 +6,15 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import mixpanel from '~/utils/mixpanel-config';
 
 const metadata = {
   title: 'Pricing',
 };
+
+mixpanel.track("Pricings Link Click", {
+});
+
 ---
 
 <Layout metadata={metadata}>
