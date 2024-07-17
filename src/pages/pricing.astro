@@ -6,28 +6,19 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-//import mixpanel from '~/utils/mixpanel-config';
-
-import mixpanel from "mixpanel-browser";
-
-const API_TOKEN = import.meta.env.MIXPANEL_API_KEY ?? '';
-
-mixpanel.init(API_TOKEN, {
-  debug: true,
-  track_pageview: false,
-  persistence: "localStorage",
-});
+import SendMsgToMixPanel from '~/components/SendMsgToMixPanel';
 
 const metadata = {
   title: 'Pricing',
 };
 
-mixpanel.track("Pricings Link Click", {
-});
+const API_TOKEN = import.meta.env.MIXPANEL_API_KEY ?? '';
 
 ---
 
 <Layout metadata={metadata}>
+  <SendMsgToMixPanel apitoken={API_TOKEN} message="Pricings Link Click" client:load />
+  
   <!-- HeroText Widget ******************* -->
 
   <HeroText
