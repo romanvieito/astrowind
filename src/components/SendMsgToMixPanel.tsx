@@ -7,14 +7,14 @@ interface SendMsgProps {
 }
 
 const SendMsgToMixPanel = ({apitoken, message}:SendMsgProps) => {
-  
-  mixpanel.init(apitoken ?? '', {
-    debug: true,
-    track_pageview: false,
-    persistence: "localStorage",
-  });
 
   createEffect(() => {
+    mixpanel.init(apitoken ?? '', {
+      debug: true,
+      track_pageview: false,
+      persistence: "localStorage",
+    });
+        
     mixpanel.track(message ?? '', {
     }, function(err) {
       if (err) {
