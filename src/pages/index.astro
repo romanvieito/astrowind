@@ -430,12 +430,24 @@ const metadata = {
   <CallToAction
     title="Ready to boost your shape?"
     subtitle="Join our community of satisfied members who want to transform their fitness with our app."
-    actions={[
+    
+    actions_sign_in={[
       {
         variant: 'primary',
-        text: 'Get started now',
-        href: '/',
-      },
+        text: 'Join Waitlist',
+        href: 'https://github.com/onwidget/astrowind',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      }
+    ]}
+
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign in / up',
+        href: '/sign-in',
+        icon: 'tabler:square-rounded-arrow-right',
+      }
     ]}
   />
 </Layout>
