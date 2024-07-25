@@ -90,3 +90,12 @@
 .dd *:first-child {
   margin-top: 0;
 }
+
+.word-number {
+  color: rgb(0, 0, 0, 0.3);
+  font-size: 7px;
+  margin-left: -2px;
+  position: relative;
+  top: -12px;
+
+}
