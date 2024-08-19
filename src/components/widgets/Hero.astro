@@ -1,10 +1,10 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
-import ButtonUWL from '~/components/BtnUsersWaitList'
+import ButtonUWL from '~/components/BtnUsersWaitList';
 //import Background from '~/components/ui/Background.astro';
 
-import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
+import { SignedIn, SignedOut } from 'astro-clerk-auth/components/control';
 
 import type { Hero as Props } from '~/types';
 import ViewUWL from '../ViewUsersWaitList';
@@ -27,7 +27,6 @@ const {
 } = Astro.props;
 
 const user = await Astro.locals.currentUser();
-
 ---
 
 <section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
@@ -56,7 +55,7 @@ const user = await Astro.locals.currentUser();
             />
           )
         }
-        <div class="max-w-3xl mx-auto">          
+        <div class="max-w-3xl mx-auto">
           {subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />}
           <SignedIn>
             {
@@ -65,17 +64,21 @@ const user = await Astro.locals.currentUser();
                   {Array.isArray(actions_sign_in) ? (
                     actions_sign_in.map((action) => (
                       <div class="flex w-full sm:w-auto">
-                        {
-                          action.text === 'Join Waitlist' ?
+                        {action.text === 'Join Waitlist' ? (
                           <>
-                            <ButtonUWL fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={1} client:load/>
-                          </> 
-                          : 
+                            <ButtonUWL
+                              fullname={user?.fullName}
+                              email={user?.emailAddresses[0].emailAddress}
+                              incase={1}
+                              client:load
+                            />
+                          </>
+                        ) : (
                           <>
                             <Button {...(action || {})} class="w-full sm:mb-0" />
                           </>
-                        }                        
-                      </div>                      
+                        )}
+                      </div>
                     ))
                   ) : (
                     <Fragment set:html={actions_sign_in} />
@@ -99,16 +102,16 @@ const user = await Astro.locals.currentUser();
                   )}
                 </div>
               )
-            }            
+            }
           </SignedOut>
         </div>
         {content && <Fragment set:html={content} />}
         <SignedIn>
           <div class="mt-2">
-            <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load/>
+            <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load />
           </div>
         </SignedIn>
-      </div>      
+      </div>
       <div>
         {
           image && (
@@ -116,15 +119,19 @@ const user = await Astro.locals.currentUser();
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (
-                <Image
-                  class="mx-auto rounded-md w-full"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  loading="eager"
-                  width={1024}
-                  height={576}
-                  {...image}
-                />
+                // <Image
+                //   class="mx-auto rounded-md w-full"
+                //   widths={[400, 768, 1024, 2040]}
+                //   sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                //   loading="eager"
+                //   width={1024}
+                //   height={576}
+                //   {...image}
+                // />
+                <video controls autoplay loop muted>
+                  <source src="/public/images/fitless/web.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               )}
             </div>
           )
