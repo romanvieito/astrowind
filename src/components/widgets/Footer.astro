@@ -53,21 +53,20 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         links.map(({ title, links }) => (
           <div class="col-span-5">
             <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <div class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <div class="mb-2">
+            <div class="text-sm text-muted flex gap-1 flex-wrap">
+              {
+                links.map(({ text, href }, index) => (
+                  <>
+                    {index !== 0 ? ' | ' : ''}
                     <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out block"
+                      class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
                       href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </div>
-                ))}
-              </div>
-            )}
+                      set:html={text}
+                    />
+                  </>
+                ))
+              }
+            </div>
           </div>
         ))
       }
