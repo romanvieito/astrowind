@@ -66,20 +66,32 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="image">
-      <iframe
-        width="100%"
-        height="500px"
-        src={`https://www.youtube.com/embed/1phiRZDWeBQ?playlist=1phiRZDWeBQ&loop=1&autoplay=1&mute=1`}
-        title="YOUR PERSONALIZED AI COACH - ANYTIME, ANYWHERE"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
+      <div class="responsive-video-container">
+        <iframe
+          src={`https://www.youtube.com/embed/1phiRZDWeBQ?playlist=1phiRZDWeBQ&loop=1&autoplay=1&mute=1`}
+          title="YOUR PERSONALIZED AI COACH - ANYTIME, ANYWHERE"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
     
       <style is:inline>
-        iframe {
-          margin: 0 auto;
-          max-width: 100%;
+        .responsive-video-container {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+          height: 0;
+          overflow: hidden;
+        }
+    
+        .responsive-video-container iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
         }
       </style>
     </Fragment>
