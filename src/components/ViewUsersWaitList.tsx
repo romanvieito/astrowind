@@ -40,7 +40,7 @@ const ViewUWL = ({email}:ViewProps) => {
   return (
     <div>
      {uwl() && 
-        (<span className='font-bold leading-tighter tracking-tighter font-heading text-heading text-2xl'>
+        (<span className='leading-tighter tracking-tighter font-heading text-heading'>
           You’re #{numbWaitList()} on the Waitlist
          </span>)} 
     </div>
