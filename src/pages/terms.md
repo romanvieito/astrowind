@@ -7,41 +7,41 @@ _Last updated_: August 06, 2024
 
 Please read these terms and conditions carefully before using Our Service.
 
-## AbsIn5 Terms of Service
+## 24Up.fit Terms of Service
 
 ### Introduction:
 
-AbsIn5 (“AbsIn5”, “we”, “us”, “our”) provides access to the AbsIn5 platform, including the website, APIs, and domain registration services (“Services”). By using the Services, you agree to be bound by these Terms of Service (“Agreement”). If you are using the Services on behalf of a company, you must have the authority to bind that company to this Agreement.
+24Up.fit (“24Up.fit”, “we”, “us”, “our”) provides access to the 24Up.fit platform, including the website, APIs, and domain registration services (“Services”). By using the Services, you agree to be bound by these Terms of Service (“Agreement”). If you are using the Services on behalf of a company, you must have the authority to bind that company to this Agreement.
 
 ### Age and Eligibility:
 You must be at least 16 years old to use the Services. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
 
 ### Your Content:
-You are responsible for the content you upload to the Services. By posting content, you grant AbsIn5 a license to use, modify, and distribute your content in connection with the Services. AbsIn5 can remove content at any time.
+You are responsible for the content you upload to the Services. By posting content, you grant 24Up.fit a license to use, modify, and distribute your content in connection with the Services. 24Up.fit can remove content at any time.
 
 ### Free Plan:
-AbsIn5 offers a free plan but may change the terms or discontinue it at any time. Projects on the free plan may be removed without notice.
+24Up.fit offers a free plan but may change the terms or discontinue it at any time. Projects on the free plan may be removed without notice.
 
 ### Fair Use:
-AbsIn5 will provide reasonable bandwidth and storage for all plan levels but may shut down projects or accounts that create an unreasonable burden on infrastructure.
+24Up.fit will provide reasonable bandwidth and storage for all plan levels but may shut down projects or accounts that create an unreasonable burden on infrastructure.
 
 ### Acceptable Use:
 The Services must be used lawfully. You must not undermine security, gain unauthorized access, send unsolicited messages, or misuse the Services.
 
 ### Security:
-AbsIn5 takes measures to protect your content but is not liable for unauthorized access or data loss.
+24Up.fit takes measures to protect your content but is not liable for unauthorized access or data loss.
 
 ### Usage Restrictions:
-You may not sublicense, reverse engineer, or commercially exploit the Services. You must comply with all laws and AbsIn5 policies.
+You may not sublicense, reverse engineer, or commercially exploit the Services. You must comply with all laws and 24Up.fit policies.
 
 ### Electronic Communications:
-By using the Services, you consent to receiving electronic communications from AbsIn5.
+By using the Services, you consent to receiving electronic communications from 24Up.fit.
 
 ### Representations and Warranties:
-You represent that you own or have the necessary rights to your content and that your use of the Services complies with laws and AbsIn5 policies.
+You represent that you own or have the necessary rights to your content and that your use of the Services complies with laws and 24Up.fit policies.
 
 ### Indemnification:
-You agree to indemnify AbsIn5 against any claims arising from your use of the Services or your content.
+You agree to indemnify 24Up.fit against any claims arising from your use of the Services or your content.
 
 ### Confidentiality:
 Both parties will protect each other’s confidential information and use it only for purposes related to the Services.
@@ -56,16 +56,16 @@ This Agreement continues as long as Services are provided. Either party can term
 The Services are provided “as is” without warranties of any kind.
 
 ### Limitation of Liability:
-AbsIn5’s liability is limited to the greater of $100 or the fees paid by you in the six months prior to the act giving rise to liability. Certain limitations may not apply in some states.
+24Up.fit’s liability is limited to the greater of $100 or the fees paid by you in the six months prior to the act giving rise to liability. Certain limitations may not apply in some states.
 
 ### Miscellaneous:
-AbsIn5 may change these Terms with 30 days’ notice. If any provision is unenforceable, it will be limited to the minimum extent necessary. This Agreement is the complete statement of understanding between the parties.
+24Up.fit may change these Terms with 30 days’ notice. If any provision is unenforceable, it will be limited to the minimum extent necessary. This Agreement is the complete statement of understanding between the parties.
 
 ### Governing Law and Disputes:
 This Agreement is governed by the laws of Florida. Disputes will be resolved by binding arbitration, not in court, except for certain intellectual property disputes. There is a class action waiver.
 
 ### Privacy:
-Please refer to the Privacy Policy at https://absin5.vercel.app/privacy for information on how AbsIn5 collects and uses personal data.
+Please refer to the Privacy Policy at https://24Up.fit.vercel.app/privacy for information on how 24Up.fit collects and uses personal data.
 
 ### Translation Interpretation:
 These Terms and Conditions may have been translated if We have made them available to You on our Service. You agree that the original English text shall prevail in the case of a dispute.

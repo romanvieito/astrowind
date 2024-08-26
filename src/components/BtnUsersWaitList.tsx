@@ -69,7 +69,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
             name: fullname ?? '',
             email: email ?? '',
             subject: 'Subcription on the Waitlist',
-            message: 'You’re on the AbsIn5 Waitlist. Pretty soon, you’ll be supercharging your workout.',
+            message: 'You’re on the 24Up.fit Waitlist. Pretty soon, you’ll be supercharging your workout.',
           };
 
           const response_email = await fetch('/api/sendmail-mailtrap', {
