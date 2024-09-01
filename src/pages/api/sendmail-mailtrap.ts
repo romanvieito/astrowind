@@ -46,7 +46,7 @@ export const POST: APIRoute = async ({ request }) => {
   
   const email_sender = {
     email: "mailtrap@simplerb.com",
-    name: "24Up.fit",
+    name: "24up.",
   };
     
   const email_cc = {

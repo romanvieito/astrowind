@@ -1,5 +1,5 @@
 site:
-  name: 24up.fit
+  name: 24up.
   site: 'https://astrowind.vercel.app'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: 24up.fit
-    template: '%s — 24up.fit'
+    default: 24up.
+    template: '%s — 24up.'
   description: "\U0001F680 Free app for getting in shape"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: 24up.fit
+    site_name: 24up.
     images:
       - url: '~/assets/images/default.png'
         width: 1200
