@@ -65,37 +65,37 @@ const metadata = {
       </span>
     </Fragment>
 
-    <Fragment slot="image">
-      <div class="responsive-video-container">
-        <iframe
-          src={`https://www.youtube.com/embed/1phiRZDWeBQ?playlist=rEf8y_kITQ0&loop=1&autoplay=1&mute=1`}
-          title="YOUR PERSONALIZED AI COACH - ANYTIME, ANYWHERE"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    
-      <style is:inline>
-        .responsive-video-container {
-          position: relative;
-          width: 100%;
-          padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-          height: 0;
-          overflow: hidden;
-        }
-    
-        .responsive-video-container iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border: 0;
-        }
-      </style>
-    </Fragment>
+    <!-- <Fragment slot="image">
+    </Fragment> -->
   </Hero>
+  
+  <div class="responsive-video-container">
+    <iframe
+      src={`https://www.youtube.com/embed/1phiRZDWeBQ?playlist=rEf8y_kITQ0&loop=1&autoplay=1&mute=1`}
+      title="YOUR PERSONALIZED AI COACH - ANYTIME, ANYWHERE"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <style is:inline>
+    .responsive-video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .responsive-video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
 
   <!-- Note Widget ******************* -->
 
@@ -111,8 +111,7 @@ const metadata = {
     items={[
       {
         title: 'Just You + AI',
-        description:
-          'Your personalized AI coach. Anytime, anywhere—just you and your camera.',
+        description: 'Your personalized AI coach. Anytime, anywhere—just you and your camera.',
         icon: 'tabler:brand-tailwind',
       },
       {
