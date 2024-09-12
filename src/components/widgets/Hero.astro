@@ -63,7 +63,7 @@ const user = await Astro.locals.currentUser();
                 <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
                   {Array.isArray(actions_sign_in) ? (
                     actions_sign_in.map((action) => (
-                      <div class="flex w-full sm:w-auto">
+                      <div class="w-full sm:w-auto">
                         {action.text === 'Join Waitlist' ? (
                           <>
                             <ButtonUWL
