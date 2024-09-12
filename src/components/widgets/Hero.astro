@@ -70,7 +70,6 @@ const user = await Astro.locals.currentUser();
                               fullname={user?.fullName}
                               email={user?.emailAddresses[0].emailAddress}
                               incase={1}
-                              client:load
                             />
                           </>
                         ) : (
@@ -108,7 +107,7 @@ const user = await Astro.locals.currentUser();
         {content && <Fragment set:html={content} />}
         <SignedIn>
           <div class="mt-2">
-            <ViewUWL email={user?.emailAddresses[0].emailAddress} client:load />
+            <ViewUWL email={user?.emailAddresses[0].emailAddress} />
           </div>
         </SignedIn>
       </div>
