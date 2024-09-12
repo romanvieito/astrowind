@@ -1,0 +1,266 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+// import Features2 from '~/components/widgets/Features2.astro';
+// import Steps from '~/components/widgets/Steps.astro';
+// import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+
+const metadata = {
+  title: '24up. — Isometrics for getting in shape',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions_sign_in={[
+      {
+        variant: 'primary',
+        text: 'Join Waitlist',
+        href: 'https://github.com/onwidget/astrowind',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign in / up',
+        href: '/sign-in',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+  >
+    <Fragment slot="title">
+      <div class="mb-6">
+        <span class="hidden sm:inline">
+          Isometrics with a <span class="text-accent dark:text-white highlight"> Forever-Free </span>Workout
+          Partner
+        </span>
+        <span class="sm:hidden"
+          >Smarter Fitness with a <span class="text-accent dark:text-white highlight">Forever-Free</span> Workout Partner</span
+        >
+      </div>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline text-2xl">
+        <span class="font-bold">24up.</span> An AI Coach for Busy People
+      </span>
+      <span class="text-2xl sm:hidden">
+        <span class="font-bold">24up.</span> An AI Coach for Busy People
+      </span>
+    </Fragment>
+
+  </Hero>
+  
+  <div class="responsive-video-container">
+    <iframe
+      src={`https://www.youtube.com/embed/1phiRZDWeBQ?playlist=rEf8y_kITQ0&loop=1&autoplay=1&mute=1`}
+      title="YOUR PERSONALIZED AI COACH - ANYTIME, ANYWHERE"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <style is:inline>
+    .responsive-video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .responsive-video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+
+  <!-- Note Widget ******************* -->
+
+  <Note textBold="Master" text="Every Hold." />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    tagline="Features"
+    title="What you get with 24up."
+    subtitle="Achieve your best form and fitness through isometric exercises. For busy people, by busy people."
+    items={[
+      {
+        title: 'Just You + AI',
+        description: 'Your personalized AI coach guides you through isometric workouts, anytime, anywhere—just you and your camera.',
+        icon: 'tabler:brand-tailwind',
+      },
+      {
+        title: 'Automatic Isometric Hold Tracker',
+        description:
+          'Accurately tracking and reporting your hold durations, one of the most critical aspects of isometric training, enhances your overall experience (coming soon).',
+        icon: 'tabler:components',
+      },
+      {
+        title: 'Tailor-made to your Performance',
+        description:
+          'Our app analyzes your isometric performance in real-time, adjusting exercises to your skill level for continuous, safe progress.',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Stay Fit, Stay Up—24/7',
+        description:
+          'Experience the benefits of a personal trainer for isometric training at a fraction of the cost, making fitness accessible and convenient, especially for home workouts.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Real-Time Feedback',
+        description:
+          'Get real-time feedback with alerts for incorrect posture and hold technique during isometric exercises, preventing injuries and ensuring more effective workouts.',
+        icon: 'tabler:arrows-right-left',
+      },
+      {
+        title: 'Enjoy and Focus',
+        description:
+          'Audio responses keep you engaged and focused, providing gym-like guidance and encouragement during your isometric training sessions.',
+        icon: 'tabler:bulb',
+      },
+    ]}
+  />
+
+  <Pricing
+    title="Flexible pricing plans"
+    classes={{ container: 'bg-blue-50 dark:bg-transparent' }}
+    prices={[
+      {
+        title: 'free forever',
+        subtitle: 'Try the app. Access to some features',
+        price: '0',
+        period: '/ month',
+        callToAction: {
+          target: '_blank',
+          text: 'Get Started for Free',
+          href: '#',
+        },
+      },
+      {
+        title: 'pro',
+        subtitle: 'Real time feedback. Advanced AI coach',
+        price: 10,
+        period: '/ Month',
+        callToAction: {
+          target: '_blank',
+          text: 'Upgrade to Pro',
+          href: '#',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Best',
+      }
+    ]}
+  />
+
+  <BlogLatestPosts
+    title="Find out more content in our Blog"
+    information={`Master your fitness journey with AI-guided isometrics. Unlock groundbreaking health insights and perfect your technique with our blog. Thanks for staying with us!
+                `}
+  />
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Frequently Asked Questions"
+    subtitle="Dive into these questions to discover the powerful features of 24up. and how it can elevate your fitness journey."
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Do the plans come with customer support?',
+        description:
+          'Absolutely, all plans include access to our dedicated customer support to assist you with any queries or concerns.',
+      },
+      {
+        title: 'Is there a trial period for the different plans?',
+        description:
+          'While we don’t offer trial periods for our plans, you can use the app free forever to access the basic features.',
+      },
+      {
+        title: 'Can I switch between plans?',
+        description:
+          'Certainly! You can easily upgrade or downgrade your plan, at any time, to find the one that best suits your needs.',
+      },
+      {
+        title: 'What payment methods do you accept?',
+        description:
+          'We accept major credit cards and online payment methods to ensure a convenient and secure transaction process.',
+      },
+      {
+        title: 'Are there any hidden fees beyond the displayed cost?',
+        description:
+          'No, the subscription cost covers all the features listed under each plan. There are no hidden fees or extra charges.',
+      },
+      {
+        title: 'How do I cancel my subscription?',
+        description:
+          'You can cancel your subscription at any time through the account settings within the app. Once canceled, your subscription will remain active until the end of the current billing cycle.',
+      },
+      {
+        title: 'How is my data protected?',
+        description:
+          'We take your privacy seriously. All personal information is stored securely and is only used to enhance your experience with the app. We comply with all relevant data protection principles to ensure your data remains safe.',
+      },
+      {
+        title: 'Is 24up. suitable for beginners?',
+        description:
+          'Absolutely! 24up. is designed to cater to all fitness levels. Whether you’re just starting or have been working out for years, the app offers customizable workouts that can be adjusted to fit your fitness level.',
+      },
+    ]}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'Demo Downloads', amount: '+100' },
+      { title: 'Beta Users', amount: '+500' },
+      { title: 'User Rating', amount: '4.6 stars' },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    title="Ready to boost your shape?"
+    subtitle="Join our community of satisfied members who want to transform their fitness with our app."
+    actions_sign_in={[
+      {
+        variant: 'primary',
+        text: 'Join Waitlist',
+        href: 'https://github.com/onwidget/astrowind',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+    ]}
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign in / up',
+        href: '/sign-in',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+    ]}
+  />
+</Layout>
