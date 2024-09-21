@@ -1,7 +1,10 @@
 import mixpanel from "mixpanel-browser";
 
 // Initialize Mixpanel with your project token
-mixpanel.init('YOUR_MIXPANEL_TOKEN', { debug: true });
+mixpanel.init('b98359528baa013898b40c8583f849ce', {   
+  debug: true,
+  track_pageview: false,
+  persistence: "localStorage", });
 
 // Helper function for tracking events
 export const trackEvent = (eventName: string, properties?: Record<string, any>) => {
