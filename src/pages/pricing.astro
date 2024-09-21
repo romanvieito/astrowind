@@ -6,19 +6,22 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import SendMsgToMixPanel from '~/components/SendMsgToMixPanel';
-import { trackEvent } from '~/utils/mixpanel-config';
 
 const metadata = {
   title: 'Pricing',
 };
-
-// Use trackEvent consistently
-trackEvent("Pricing Page View");
-
 ---
 
 <Layout metadata={metadata}>  
+  <script>
+    import { trackEvent } from '~/utils/mixpanel-config';
+    
+    // Track the event when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      trackEvent("Pricing Page View");
+    });
+  </script>
+
   <!-- HeroText Widget ******************* -->
 
   <HeroText
