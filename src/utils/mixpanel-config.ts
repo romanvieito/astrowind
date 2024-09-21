@@ -1,22 +1,15 @@
 import mixpanel from "mixpanel-browser";
 
-const API_TOKEN = import.meta.env.MIXPANEL_API_KEY ?? '';
-
-mixpanel.init(API_TOKEN, {
-  debug: import.meta.env.DEV, // Only enable debug in development
-  track_pageview: true, // Enable automatic pageview tracking
-  persistence: "localStorage",
-});
+// Initialize Mixpanel with your project token
+mixpanel.init('YOUR_MIXPANEL_TOKEN', { debug: true });
 
 // Helper function for tracking events
 export const trackEvent = (eventName: string, properties?: Record<string, any>) => {
-  mixpanel.track(eventName, properties, (err) => {
-    if (err) {
-      console.error('Error sending event to Mixpanel:', err);
-    } else {
-      console.log('Event sent to Mixpanel:', eventName);
-    }
-  });
+  if (mixpanel && typeof mixpanel.track === 'function') {
+    mixpanel.track(eventName, properties);
+  } else {
+    console.error('Mixpanel not initialized properly');
+  }
 };
 
 export default mixpanel;

@@ -29,8 +29,14 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   //---------------------------------------------------------------------------------------  
 
   const handleOkQuestionClick = async () => {
-    // Track the event once using the trackEvent function
-    trackEvent("Join Waitlist Click Button", { fullname, email });
+    try {
+      // Track the event once using the trackEvent function
+      await trackEvent("Join Waitlist Click Button", { fullname, email });
+    } catch (error) {
+      console.error("Error tracking event:", error);
+      // Optionally, you can set an error message to display to the user
+      // setTypeMsge("An error occurred while processing your request.");
+    }
 
     setIsOpenQuestion(false);
     setIsOpenProcess(true);
@@ -91,7 +97,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
         setIsOpenProcess(false);
 
         setTypeIcon('success');
-        setTypeMsge('You have been successfully added to the waitlist.|'+message_email);
+        setTypeMsge('You’ve made the list! 😎 Only a few select users will get early access—get ready for exclusive updates soon!');
       }      
 
     } catch (error) {
