@@ -59,7 +59,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
 
       if(result.error!) {
         setIsOpenProcess(false);
-        if(result.error === 'The user already exists') {
+        if(result.error === 'You are already on the waitlist') {
           setTypeIcon('info');
         } else {
           setTypeIcon('error');

@@ -70,6 +70,7 @@ const user = await Astro.locals.currentUser();
                               fullname={user?.fullName}
                               email={user?.emailAddresses[0].emailAddress}
                               incase={1}
+                              client:load
                             />
                           </>
                         ) : (
