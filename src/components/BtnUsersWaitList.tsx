@@ -17,6 +17,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   const [typeMsge, setTypeMsge] = createSignal<string>('');
 
   const handleClick = () => {
+    trackEvent("Join Waitlist Click Button", { fullname, email });
     setIsOpenQuestion(true);    
   };
 
@@ -31,7 +32,7 @@ const ButtonUWL = ({fullname, email, incase}:ButtonProps) => {
   const handleOkQuestionClick = async () => {
     try {
       // Track the event once using the trackEvent function
-      await trackEvent("Join Waitlist Click Button", { fullname, email });
+      await trackEvent("Join Waitlist OK Button Clicked in the modal", { fullname, email });
     } catch (error) {
       console.error("Error tracking event:", error);
       // Optionally, you can set an error message to display to the user
