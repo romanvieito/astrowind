@@ -7,27 +7,18 @@ import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import SendMsgToMixPanel from '~/components/SendMsgToMixPanel';
-import mixpanel from '~/utils/mixpanel-config';
+import { trackEvent } from '~/utils/mixpanel-config';
 
 const metadata = {
   title: 'Pricing',
 };
 
-const API_TOKEN = import.meta.env.MIXPANEL_API_KEY ?? '';
-
-mixpanel.track("Pricings Link Click 1", {
-}, function(err) {
-  if (err) {
-    console.error('Error al enviar evento a mixpanel:', err);
-  } else {
-    console.log('Evento enviado a mixpanel');
-  }
-});
+// Use trackEvent consistently
+trackEvent("Pricing Page View");
 
 ---
 
 <Layout metadata={metadata}>  
-  <SendMsgToMixPanel apitoken={API_TOKEN} message="Pricings Link Click 2" client:load/>
   <!-- HeroText Widget ******************* -->
 
   <HeroText

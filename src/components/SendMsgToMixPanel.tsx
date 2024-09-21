@@ -1,32 +1,17 @@
 import { createEffect } from 'solid-js';
-import mixpanel from "mixpanel-browser";
+import { trackEvent } from '~/utils/mixpanel-config';
 
 interface SendMsgProps {
-  apitoken: string;
   message: string;
+  properties?: Record<string, any>;
 }
 
-const SendMsgToMixPanel = ({apitoken, message}:SendMsgProps) => {
-
+const SendMsgToMixPanel = ({ message, properties = {} }: SendMsgProps) => {
   createEffect(() => {
-    mixpanel.init(apitoken, {
-      debug: true,
-      track_pageview: false,
-      persistence: "localStorage",
-    });
+    trackEvent(message, properties);
+  });
 
-    mixpanel.track(message, {
-    }, function(err) {
-      if (err) {
-        console.error('Error al enviar evento a mixpanel:', err);
-      } else {
-        console.log('Evento enviado a mixpanel');
-      }
-    });    
-  }, []);
-  return (
-    <></>
-  );
+  return null;
 };
 
 export default SendMsgToMixPanel;
