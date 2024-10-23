@@ -28,6 +28,7 @@
     "@emotion/react": "^11.11.4",
     "@fontsource-variable/inter": "^5.0.18",
     "@iconify/tools": "^4.0.5",
+    "@vercel/postgres": "^0.10.0",
     "astro": "^4.11.0",
     "astro-clerk-auth": "^0.10.0",
     "astro-embed": "^0.7.2",

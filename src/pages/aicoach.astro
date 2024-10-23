@@ -1,0 +1,34 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { SignedIn, SignedOut } from 'astro-clerk-auth/components/control';
+import IframePoseLandMarker from '~/components/IframePoseLandMarker';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'AI Coach',
+};
+
+const poselandmarmkerurl = import.meta.env.POSELANDMARKER_URL;
+const token_api_key = import.meta.env.TOKEN_API_KEY;
+---
+
+<Layout metadata={metadata}>
+  <SignedIn>
+    <IframePoseLandMarker pose_landmarker_url={poselandmarmkerurl} token_api_key={token_api_key} client:load />
+  </SignedIn>
+  <SignedOut>
+    <CallToAction
+      title="Ready for some fun and fitness?"
+      subtitle="You need to sign for access"
+      actions_sign_in={[]}
+      actions_sign_out={[
+        {
+          variant: 'primary',
+          text: 'Sign in / up',
+          href: '/sign-in',
+          icon: 'tabler:square-rounded-arrow-right',
+        },
+      ]}
+    />
+  </SignedOut>
+</Layout>
