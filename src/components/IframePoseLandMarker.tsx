@@ -23,7 +23,7 @@ const IframePoseLandMarker = ({ pose_landmarker_url, token_api_key }: ViewProps)
           throw new Error('Error al obtener el token'); // Maneja el error
         }
         const token = await response.text();
-        const iframeSrc = `${pose_landmarker_url}?token=${token}`;
+        const iframeSrc = `${pose_landmarker_url}/poses?token=${token}`;
         console.log('Iframe Source:', iframeSrc);
         setUrl(iframeSrc);
       } catch (error) {
