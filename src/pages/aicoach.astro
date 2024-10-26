@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import { SignedIn, SignedOut } from 'astro-clerk-auth/components/control';
 import IframePoseLandMarker from '~/components/IframePoseLandMarker';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { trackEvent } from '~/utils/mixpanel-config';
 
 const metadata = {
   title: 'AI Coach',
@@ -27,8 +28,16 @@ const token_api_key = import.meta.env.TOKEN_API_KEY;
           text: 'Sign in / up',
           href: '/sign-in',
           icon: 'tabler:square-rounded-arrow-right',
+          onclick: "trackEvent('Sign In Button Clicked')",
         },
       ]}
     />
   </SignedOut>
 </Layout>
+
+<script>
+  import { trackEvent } from '~/utils/mixpanel-config';
+
+  // Track page view
+  trackEvent('AI Coach Page Viewed');
+</script>
