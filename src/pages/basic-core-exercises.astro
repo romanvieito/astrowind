@@ -1,0 +1,143 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: '24up. — Basic Core Exercises with AI Guidance',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions_sign_in={[
+      {
+        variant: 'primary',
+        text: 'Start Core Workout',
+        href: '',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign up for Free',
+        href: '/sign-up',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white highlight">Basic Core Exercises</span> with AI-Powered Guidance
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Strengthen your core with personalized, AI-coached exercises. For busy people by busy people.
+    </Fragment>
+  </Hero>
+
+  <Note textBold="Effective" text="Core Workouts, Anytime, Anywhere" />
+
+  <Features
+    id="features"
+    tagline="Core Strength"
+    title="Master Basic Core Exercises with 24up."
+    subtitle="Build a strong foundation with our AI-guided core workouts."
+    items={[
+      {
+        title: 'Personalized Core Routines',
+        description: 'Get tailored core exercises based on your fitness level and goals.',
+        icon: 'tabler:adjustments',
+      },
+      {
+        title: 'Real-Time Form Correction',
+        description: 'Our AI coach ensures proper form to maximize results and prevent injuries.',
+        icon: 'tabler:eye-check',
+      },
+      {
+        title: 'Progressive Core Training',
+        description: 'Gradually increase difficulty as you improve, keeping your workouts challenging.',
+        icon: 'tabler:chart-arrows',
+      },
+      {
+        title: 'Core Exercise Library',
+        description: 'Access a variety of basic core exercises suitable for all levels.',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Quick Core Workouts',
+        description: 'Efficient 5-15 minute routines perfect for busy schedules.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Track Core Progress',
+        description: 'Monitor your core strength improvements over time.',
+        icon: 'tabler:chart-line',
+      },
+    ]}
+  />
+
+  <FAQs
+    title="Core Exercise FAQs"
+    subtitle="Get answers to common questions about basic core exercises and our AI-powered app."
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'What are basic core exercises?',
+        description:
+          'Basic core exercises are fundamental movements that target the muscles in your abdomen, lower back, hips, and pelvis. Examples include planks, crunches, and Russian twists.',
+      },
+      {
+        title: 'How often should I do core exercises?',
+        description:
+          'For beginners, we recommend 2-3 core workouts per week. Our app will help you create a balanced routine that fits your schedule.',
+      },
+      {
+        title: 'Do I need equipment for these core exercises?',
+        description:
+          'Most basic core exercises require no equipment. However, some advanced variations may use simple items like resistance bands or a stability ball.',
+      },
+      {
+        title: 'How does the AI coach help with core exercises?',
+        description:
+          'Our AI coach uses your device\'s camera to analyze your form in real-time, providing instant feedback to ensure you\'re performing exercises correctly and safely.',
+      },
+      {
+        title: 'Can beginners use this app for core training?',
+        description:
+          'Absolutely! Our app is designed for all levels, including beginners. The AI coach will start you with basic core exercises and progressively increase difficulty as you improve.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    title="Start Your Core Strength Journey Today"
+    subtitle="Join 24up. and get personalized, AI-guided basic core exercises to build a stronger, healthier you."
+    actions_sign_in={[
+      {
+        variant: 'primary',
+        text: 'Begin Core Workout',
+        href: '',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+    ]}
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign up for Free',
+        href: '/sign-up',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+    ]}
+  />
+</Layout>
