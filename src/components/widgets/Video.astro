@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
-  poster?: string;
+  poster?: string | ImageMetadata;
   highResVideo?: string;
   lowResVideo?: string;
 }
@@ -13,19 +15,46 @@ const {
 ---
 
 <div class="responsive-video-container">
-  <video 
-    controls
-    autoplay
-    muted 
-    loop
-    preload="none"
-    poster={poster}
-    width="2638"
-    height="1080"
-  >
-    <source src={highResVideo} type="video/mp4" media="(min-width: 1200px)">
-    <source src={lowResVideo} type="video/mp4">
-  </video>
+  {typeof poster === 'string' ? (
+    <video 
+      controls
+      autoplay
+      muted 
+      loop
+      preload="none"
+      poster={poster}
+      width="2638"
+      height="1080"
+      loading="lazy"
+    >
+      <source src={highResVideo} type="video/mp4" media="(min-width: 1200px)">
+      <source src={lowResVideo} type="video/mp4">
+    </video>
+  ) : (
+    <video 
+      controls
+      autoplay
+      muted 
+      loop
+      preload="none"
+      width="2638"
+      height="1080"
+      loading="lazy"
+    >
+      <Image 
+        src={poster} 
+        alt=""
+        width={2638}
+        height={1080}
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+      />
+      <source src={highResVideo} type="video/mp4" media="(min-width: 1200px)">
+      <source src={lowResVideo} type="video/mp4">
+    </video>
+  )}
 </div>
 
 <style>
