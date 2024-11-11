@@ -10,8 +10,11 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import Video from '~/components/widgets/Video.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+
 const metadata = {
-  title: '24up. — Master the Plank Exercise with AI-Guided Isometrics',
+  title: 'Plank Exercise Guide: Perfect Form with AI Coaching | 24up.',
+  description: 'Learn proper plank technique with real-time AI coaching. Get instant form feedback, track progress, and master this essential core exercise safely.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -64,23 +67,61 @@ const metadata = {
 
   <Note textBold="Master" text="the Plank." />
 
+  <!-- Testimonials Widget ************* -->
+
+  <Testimonials
+    title="Early User Insights"
+    subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered plank coaching"
+    testimonials={[
+      {
+        testimonial: `Being new to core exercises, I was initially unsure about proper plank form. The app's instant feedback reassured me that I was maintaining the correct position, which gave me the confidence to hold longer. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
+        name: 'Olga Roman',
+        job: 'UX Specialist & Fitness Beginner',
+        linkedin: 'https://www.linkedin.com/in/olga-roman-product-designer/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQGbmmHO0ZNvpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1617303209853?e=1736985600&v=beta&t=l_2AYnir-kZ9i-kjWs_Byv0L94efuf00__0_VrElxhI',
+          alt: 'Olga Roman Image',
+        },
+      },
+      {
+        testimonial: 'The real-time form feedback is great! I was struggling with maintaining proper plank position, but the AI coach helped me understand exactly how to engage my core and maintain proper alignment. As a tech specialist, I’m impressed by how seamlessly the app delivers these insights. As a new app, it has some expected bugs, but I’m hopeful these will improve over time. My workouts are already so much more effective!',
+        name: 'Yai Bolanos',
+        job: 'Tech & Fitness Enthusiast',
+        linkedin: 'https://www.linkedin.com/in/yaibolanos/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQHs3AQLCbZnRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1542209749644?e=1736985600&v=beta&t=bta6se7XLZ6Mowj62gjLcUzPrXZRLwlYjORViFhBVNY',
+          alt: 'Yai Bolanos Image',
+        },
+      },
+      {
+        testimonial: `As an AI researcher, I'm always impressed by technology that translates complex insights into everyday benefits. The AI coach's precision with form correction during planks has been promising. It provides real-time adjustments that help me focus on correct muscle engagement and maintain proper form. This kind of immediate, data-driven feedback is something I'd expect from a trainer. Looking forward to see the app grow!`,
+        name: 'Abel Berenguer',
+        job: 'AI Researcher',
+        linkedin: 'https://www.linkedin.com/in/abel-d%C3%ADaz-berenguer-1374b1175/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/D4E03AQG9sGX48K0p2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718231140970?e=1736985600&v=beta&t=_vx06dvyLwq5DLOE2kg6FkeH469YR6yrJsr3P2ce0uQ',
+          alt: 'Abel Berenguer Image',
+        },
+      },
+    ]}
+  />
+
   <!-- Features Widget *************** -->
 
   <Features
     id="features"
-    tagline="Features"
-    title="What you get with 24up."
-    subtitle="Achieve your best form and fitness through isometric exercises. For busy people, by busy people."
+    tagline="Benefits"
+    title="Why Learn Plank Exercise with 24up."
+    subtitle="Master proper plank form and technique with AI-powered guidance. Perfect for beginners and advanced fitness enthusiasts."
     items={[
       {
-        title: 'Just You + AI',
-        description: 'Your personalized AI coach guides you through isometric workouts, anytime, anywhere—just you and your camera.',
+        title: 'Real-Time Form Correction',
+        description: 'Get instant feedback on your plank form and technique from our AI coach, ensuring safe and effective workouts.',
         icon: 'tabler:brand-tailwind',
       },
       {
-        title: 'Automatic Isometric Hold Tracker',
-        description:
-          'Accurately tracking and reporting your hold durations, one of the most critical aspects of isometric training, enhances your overall experience (coming soon).',
+        title: 'Step-by-Step Guidance',
+        description: 'Learn proper plank setup, execution, and common mistakes to avoid with detailed visual and audio instructions.',
         icon: 'tabler:components',
       },
       {

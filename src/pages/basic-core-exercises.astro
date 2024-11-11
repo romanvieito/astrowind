@@ -4,11 +4,17 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+import Video from '~/components/widgets/Video.astro';
 
 const metadata = {
-  title: '24up. — Basic Core Exercises with AI Guidance',
+  title: 'Basic Core Exercises Guide: Perfect Form with AI Coaching | 24up.',
+  description: 'Learn proper core exercise techniques with real-time AI coaching. Get instant form feedback, track progress, and master essential core exercises safely.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -44,7 +50,46 @@ const metadata = {
     </Fragment>
   </Hero>
 
+  <Video />
+
   <Note textBold="Effective" text="Core Workouts, Anytime, Anywhere" />
+
+  <Testimonials
+    title="Early User Insights"
+    subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered core exercise coaching"
+    testimonials={[
+      {
+        testimonial: `Being new to core exercises, I was initially unsure about proper form. The app's instant feedback reassured me that I was maintaining correct positions, which gave me the confidence to keep going. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
+        name: 'Olga Roman',
+        job: 'UX Specialist & Fitness Beginner',
+        linkedin: 'https://www.linkedin.com/in/olga-roman-product-designer/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQGbmmHO0ZNvpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1617303209853?e=1736985600&v=beta&t=l_2AYnir-kZ9i-kjWs_Byv0L94efuf00__0_VrElxhI',
+          alt: 'Olga Roman Image',
+        },
+      },
+      {
+        testimonial: 'The real-time form feedback is great! I\'d been struggling with proper core muscle engagement, but the AI coach helped me understand exactly when to engage my glutes and maintain proper spine alignment. As a tech specialist, I’m impressed by how seamlessly the app delivers these insights. It’s a new app, so it has some expected bugs, but I’m hopeful these will improve over time. My workouts are already so much more effective!',
+        name: 'Yai Bolanos',
+        job: 'Tech & Fitness Enthusiast',
+        linkedin: 'https://www.linkedin.com/in/yaibolanos/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQHs3AQLCbZnRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1542209749644?e=1736985600&v=beta&t=bta6se7XLZ6Mowj62gjLcUzPrXZRLwlYjORViFhBVNY',
+          alt: 'Yai Bolanos Image',
+        },
+      },
+      {
+        testimonial: `As an AI researcher, I'm always impressed by technology that translates complex insights into everyday benefits. The AI coach's precision with form correction during core exercises has been promising. It provides real-time adjustments that help me focus on correct muscle engagement and maintain proper form. This kind of immediate, data-driven feedback is something I'd expect from a trainer.`,
+        name: 'Abel Berenguer',
+        job: 'AI Researcher',
+        linkedin: 'https://www.linkedin.com/in/abel-d%C3%ADaz-berenguer-1374b1175/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/D4E03AQG9sGX48K0p2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718231140970?e=1736985600&v=beta&t=_vx06dvyLwq5DLOE2kg6FkeH469YR6yrJsr3P2ce0uQ',
+          alt: 'Abel Berenguer Image',
+        },
+      },
+    ]}
+  />
 
   <Features
     id="features"
@@ -85,6 +130,42 @@ const metadata = {
     ]}
   />
 
+  <Pricing
+    title="Flexible pricing plans"
+    classes={{ container: 'bg-blue-50 dark:bg-transparent' }}
+    prices={[
+      {
+        title: 'free forever',
+        subtitle: 'Try the app. Access to some features',
+        price: '0',
+        period: '/ month',
+        callToAction: {
+          target: '_blank',
+          text: 'Get Started for Free',
+          href: '#',
+        },
+      },
+      {
+        title: 'pro',
+        subtitle: 'Real time feedback. Advanced AI coach',
+        price: 10,
+        period: '/ Month',
+        callToAction: {
+          target: '_blank',
+          text: 'Upgrade to Pro',
+          href: '#',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Best',
+      }
+    ]}
+  />
+
+  <BlogLatestPosts
+    title="Find out more content in our Blog"
+    information={`Master your fitness journey with AI-guided core exercises. Unlock groundbreaking health insights and perfect your technique with our blog. Thanks for staying with us!`}
+  />
+
   <FAQs
     title="Core Exercise FAQs"
     subtitle="Get answers to common questions about basic core exercises and our AI-powered app."
@@ -116,6 +197,14 @@ const metadata = {
         description:
           'Absolutely! Our app is designed for all levels, including beginners. The AI coach will start you with basic core exercises and progressively increase difficulty as you improve.',
       },
+    ]}
+  />
+
+  <Stats
+    stats={[
+      { title: 'Demo Downloads', amount: '+100' },
+      { title: 'Beta Users', amount: '+500' },
+      { title: 'User Rating', amount: '4.6 stars' },
     ]}
   />
 

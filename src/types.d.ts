@@ -172,6 +172,7 @@ export interface Testimonial {
   name?: string;
   job?: string;
   image?: string | unknown;
+  linkedin?: string;
 }
 
 export interface Input {
