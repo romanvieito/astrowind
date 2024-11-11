@@ -23,6 +23,34 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "24up.",
+  "applicationCategory": "HealthAndFitnessApplication",
+  "operatingSystem": "Any",
+  "description": "Master your fitness journey with real-time AI coaching. Get instant form feedback, track progress, and achieve your fitness goals safely and effectively.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "name": "Free Plan"
+    },
+    {
+      "@type": "Offer",
+      "price": "10",
+      "priceCurrency": "USD",
+      "name": "Pro Plan"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "ratingCount": "50"
+  }
+};
 ---
 
 <!doctype html>
@@ -35,6 +63,9 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    
+    <!-- Add JSON-LD structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
