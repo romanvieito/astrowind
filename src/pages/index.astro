@@ -10,9 +10,11 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import Video from '~/components/widgets/Video.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 
 const metadata = {
   title: '24up. — An AI Coach for Busy People',
+  description: 'Master your fitness journey with real-time AI coaching. Get instant form feedback, track progress, and achieve your fitness goals safely and effectively.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -69,6 +71,43 @@ const metadata = {
   <!-- Note Widget ******************* -->
 
   <Note textBold="Just" text="Do It Right" />
+
+  <Testimonials
+    title="Early User Insights"
+    subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered coaching"
+    testimonials={[
+      {
+        testimonial: `Being new to Pilates, I was initially nervous about trying exercises. The app's instant feedback reassured me that I was performing each rep with the right form, which gave me the confidence to keep going. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
+        name: 'Olga Roman',
+        job: 'UX Specialist & Pilates Beginner',
+        linkedin: 'https://www.linkedin.com/in/olga-roman-product-designer/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQGbmmHO0ZNvpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1617303209853?e=1736985600&v=beta&t=l_2AYnir-kZ9i-kjWs_Byv0L94efuf00__0_VrElxhI',
+          alt: 'Olga Roman Image',
+        },
+      },
+      {
+        testimonial: 'The real-time form feedback is incredible! The AI coach helped me understand exactly when to engage the right muscles and maintain proper alignment. My workouts are so much more effective now.',
+        name: 'Yai Bolanos',
+        job: 'Tech & Fitness Enthusiast',
+        linkedin: 'https://www.linkedin.com/in/yaibolanos/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQHs3AQLCbZnRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1542209749644?e=1736985600&v=beta&t=bta6se7XLZ6Mowj62gjLcUzPrXZRLwlYjORViFhBVNY',
+          alt: 'Yai Bolanos Image',
+        },
+      },
+      {
+        testimonial: `As an AI researcher, I'm always impressed by technology that translates complex insights into everyday benefits. The AI coach's precision with form correction has been promising. It provides real-time adjustments that help me focus on correct muscle engagement and minimize strain. This kind of immediate, data-driven feedback is something I'd expect from a trainer. Looking forward to see the app grow!`,
+        name: 'Abel Berenguer',
+        job: 'AI Researcher',
+        linkedin: 'https://www.linkedin.com/in/abel-d%C3%ADaz-berenguer-1374b1175/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/D4E03AQG9sGX48K0p2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718231140970?e=1736985600&v=beta&t=_vx06dvyLwq5DLOE2kg6FkeH469YR6yrJsr3P2ce0uQ',
+          alt: 'Abel Berenguer Image',
+        },
+      },
+    ]}
+  />
 
   <!-- Features Widget *************** -->
 
