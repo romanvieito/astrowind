@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 
 interface Props {
-  poster?: string | ImageMetadata;
+  poster?: string | ImageMetadata; // TODO: Add poster, lo quite por problemas d performance 
   highResVideo?: string;
   lowResVideo?: string;
 }
@@ -20,7 +20,6 @@ const {
     autoplay
     muted 
     loop
-    loading="lazy"
   >
     <source src={highResVideo} type="video/mp4" media="(min-width: 1200px)">
     <source src={lowResVideo} type="video/mp4">
