@@ -25,31 +25,32 @@ const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "24up.",
-  "applicationCategory": "HealthAndFitnessApplication",
-  "operatingSystem": "Any",
-  "description": "Master your fitness journey with real-time AI coaching. Get instant form feedback, track progress, and achieve your fitness goals safely and effectively.",
-  "offers": [
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: '24up.',
+  applicationCategory: 'HealthAndFitnessApplication',
+  operatingSystem: 'Any',
+  description:
+    'Master your fitness journey with real-time AI coaching. Get instant form feedback, track progress, and achieve your fitness goals safely and effectively.',
+  offers: [
     {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "name": "Free Plan"
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      name: 'Free Plan',
     },
     {
-      "@type": "Offer",
-      "price": "10",
-      "priceCurrency": "USD",
-      "name": "Pro Plan"
-    }
+      '@type': 'Offer',
+      price: '10',
+      priceCurrency: 'USD',
+      name: 'Pro Plan',
+    },
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.6",
-    "ratingCount": "50"
-  }
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.6',
+    ratingCount: '50',
+  },
 };
 ---
 
@@ -63,25 +64,39 @@ const jsonLd = {
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
-    
+
     <!-- Add JSON-LD structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K9WH3MPQ');</script>
+    <!-- Google Tag Manager GTM-K9WH3MPQ -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'AW-591000819');
+    </script>
     <!-- End Google Tag Manager -->
 
     <!-- Clarity script -->
     <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "o6o2qckjaw");
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'o6o2qckjaw');
     </script>
 
     <!-- Comment the line below to disable View Transitions -->
@@ -89,9 +104,14 @@ const jsonLd = {
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K9WH3MPQ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) GTM-K9WH3MPQ -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=AW-591000819"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
     <!-- End Google Tag Manager (noscript) -->
 
     <slot />
