@@ -40,7 +40,7 @@ export const headerData = {
       ],
     },
   ],
-  actions_sign_in: [{ text: 'Join Waitlist' }],
+  actions_sign_in: [{ text: 'Start Coach' }],
   actions_sign_out: [{ text: 'Sign in / up', href: '/sign-in' }],
 };
 

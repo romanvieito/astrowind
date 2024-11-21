@@ -64,7 +64,7 @@ const user = await Astro.locals.currentUser();
                   {Array.isArray(actions_sign_in) ? (
                     actions_sign_in.map((action) => (
                       <div class="w-full sm:w-auto">
-                        {action.text === 'Join Waitlist' ? (
+                        {action.text === 'Start Coach' ? (
                           <>
                             <ButtonUWL
                               fullname={user?.fullName}

@@ -12,13 +12,13 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata}>  
+<Layout metadata={metadata}>
   <script>
     import { trackEvent } from '~/utils/mixpanel-config';
-    
+
     // Track the event when the page loads
     document.addEventListener('DOMContentLoaded', () => {
-      trackEvent("Pricing Page View");
+      trackEvent('Pricing Page View');
     });
   </script>
 
@@ -33,43 +33,43 @@ const metadata = {
   <!-- Pricing Widget ******************* -->
 
   <Prices
-  prices={[
-    {
-      title: 'free forever',
-      subtitle: 'Try the app. Access to some features',
-      price: '0',
-      period: '/ month',
-      callToAction: {
-        target: '_blank',
-        text: 'Get Started for Free',
-        href: '#',
+    prices={[
+      {
+        title: 'free forever',
+        subtitle: 'Try the app. Access to some features',
+        price: '0',
+        period: '/ month',
+        callToAction: {
+          target: '_blank',
+          text: 'Get Started for Free',
+          href: '#',
+        },
       },
-    },
-    {
-      title: 'pro',
-      subtitle: 'Real time feedback. Advanced AI coach',
-      price: 10,
-      period: '/ Month',
-      callToAction: {
-        target: '_blank',
-        text: 'Upgrade to Pro',
-        href: '#',
+      {
+        title: 'pro',
+        subtitle: 'Real time feedback. Advanced AI coach',
+        price: 10,
+        period: '/ Month',
+        callToAction: {
+          target: '_blank',
+          text: 'Upgrade to Pro',
+          href: '#',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Best',
       },
-      hasRibbon: true,
-      ribbonTitle: 'Best',
-    },
-    // {
-    //   title: 'Enterprise',
-    //   subtitle: 'Api Access. For custom requirements',
-    //   price: "Custom",
-    //   period: '/ Month',
-    //   callToAction: {
-    //     target: '_blank',
-    //     text: "Let's talk",
-    //     href: '#',
-    //   },
-    // },
-  ]}
+      // {
+      //   title: 'Enterprise',
+      //   subtitle: 'Api Access. For custom requirements',
+      //   price: "Custom",
+      //   period: '/ Month',
+      //   callToAction: {
+      //     target: '_blank',
+      //     text: "Let's talk",
+      //     href: '#',
+      //   },
+      // },
+    ]}
   />
 
   <!-- Features3 Widget ************** -->
@@ -81,7 +81,8 @@ const metadata = {
     items={[
       {
         title: 'Money-back Guarantee',
-        description: 'Offer a satisfaction guarantee with a risk-free trial or refund option for users who may want to explore before fully committing.',
+        description:
+          'Offer a satisfaction guarantee with a risk-free trial or refund option for users who may want to explore before fully committing.',
         icon: 'tabler:refresh',
       },
       {
@@ -101,7 +102,8 @@ const metadata = {
       },
       {
         title: 'Multi-Currency Support',
-        description: 'Include multi-currency payment options to cater to global users, enhancing accessibility and convenience for international customers.',
+        description:
+          'Include multi-currency payment options to cater to global users, enhancing accessibility and convenience for international customers.',
         icon: 'tabler:world',
       },
       {
@@ -166,7 +168,7 @@ const metadata = {
       {
         title: 'Is there a trial period for the different plans?',
         description:
-          "While we don’t offer trial periods for our plans, you can use the app free forever to access the basic features.",
+          'While we don’t offer trial periods for our plans, you can use the app free forever to access the basic features.',
       },
       {
         title: 'Can I switch between plans?',
@@ -191,24 +193,22 @@ const metadata = {
   <CallToAction
     title="Ready to boost your shape?"
     subtitle="Join our community of satisfied members who want to transform their fitness with our app."
-    
     actions_sign_in={[
       {
         variant: 'primary',
-        text: 'Join Waitlist',
+        text: 'Start Coach',
         href: 'https://github.com/onwidget/astrowind',
         target: '_blank',
         icon: 'tabler:square-rounded-arrow-right',
-      }
+      },
     ]}
-
     actions_sign_out={[
       {
         variant: 'primary',
         text: 'Sign in / up',
         href: '/sign-in',
         icon: 'tabler:square-rounded-arrow-right',
-      }
+      },
     ]}
   />
 </Layout>

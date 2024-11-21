@@ -14,7 +14,8 @@ import Video from '~/components/widgets/Video.astro';
 import StepsLanding from '~/components/widgets/StepsLanding.astro';
 const metadata = {
   title: 'Hip Thrust Exercise Guide: Perfect Form with AI Coaching | 24up.',
-  description: 'Learn proper hip thrust exercise technique with real-time AI coaching. Get instant form feedback, track progress, and master this essential glute exercise safely.',
+  description:
+    'Learn proper hip thrust exercise technique with real-time AI coaching. Get instant form feedback, track progress, and master this essential glute exercise safely.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -24,7 +25,7 @@ const metadata = {
     actions_sign_in={[
       {
         variant: 'primary',
-        text: 'Join Waitlist',
+        text: 'Start Coach',
         href: '',
         target: '_blank',
         icon: 'tabler:square-rounded-arrow-right',
@@ -61,49 +62,49 @@ const metadata = {
       </span>
     </Fragment>
   </Hero>
-  
+
   <Video />
 
   <!-- Note Widget ******************* -->
   <Note textBold="Master" text="the Hip Thrust." />
 
-
   <Testimonials
-  title="Early User Insights"
-  subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered hip thrust coaching"
-  testimonials={[
-    {
-      testimonial: `Being new to Pilates, I was initially nervous about trying hip thrusts. The app’s instant feedback reassured me that I was performing each rep with the right form, which gave me the confidence to keep going. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
-      name: 'Olga Roman',
-      job: 'UX Specialist & Pilates Beginner',
-      linkedin: 'https://www.linkedin.com/in/olga-roman-product-designer/',
-      image: {
-        src: 'https://media.licdn.com/dms/image/v2/C4E03AQGbmmHO0ZNvpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1617303209853?e=1736985600&v=beta&t=l_2AYnir-kZ9i-kjWs_Byv0L94efuf00__0_VrElxhI',
-        alt: 'Olga Roman Image',
+    title="Early User Insights"
+    subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered hip thrust coaching"
+    testimonials={[
+      {
+        testimonial: `Being new to Pilates, I was initially nervous about trying hip thrusts. The app’s instant feedback reassured me that I was performing each rep with the right form, which gave me the confidence to keep going. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
+        name: 'Olga Roman',
+        job: 'UX Specialist & Pilates Beginner',
+        linkedin: 'https://www.linkedin.com/in/olga-roman-product-designer/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQGbmmHO0ZNvpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1617303209853?e=1736985600&v=beta&t=l_2AYnir-kZ9i-kjWs_Byv0L94efuf00__0_VrElxhI',
+          alt: 'Olga Roman Image',
+        },
       },
-    },
-    {
-      testimonial: 'The real-time form feedback is great! I was struggling with proper hip thrust technique, but the AI coach helped me understand exactly when to engage my glutes and maintain proper spine alignment. As a tech specialist, I’m impressed by how seamlessly the app delivers these insights. It’s a new app, so it has some expected bugs, but I’m hopeful these will improve over time. My workouts are already so much more effective!',
-      name: 'Yai Bolanos',
-      job: 'Tech & Fitness Enthusiast',
-      linkedin: 'https://www.linkedin.com/in/yaibolanos/',
-      image: {
-        src: 'https://media.licdn.com/dms/image/v2/C4E03AQHs3AQLCbZnRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1542209749644?e=1736985600&v=beta&t=bta6se7XLZ6Mowj62gjLcUzPrXZRLwlYjORViFhBVNY',
-        alt: 'Yai Bolanos Image',
+      {
+        testimonial:
+          'The real-time form feedback is great! I was struggling with proper hip thrust technique, but the AI coach helped me understand exactly when to engage my glutes and maintain proper spine alignment. As a tech specialist, I’m impressed by how seamlessly the app delivers these insights. It’s a new app, so it has some expected bugs, but I’m hopeful these will improve over time. My workouts are already so much more effective!',
+        name: 'Yai Bolanos',
+        job: 'Tech & Fitness Enthusiast',
+        linkedin: 'https://www.linkedin.com/in/yaibolanos/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQHs3AQLCbZnRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1542209749644?e=1736985600&v=beta&t=bta6se7XLZ6Mowj62gjLcUzPrXZRLwlYjORViFhBVNY',
+          alt: 'Yai Bolanos Image',
+        },
       },
-    },
-    {
-      testimonial: `As an AI researcher, I’m always impressed by technology that translates complex insights into everyday benefits. The AI coach’s precision with form correction during hip thrusts has been promising. It provides real-time adjustments that help me focus on correct muscle engagement and minimize strain on my lower back. This kind of immediate, data-driven feedback is something I’d expect from a trainer. Looking forward to see the app grow!`,
-      name: 'Abel Berenguer',
-      job: 'AI Researcher',
-      linkedin: 'https://www.linkedin.com/in/abel-d%C3%ADaz-berenguer-1374b1175/',
-      image: {
-        src: 'https://media.licdn.com/dms/image/v2/D4E03AQG9sGX48K0p2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718231140970?e=1736985600&v=beta&t=_vx06dvyLwq5DLOE2kg6FkeH469YR6yrJsr3P2ce0uQ',
-        alt: 'Abel Berenguer Image',
+      {
+        testimonial: `As an AI researcher, I’m always impressed by technology that translates complex insights into everyday benefits. The AI coach’s precision with form correction during hip thrusts has been promising. It provides real-time adjustments that help me focus on correct muscle engagement and minimize strain on my lower back. This kind of immediate, data-driven feedback is something I’d expect from a trainer. Looking forward to see the app grow!`,
+        name: 'Abel Berenguer',
+        job: 'AI Researcher',
+        linkedin: 'https://www.linkedin.com/in/abel-d%C3%ADaz-berenguer-1374b1175/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/D4E03AQG9sGX48K0p2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718231140970?e=1736985600&v=beta&t=_vx06dvyLwq5DLOE2kg6FkeH469YR6yrJsr3P2ce0uQ',
+          alt: 'Abel Berenguer Image',
+        },
       },
-    },
-  ]}
-/>
+    ]}
+  />
 
   <!-- Features Widget *************** -->
 
@@ -115,12 +116,14 @@ const metadata = {
     items={[
       {
         title: 'Real-Time Form Correction',
-        description: 'Get instant feedback on your hip thrust form and technique from our AI coach, ensuring safe and effective workouts.',
+        description:
+          'Get instant feedback on your hip thrust form and technique from our AI coach, ensuring safe and effective workouts.',
         icon: 'tabler:brand-tailwind',
       },
       {
         title: 'Step-by-Step Guidance',
-        description: 'Learn proper hip thrust setup, execution, and common mistakes to avoid with detailed visual and audio instructions.',
+        description:
+          'Learn proper hip thrust setup, execution, and common mistakes to avoid with detailed visual and audio instructions.',
         icon: 'tabler:components',
       },
       {
@@ -177,55 +180,61 @@ const metadata = {
         },
         hasRibbon: true,
         ribbonTitle: 'Best',
-      }
+      },
     ]}
   />
 
   <StepsLanding
-  title="Learn your Hip Thrust for maximum activation and safety"
-  items={[
-    {
-      title: 'Starting Position',
-      description: 'Sit with your upper back against a bench, knees bent, and feet flat on the ground. Position the barbell or weight across your hips, using a pad for comfort.',
-      icon: 'tabler:arrow-down',
-    },
-    {
-      title: 'Core Engagement',
-      description: 'Brace your core by drawing your belly button toward your spine. This helps maintain a neutral spine throughout the movement.',
-      icon: 'tabler:shield',
-    },
-    {
-      title: 'Hip Drive',
-      description: 'Push through your heels and drive your hips up toward the ceiling, squeezing your glutes at the top. Your body should form a straight line from shoulders to knees.',
-      icon: 'tabler:arrow-up',
-    },
-    {
-      title: 'Top Position',
-      description: 'At the top, your hips should be fully extended with glutes maximally contracted. Avoid overarching your lower back.',
-      icon: 'tabler:target',
-    },
-    {
-      title: 'Controlled Descent',
-      description: 'Lower your hips back to the starting position with control, maintaining core engagement throughout the movement.',
-      icon: 'tabler:arrow-down',
-    },
-    {
-      title: 'Common Mistakes to Avoid',
-      description: 'Watch for excessive back arch, incomplete hip extension, or letting knees cave in. Our AI coach helps identify and correct these issues in real-time.',
-      icon: 'tabler:alert-triangle',
-    },
-  ]}
-  image={{
-    src: '~/assets/images/workout.jpg',
-    alt: 'Steps image',
-  }}
-  classes={{
-    container: 'mx-auto',
-    headline: { container: 'text-center' },
-    contentContainer: 'items-center justify-center',
-  }}
-/>
-  
+    title="Learn your Hip Thrust for maximum activation and safety"
+    items={[
+      {
+        title: 'Starting Position',
+        description:
+          'Sit with your upper back against a bench, knees bent, and feet flat on the ground. Position the barbell or weight across your hips, using a pad for comfort.',
+        icon: 'tabler:arrow-down',
+      },
+      {
+        title: 'Core Engagement',
+        description:
+          'Brace your core by drawing your belly button toward your spine. This helps maintain a neutral spine throughout the movement.',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'Hip Drive',
+        description:
+          'Push through your heels and drive your hips up toward the ceiling, squeezing your glutes at the top. Your body should form a straight line from shoulders to knees.',
+        icon: 'tabler:arrow-up',
+      },
+      {
+        title: 'Top Position',
+        description:
+          'At the top, your hips should be fully extended with glutes maximally contracted. Avoid overarching your lower back.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Controlled Descent',
+        description:
+          'Lower your hips back to the starting position with control, maintaining core engagement throughout the movement.',
+        icon: 'tabler:arrow-down',
+      },
+      {
+        title: 'Common Mistakes to Avoid',
+        description:
+          'Watch for excessive back arch, incomplete hip extension, or letting knees cave in. Our AI coach helps identify and correct these issues in real-time.',
+        icon: 'tabler:alert-triangle',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/workout.jpg',
+      alt: 'Steps image',
+    }}
+    classes={{
+      container: 'mx-auto',
+      headline: { container: 'text-center' },
+      contentContainer: 'items-center justify-center',
+    }}
+  />
+
   <BlogLatestPosts
     title="Find out more content in our Blog"
     information={`Master your fitness journey with AI-guided isometrics. Unlock groundbreaking health insights and perfect your technique with our blog. Thanks for staying with us!
@@ -301,7 +310,7 @@ const metadata = {
     actions_sign_in={[
       {
         variant: 'primary',
-        text: 'Join Waitlist',
+        text: 'Start Coach',
         href: 'https://github.com/onwidget/astrowind',
         target: '_blank',
         icon: 'tabler:square-rounded-arrow-right',

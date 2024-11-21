@@ -93,7 +93,7 @@ const user = await Astro.locals.currentUser();
                 <span class="ml-4 rtl:ml-0 rtl:mr-4">
                   {actions_sign_in.map((btnProps) => (
                     <>
-                      {btnProps.text === 'Join Waitlist' ? (
+                      {btnProps.text === 'Start Coach' ? (
                         <>
                           <ButtonUWL
                             fullname={user?.fullName}
@@ -123,7 +123,10 @@ const user = await Astro.locals.currentUser();
               actions_sign_out?.length ? (
                 <span class="ml-4 rtl:ml-0 rtl:mr-4">
                   {actions_sign_out.map((btnProps) => (
-                    <Button {...btnProps} class="bg-blue-600 hover:bg-blue-700 text-white font-boldml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                    <Button
+                      {...btnProps}
+                      class="bg-blue-600 hover:bg-blue-700 text-white font-boldml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+                    />
                   ))}
                 </span>
               ) : (
@@ -214,7 +217,7 @@ const user = await Astro.locals.currentUser();
               <span class="ml-4 rtl:ml-0 rtl:mr-4">
                 {actions_sign_in.map((btnProps) => (
                   <>
-                    {btnProps.text === 'Join Waitlist' ? (
+                    {btnProps.text === 'Start Coach' ? (
                       <>
                         <ButtonUWL
                           fullname={user?.fullName}

@@ -3,15 +3,15 @@ import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import type { CallToAction, Widget } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
-import ButtonUWL from '~/components/BtnUsersWaitList'
-import { SignedIn, SignedOut } from "astro-clerk-auth/components/control";
+import ButtonUWL from '~/components/BtnUsersWaitList';
+import { SignedIn, SignedOut } from 'astro-clerk-auth/components/control';
 
 interface Props extends Widget {
   title?: string;
   subtitle?: string;
   tagline?: string;
   callToAction?: CallToAction;
-  actions_sign_in?: string | CallToAction[];  
+  actions_sign_in?: string | CallToAction[];
   actions_sign_out?: string | CallToAction[];
 }
 
@@ -31,7 +31,6 @@ const {
 } = Astro.props;
 
 const user = await Astro.locals.currentUser();
-
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -48,7 +47,7 @@ const user = await Astro.locals.currentUser();
         subtitle: 'text-xl text-muted dark:text-slate-400',
       }}
     />
-    <br/>
+    <br />
     <SignedIn>
       {
         actions_sign_in && (
@@ -56,17 +55,21 @@ const user = await Astro.locals.currentUser();
             {Array.isArray(actions_sign_in) ? (
               actions_sign_in.map((action) => (
                 <div class="flex w-full sm:w-auto">
-                  {
-                    action.text === 'Join Waitlist' ?
+                  {action.text === 'Start Coach' ? (
                     <>
-                      <ButtonUWL fullname={user?.fullName} email={user?.emailAddresses[0].emailAddress} incase={1} client:load/>
-                    </> 
-                    : 
+                      <ButtonUWL
+                        fullname={user?.fullName}
+                        email={user?.emailAddresses[0].emailAddress}
+                        incase={1}
+                        client:load
+                      />
+                    </>
+                  ) : (
                     <>
                       <Button {...(action || {})} class="w-full sm:mb-0" />
                     </>
-                  }                        
-                </div>                      
+                  )}
+                </div>
               ))
             ) : (
               <Fragment set:html={actions_sign_in} />
@@ -90,7 +93,7 @@ const user = await Astro.locals.currentUser();
             )}
           </div>
         )
-      }            
-    </SignedOut>    
+      }
+    </SignedOut>
   </div>
 </WidgetWrapper>
