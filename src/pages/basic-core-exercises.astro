@@ -11,6 +11,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import Video from '~/components/widgets/Video.astro';
+import StepsLanding from '~/components/widgets/StepsLanding.astro';
 
 const metadata = {
   title: 'Basic Core Exercises Guide: Perfect Form with AI Coaching | 24up.',
@@ -160,6 +161,54 @@ const metadata = {
       }
     ]}
   />
+
+  <!-- Exercise Steps Explained ********** -->
+
+  <StepsLanding
+    title="Basic Core Routine for Beginners"
+    items={[
+      {
+        title: 'Warm-Up',
+        description: 'Start with 2-3 minutes of light cardio like marching in place or arm circles to increase blood flow.',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Bird Dog',
+        description: 'On hands and knees, extend opposite arm and leg while maintaining a stable core. Hold for 5 seconds each side.',
+        icon: 'tabler:arrow-up',
+      },
+      {
+        title: 'Dead Bug',
+        description: 'Lie on your back, arms extended up. Lower opposite arm and leg while keeping lower back pressed to floor.',
+        icon: 'tabler:bug',
+      },
+      {
+        title: 'Basic Plank',
+        description: 'Hold a forearm plank position, maintaining a straight line from head to heels. Start with 20 seconds.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Modified Curl-Up',
+        description: 'Lie on back, one knee bent. Lift head and shoulders slightly while keeping lower back pressed down.',
+        icon: 'tabler:arrow-up-circle',
+      },
+      {
+        title: 'Cool Down',
+        description: 'Finish with gentle stretches for your back and core. Hold each stretch for 15-30 seconds.',
+        icon: 'tabler:wind',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/core-workout.jpg',
+      alt: 'Basic core workout demonstration',
+    }}
+    classes={{
+      container: 'mx-auto',
+      headline: { container: 'text-center' },
+      contentContainer: 'items-center justify-center',
+    }}
+  />
+
 
   <BlogLatestPosts
     title="Find out more content in our Blog"

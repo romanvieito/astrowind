@@ -11,6 +11,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import Video from '~/components/widgets/Video.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
+import StepsLanding from '~/components/widgets/StepsLanding.astro';
 
 const metadata = {
   title: 'Plank Exercise Guide: Perfect Form with AI Coaching | 24up.',
@@ -181,6 +182,55 @@ const metadata = {
       }
     ]}
   />
+
+
+  <!-- Exercise Steps Explained ********** -->
+
+  <StepsLanding
+    title="Learn Your Plank for Maximum Core Activation and Stability"
+    items={[
+      {
+        title: 'Starting Position',
+        description: 'Begin on all fours with your hands directly under your shoulders and knees under your hips.',
+        icon: 'tabler:arrow-down',
+      },
+      {
+        title: 'Extend Legs',
+        description: 'Step your feet back one at a time to extend your legs behind you, balancing on the balls of your feet.',
+        icon: 'tabler:arrow-up',
+      },
+      {
+        title: 'Align Your Body',
+        description: 'Your body should form a straight line from head to heels. Do not allow your hips to sag or rise.',
+        icon: 'tabler:ruler',
+      },
+      {
+        title: 'Engage Core',
+        description: 'Tighten your abdominal muscles by pulling your belly button toward your spine.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Hold the Position',
+        description: 'Maintain the position for the desired amount of time, breathing steadily.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Common Mistakes to Avoid',
+        description: 'Avoid letting your hips drop, arching your back, or straining your neck. Our AI coach helps identify and correct these issues in real-time.',
+        icon: 'tabler:alert-triangle',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/plank.jpg',
+      alt: 'Plank exercise image',
+    }}
+    classes={{
+      container: 'mx-auto',
+      headline: { container: 'text-center' },
+      contentContainer: 'items-center justify-center',
+    }}
+  />
+
 
   <BlogLatestPosts
     title="Find out more content in our Blog"
