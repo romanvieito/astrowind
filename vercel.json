@@ -11,11 +11,5 @@
         }
       ]
     }
-  ],
-  "buildCommand": "npm run build",
-  "framework": "astro",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev",
-  "outputDirectory": "dist",
-  "nodeVersion": "20.x"
+  ]
 }
