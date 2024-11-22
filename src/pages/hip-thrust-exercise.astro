@@ -11,6 +11,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import Video from '~/components/widgets/Video.astro';
+import StepsLanding from '~/components/widgets/StepsLanding.astro';
 const metadata = {
   title: 'Hip Thrust Exercise Guide: Perfect Form with AI Coaching | 24up.',
   description: 'Learn proper hip thrust exercise technique with real-time AI coaching. Get instant form feedback, track progress, and master this essential glute exercise safely.',
@@ -179,6 +180,51 @@ const metadata = {
       }
     ]}
   />
+
+  <StepsLanding
+  title="Learn your Hip Thrust for maximum activation and safety"
+  items={[
+    {
+      title: 'Starting Position',
+      description: 'Sit with your upper back against a bench, knees bent, and feet flat on the ground. Position the barbell or weight across your hips, using a pad for comfort.',
+      icon: 'tabler:arrow-down',
+    },
+    {
+      title: 'Core Engagement',
+      description: 'Brace your core by drawing your belly button toward your spine. This helps maintain a neutral spine throughout the movement.',
+      icon: 'tabler:shield',
+    },
+    {
+      title: 'Hip Drive',
+      description: 'Push through your heels and drive your hips up toward the ceiling, squeezing your glutes at the top. Your body should form a straight line from shoulders to knees.',
+      icon: 'tabler:arrow-up',
+    },
+    {
+      title: 'Top Position',
+      description: 'At the top, your hips should be fully extended with glutes maximally contracted. Avoid overarching your lower back.',
+      icon: 'tabler:target',
+    },
+    {
+      title: 'Controlled Descent',
+      description: 'Lower your hips back to the starting position with control, maintaining core engagement throughout the movement.',
+      icon: 'tabler:arrow-down',
+    },
+    {
+      title: 'Common Mistakes to Avoid',
+      description: 'Watch for excessive back arch, incomplete hip extension, or letting knees cave in. Our AI coach helps identify and correct these issues in real-time.',
+      icon: 'tabler:alert-triangle',
+    },
+  ]}
+  image={{
+    src: '~/assets/images/workout.jpg',
+    alt: 'Steps image',
+  }}
+  classes={{
+    container: 'mx-auto',
+    headline: { container: 'text-center' },
+    contentContainer: 'items-center justify-center',
+  }}
+/>
   
   <BlogLatestPosts
     title="Find out more content in our Blog"
