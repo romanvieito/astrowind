@@ -2,10 +2,10 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
   links: [
-    {
-      text: 'AI Coach',
-      href: getPermalink('/aicoach'),
-    },
+    // {
+    //   text: 'AI Coach',
+    //   href: getPermalink('/aicoach'),
+    // },
     {
       text: 'Pricing',
       href: getPermalink('/pricing'),
