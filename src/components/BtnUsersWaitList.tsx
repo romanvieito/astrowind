@@ -10,11 +10,13 @@ const ButtonUWL = ({ fullname, email, incase }: ButtonProps) => {
 
   const handleClick = () => {
     trackEvent("Start Coach Click Button", { fullname, email });
-    gtag('event', 'conversion', {
-      'send_to': 'AW-11496116605/conversion_event_contact',
-      'value': 1.0,
-      'currency': 'USD'
-    });
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-11496116605/conversion_event_contact',
+        'value': 1.0,
+        'currency': 'USD'
+      });
+    }
     window.location.href = '/aicoach';
   };
 
