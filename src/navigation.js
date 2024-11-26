@@ -16,28 +16,17 @@ export const headerData = {
     },
     {
       text: 'Blog',
-      links: [
+      href: getBlogPermalink(),
+      // links: [
+      //   {
+      //     text: 'Blog List',
+      //     href: getBlogPermalink(),
+      //   },
         // {
-        //   text: 'Blog List',
-        //   href: getBlogPermalink(),
+        //   text: 'Revolutionizing Fitness',
+        //   href: getPermalink('1', 'post'),
         // },
-        {
-          text: 'Revolutionizing Fitness',
-          href: getPermalink('1', 'post'),
-        },
-        {
-          text: 'Transform Your Workout',
-          href: getPermalink('2', 'post'),
-        },
-        {
-          text: 'AI Fitness Coaches',
-          href: getPermalink('3', 'post'),
-        },
-        {
-          text: 'The Future of Fitness',
-          href: getPermalink('5', 'post'),
-        },
-      ],
+      // ],
     },
   ],
   actions_sign_in: [{ text: 'Start Coach' }],
