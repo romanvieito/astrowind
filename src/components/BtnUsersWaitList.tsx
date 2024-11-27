@@ -10,6 +10,7 @@ const ButtonUWL = ({ fullname, email, incase }: ButtonProps) => {
 
   const handleClick = () => {
     trackEvent("Start Coach Click Button", { fullname, email });
+    
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'conversion', {
         'send_to': 'AW-16510475658/GlFUCOH8hMEZEIq758A9t',
@@ -29,6 +30,7 @@ const ButtonUWL = ({ fullname, email, incase }: ButtonProps) => {
   return (
     <div>
       <button
+        data-gtm-event="startCoachClickButton"
         className={caseclass}
         onClick={handleClick}>
         Start Coach
