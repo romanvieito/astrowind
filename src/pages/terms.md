@@ -65,7 +65,7 @@ The Services are provided “as is” without warranties of any kind.
 This Agreement is governed by the laws of Florida. Disputes will be resolved by binding arbitration, not in court, except for certain intellectual property disputes. There is a class action waiver.
 
 ### Privacy:
-Please refer to the Privacy Policy at https://24up..vercel.app/privacy for information on how 24up. collects and uses personal data.
+Please refer to the Privacy Policy at https://24up.fit/privacy for information on how 24up. collects and uses personal data.
 
 ### Translation Interpretation:
 These Terms and Conditions may have been translated if We have made them available to You on our Service. You agree that the original English text shall prevail in the case of a dispute.

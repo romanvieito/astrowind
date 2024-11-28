@@ -1,6 +1,6 @@
 site:
   name: 24up.
-  site: 'https://astrowind.vercel.app'
+  site: 'https://24up.fit'
   base: '/'
   trailingSlash: false
 
