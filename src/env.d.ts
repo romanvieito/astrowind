@@ -14,6 +14,7 @@ interface ImportMetaEnv {
     readonly EMAILJS_SERVICE_ID?: string;
     readonly MAILTRAP_API_KEY?: string;
     readonly TOKEN_API_KEY?: string;
+    readonly CRON_SECRET?: string;
 }
 
 interface ImportMeta {
