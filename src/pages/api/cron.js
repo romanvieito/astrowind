@@ -1,10 +1,19 @@
-export default async function handler(req, res) {
+import type { APIRoute } from 'astro';
+
+export const GET: APIRoute = async ({ request }) => {
     // Check for authorization
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-        return res.status(401).end('Unauthorized');
+    const authHeader = request.headers.get('Authorization');
+    if (authHeader !== `Bearer ${import.meta.env.CRON_SECRET}`) {
+        return new Response('Unauthorized', { status: 401 });
     }
 
     // Your cron job logic here
     console.log("Cron job executed!");
-    res.status(200).send("Cron job executed successfully");
-}
+    
+    return new Response(JSON.stringify({ message: "Cron job executed successfully" }), {
+        status: 200,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+};
