@@ -1,6 +1,5 @@
-import type { APIRoute } from 'astro';
-
-export const GET = /** @type {APIRoute} */ (async ({ request }) => {
+/** @type {import('astro').APIRoute} */
+export const GET = async ({ request }) => {
     try {
         // Check for authorization
         const authHeader = request.headers.get('Authorization');
@@ -26,4 +25,4 @@ export const GET = /** @type {APIRoute} */ (async ({ request }) => {
             }
         });
     }
-});
+};
