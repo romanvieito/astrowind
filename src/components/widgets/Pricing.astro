@@ -4,6 +4,7 @@ import Button from '~/components/ui/Button.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Pricing as Props } from '~/types';
+import { trackEvent } from '~/utils/mixpanel-config';
 
 const {
   title = '',
@@ -69,7 +70,26 @@ const {
                         <Fragment set:html={callToAction} />
                       ) : (
                         callToAction &&
-                        callToAction.href && <Button {...(hasRibbon ? { variant: 'primary' } : {})} {...callToAction} />
+                        callToAction.href && 
+                        <Button 
+                          {...(hasRibbon ? { 
+                            variant: 'primary',
+                            class: 'btn-primary',
+                            'data-gtm-event': 'startCoachClickButton',
+                            onClick: `
+                              trackEvent("Upgrade to Pro Click Button", { fullname, email });
+                              if (typeof window !== 'undefined' && window.gtag) {
+                                window.gtag('event', 'conversion', {
+                                  'send_to': 'AW-16510475658/GlFUCOH8hMEZEIq758A9t',
+                                  'value': 1.0,
+                                  'currency': 'USD'
+                                });
+                              }
+                              window.location.href = '/aicoach';
+                            `
+                          } : {})} 
+                          {...callToAction} 
+                        />
                       )}
                     </div>
                   )}
