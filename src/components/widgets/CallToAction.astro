@@ -55,12 +55,11 @@ const user = await Astro.locals.currentUser();
             {Array.isArray(actions_sign_in) ? (
               actions_sign_in.map((action) => (
                 <div class="flex w-full sm:w-auto">
-                  {action.text === 'Start Coach' ? (
+                  {action.href === '/aicoach' ? (
                     <>
                       <ButtonUWL
                         fullname={user?.fullName}
                         email={user?.emailAddresses[0].emailAddress}
-                        incase={1}
                         client:load
                       />
                     </>

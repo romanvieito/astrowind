@@ -98,7 +98,6 @@ const user = await Astro.locals.currentUser();
                           <ButtonUWL
                             fullname={user?.fullName}
                             email={user?.emailAddresses[0].emailAddress}
-                            incase={2}
                           />
                         </>
                       ) : (
@@ -222,7 +221,6 @@ const user = await Astro.locals.currentUser();
                         <ButtonUWL
                           fullname={user?.fullName}
                           email={user?.emailAddresses[0].emailAddress}
-                          incase={2}
                           client:load
                         />
                       </>
