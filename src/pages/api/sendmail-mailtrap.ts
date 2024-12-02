@@ -53,10 +53,6 @@ export const POST: APIRoute = async ({ request }) => {
     v1: {
       email: 'romanvieito@gmail.com',
       name: 'Alberto Roman Vieito'
-    },
-    v2: {
-      email: 'alber@front10.com',
-      name: 'Alberto Roman Vieito'
     }
   };
   
@@ -75,10 +71,6 @@ export const POST: APIRoute = async ({ request }) => {
       {
       "email": email_cc.v1.email,
       "name": email_cc.v1.name
-      },
-      {
-      "email": email_cc.v2.email,
-      "name": email_cc.v2.name
       }
     ],
     "from": {
