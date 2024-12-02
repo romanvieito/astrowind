@@ -3,7 +3,7 @@ import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import type { CallToAction, Widget } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
-import ButtonUWL from '~/components/BtnUsersWaitList';
+import ButtonSC from '~/components/BtnStartCoach';
 import { SignedIn, SignedOut } from 'astro-clerk-auth/components/control';
 
 interface Props extends Widget {
@@ -57,7 +57,7 @@ const user = await Astro.locals.currentUser();
                 <div class="flex w-full sm:w-auto">
                   {action.href === '/aicoach' ? (
                     <>
-                      <ButtonUWL
+                      <ButtonSC
                         fullname={user?.fullName}
                         email={user?.emailAddresses[0].emailAddress}
                         client:load

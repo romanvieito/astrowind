@@ -5,7 +5,7 @@ interface ButtonProps {
   email: string | null | undefined
 }
 
-const ButtonUWL = ({ fullname, email }: ButtonProps) => {
+const ButtonSC = ({ fullname, email }: ButtonProps) => {
 
   const handleClick = () => {
     trackEvent("Start Coach Click Button", { fullname, email });
@@ -32,4 +32,4 @@ const ButtonUWL = ({ fullname, email }: ButtonProps) => {
   );
 };
 
-export default ButtonUWL;
+export default ButtonSC;

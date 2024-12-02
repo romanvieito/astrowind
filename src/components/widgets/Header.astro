@@ -12,7 +12,7 @@ import type { CallToAction } from '~/types';
 import { SignedIn, SignedOut } from 'astro-clerk-auth/components/control';
 import { UserButton } from 'astro-clerk-auth/components/interactive';
 
-import ButtonUWL from '~/components/BtnUsersWaitList';
+import ButtonSC from '~/components/BtnStartCoach';
 
 interface Link {
   text?: string;
@@ -95,7 +95,7 @@ const user = await Astro.locals.currentUser();
                     <>
                       {btnProps.text === 'Start Coach' ? (
                         <>
-                          <ButtonUWL
+                          <ButtonSC
                             fullname={user?.fullName}
                             email={user?.emailAddresses[0].emailAddress}
                           />
@@ -218,7 +218,7 @@ const user = await Astro.locals.currentUser();
                   <>
                     {btnProps.text === 'Start Coach' ? (
                       <>
-                        <ButtonUWL
+                        <ButtonSC
                           fullname={user?.fullName}
                           email={user?.emailAddresses[0].emailAddress}
                           client:load
