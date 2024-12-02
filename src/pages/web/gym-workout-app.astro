@@ -1,0 +1,296 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+import Video from '~/components/widgets/Video.astro';
+import StepsLanding from '~/components/widgets/StepsLanding.astro';
+
+const metadata = {
+  title: 'Gym Workout App with AI Coaching | Core Exercise Trainer | 24up',
+  description: 'Transform your gym workouts with our AI-powered workout app. Get real-time form coaching, track progress, and master core exercises with your virtual gym trainer.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions_sign_in={[
+      {
+        variant: 'primary',
+        text: 'Start Workout',
+        href: '',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Discover How It Works', href: '#features' },
+    ]}
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign up for Free',
+        href: '/sign-up',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Discover How It Works', href: '#features' },
+    ]}
+  >
+    <Fragment slot="title">
+      Transform Your <span class="text-accent dark:text-white highlight">Gym Routine</span> with AI-Powered Coaching
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Unlock personalized workouts and real-time AI feedback to perfect your form — your ultimate smart gym trainer is here.
+    </Fragment>
+  </Hero>
+
+  <Video />
+
+  <Note textBold="Smart" text="Gym Workouts, Anytime, Anywhere" />
+
+  <Testimonials
+    title="Early User Insights"
+    subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered core exercise coaching"
+    testimonials={[
+      {
+        testimonial: `Being new to core exercises, I was initially unsure about proper form. The app's instant feedback reassured me that I was maintaining correct positions, which gave me the confidence to keep going. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
+        name: 'Olga Roman',
+        job: 'UX Specialist & Fitness Beginner',
+        linkedin: 'https://www.linkedin.com/in/olga-roman-product-designer/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQGbmmHO0ZNvpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1617303209853?e=1736985600&v=beta&t=l_2AYnir-kZ9i-kjWs_Byv0L94efuf00__0_VrElxhI',
+          alt: 'Olga Roman Image',
+        },
+      },
+      {
+        testimonial: 'The real-time form feedback is great! I\'d been struggling with proper core muscle engagement, but the AI coach helped me understand exactly when to engage my glutes and maintain proper spine alignment. As a tech specialist, I’m impressed by how seamlessly the app delivers these insights. It’s a new app, so it has some expected bugs, but I’m hopeful these will improve over time. My workouts are already so much more effective!',
+        name: 'Yai Bolanos',
+        job: 'Tech & Fitness Enthusiast',
+        linkedin: 'https://www.linkedin.com/in/yaibolanos/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/C4E03AQHs3AQLCbZnRg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1542209749644?e=1736985600&v=beta&t=bta6se7XLZ6Mowj62gjLcUzPrXZRLwlYjORViFhBVNY',
+          alt: 'Yai Bolanos Image',
+        },
+      },
+      {
+        testimonial: `As an AI researcher, I'm always impressed by technology that translates complex insights into everyday benefits. The AI coach's precision with form correction during core exercises has been promising. It provides real-time adjustments that help me focus on correct muscle engagement and maintain proper form. This kind of immediate, data-driven feedback is something I'd expect from a trainer.`,
+        name: 'Abel Berenguer',
+        job: 'AI Researcher',
+        linkedin: 'https://www.linkedin.com/in/abel-d%C3%ADaz-berenguer-1374b1175/',
+        image: {
+          src: 'https://media.licdn.com/dms/image/v2/D4E03AQG9sGX48K0p2Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718231140970?e=1736985600&v=beta&t=_vx06dvyLwq5DLOE2kg6FkeH469YR6yrJsr3P2ce0uQ',
+          alt: 'Abel Berenguer Image',
+        },
+      },
+    ]}
+  />
+
+  <Features
+    id="features"
+    tagline="Gym Workout Partner"
+    title="Your AI Gym Trainer, everywhere, anytime"
+    subtitle="Experience smarter gym workouts with our AI-powered exercise companion."
+    items={[
+      {
+        title: 'Smart Workout Planning',
+        description: 'Get gym-quality core workouts tailored to your fitness level and goals.',
+        icon: 'tabler:adjustments',
+      },
+      {
+        title: 'Real-Time Form Correction',
+        description: 'Our AI coach ensures proper form to maximize results and prevent injuries.',
+        icon: 'tabler:eye-check',
+      },
+      {
+        title: 'Progressive Core Training',
+        description: 'Gradually increase difficulty as you improve, keeping your workouts challenging.',
+        icon: 'tabler:chart-arrows',
+      },
+      {
+        title: 'Core Exercise Library',
+        description: 'Access a variety of basic core exercises suitable for all levels.',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Quick Core Workouts',
+        description: 'Efficient 5-15 minute routines perfect for busy schedules.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Track Core Progress',
+        description: 'Monitor your core strength improvements over time.',
+        icon: 'tabler:chart-line',
+      },
+    ]}
+  />
+
+  <Pricing
+    title="Flexible pricing plans"
+    classes={{ container: 'bg-blue-50 dark:bg-transparent' }}
+    prices={[
+      {
+        title: 'free forever',
+        subtitle: 'Try the app. Access to some features',
+        price: '0',
+        period: '/ month',
+        callToAction: {
+          target: '_blank',
+          text: 'Get Started for Free',
+          href: '#',
+        },
+      },
+      {
+        title: 'pro',
+        subtitle: 'Real time feedback. Advanced AI coach',
+        price: 10,
+        period: '/ Month',
+        callToAction: {
+          target: '_blank',
+          text: 'Upgrade to Pro',
+          href: '#',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Best',
+      }
+    ]}
+  />
+
+  <!-- Exercise Steps Explained ********** -->
+
+  <StepsLanding
+    title="Basic Core Routine for Beginners"
+    items={[
+      {
+        title: 'Warm-Up',
+        description: 'Start with 2-3 minutes of light cardio like marching in place or arm circles to increase blood flow.',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Bird Dog',
+        description: 'On hands and knees, extend opposite arm and leg while maintaining a stable core. Hold for 5 seconds each side.',
+        icon: 'tabler:arrow-up',
+      },
+      {
+        title: 'Dead Bug',
+        description: 'Lie on your back, arms extended up. Lower opposite arm and leg while keeping lower back pressed to floor.',
+        icon: 'tabler:bug',
+      },
+      {
+        title: 'Basic Plank',
+        description: 'Hold a forearm plank position, maintaining a straight line from head to heels. Start with 20 seconds.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Modified Curl-Up',
+        description: 'Lie on back, one knee bent. Lift head and shoulders slightly while keeping lower back pressed down.',
+        icon: 'tabler:arrow-up-circle',
+      },
+      {
+        title: 'Cool Down',
+        description: 'Finish with gentle stretches for your back and core. Hold each stretch for 15-30 seconds.',
+        icon: 'tabler:wind',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/core-workout.jpg',
+      alt: 'Basic core workout demonstration',
+    }}
+    classes={{
+      container: 'mx-auto',
+      headline: { container: 'text-center' },
+      contentContainer: 'items-center justify-center',
+    }}
+  />
+
+
+  <!-- <BlogLatestPosts
+    title="Find out more content in our Blog"
+    information={`Master your fitness journey with AI-guided core exercises. Unlock groundbreaking health insights and perfect your technique with our blog. Thanks for staying with us!`}
+  /> -->
+
+  <FAQs
+  title="Frequently Asked Questions"
+  subtitle="Dive into these questions to discover our powerful benefits and how it can elevate your fitness journey."
+  tagline="FAQs"
+  classes={{ container: 'max-w-6xl' }}
+  items={[
+    {
+      title: 'Do the plans come with customer support?',
+      description:
+        'Absolutely, all plans include access to our dedicated customer support to assist you with any queries or concerns.',
+    },
+    {
+      title: 'Is there a trial period for the different plans?',
+      description:
+        'While we don’t offer trial periods for our plans, you can use the app free forever to access the basic features.',
+    },
+    {
+      title: 'Can I switch between plans?',
+      description:
+        'Certainly! You can easily upgrade or downgrade your plan, at any time, to find the one that best suits your needs.',
+    },
+    {
+      title: 'What payment methods do you accept?',
+      description:
+        'We accept major credit cards and online payment methods to ensure a convenient and secure transaction process.',
+    },
+    {
+      title: 'Are there any hidden fees beyond the displayed cost?',
+      description:
+        'No, the subscription cost covers all the features listed under each plan. There are no hidden fees or extra charges.',
+    },
+    {
+      title: 'How do I cancel my subscription?',
+      description:
+        'You can cancel your subscription at any time through the account settings within the app. Once canceled, your subscription will remain active until the end of the current billing cycle.',
+    },
+    {
+      title: 'How is my data protected?',
+      description:
+        'We take your privacy seriously. All personal information is stored securely and is only used to enhance your experience with the app. We comply with all relevant data protection principles to ensure your data remains safe.',
+    },
+    {
+      title: 'Is 24up. suitable for beginners?',
+      description:
+        'Absolutely! 24up. is designed to cater to all fitness levels. Whether you’re just starting or have been working out for years, the app offers customizable workouts that can be adjusted to fit your fitness level.',
+    },
+  ]}
+/>
+
+  <Stats
+    stats={[
+      { title: 'Demo Downloads', amount: '+100' },
+      { title: 'Beta Users', amount: '+50' },
+      { title: 'User Rating', amount: '4.6 stars' },
+    ]}
+  />
+
+  <CallToAction
+    title="Start Your Core Strength Journey Today"
+    subtitle="Join 24up. and get personalized, AI-guided basic core exercises to build a stronger, healthier you."
+    actions_sign_in={[
+      {
+        variant: 'primary',
+        text: 'Start Workout',
+        href: '',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+    ]}
+    actions_sign_out={[
+      {
+        variant: 'primary',
+        text: 'Sign up for Free',
+        href: '/sign-up',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+    ]}
+  />
+</Layout>
