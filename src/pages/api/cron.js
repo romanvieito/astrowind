@@ -26,7 +26,7 @@ export const GET = async ({ request }) => {
             connectionString: import.meta.env.POSTGRES_URL
         });
 
-        const paper = "https://arxiv.org/pdf/2310.10131";
+        const paper = "https://arxiv.org/pdf/2310.10131.pdf";
         
         // Add paper scraping
         const browser = await puppeteer.launch({
@@ -37,16 +37,18 @@ export const GET = async ({ request }) => {
             waitUntil: 'networkidle0'
         });
 
-        // Get PDF buffer
-        const pdfBuffer = await page.evaluate(() => {
-            return fetch(window.location.href)
-                .then(response => response.arrayBuffer());
+        // Get PDF buffer directly from the response
+        const pdfBuffer = await page.evaluate(async () => {
+            const response = await fetch(window.location.href);
+            const arrayBuffer = await response.arrayBuffer();
+            return Array.from(new Uint8Array(arrayBuffer));
         });
 
         await browser.close();
 
-        // Extract text from PDF using pdf-parse
-        const pdfData = await pdf(Buffer.from(pdfBuffer));
+        // Convert array back to Buffer and parse PDF
+        const buffer = Buffer.from(pdfBuffer);
+        const pdfData = await pdf(buffer);
         const paperContent = pdfData.text;
 
         // Update OpenAI prompt to use scraped content
