@@ -40,7 +40,9 @@
     "lodash.merge": "^4.6.2",
     "mixpanel-browser": "^2.53.0",
     "openai": "^4.74.0",
+    "pdf-parse": "^1.1.1",
     "pg": "^8.12.0",
+    "puppeteer": "^23.9.0",
     "unpic": "^3.18.0"
   },
   "devDependencies": {

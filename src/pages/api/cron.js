@@ -1,5 +1,7 @@
 import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
+import puppeteer from 'puppeteer';
+import pdf from 'pdf-parse';
 
 // Set maximum duration to 60 seconds
 export const config = {
@@ -19,35 +21,63 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        // Generate a topic using OpenAI
-        const topicCompletion = await openai.chat.completions.create({
+         // Configure Vercel Postgres with the connection string
+         sql.setConfig({
+            connectionString: import.meta.env.POSTGRES_URL
+        });
+
+        const paper = "https://arxiv.org/pdf/2310.10131";
+        
+        // Add paper scraping
+        const browser = await puppeteer.launch({
+            headless: 'new'
+        });
+        const page = await browser.newPage();
+        await page.goto(paper, {
+            waitUntil: 'networkidle0'
+        });
+
+        // Get PDF buffer
+        const pdfBuffer = await page.evaluate(() => {
+            return fetch(window.location.href)
+                .then(response => response.arrayBuffer());
+        });
+
+        await browser.close();
+
+        // Extract text from PDF using pdf-parse
+        const pdfData = await pdf(Buffer.from(pdfBuffer));
+        const paperContent = pdfData.text;
+
+        // Update OpenAI prompt to use scraped content
+        const summarizeKeyPoints = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: [
                 {
                     role: "user",
-                    content: "Summarize the key points of link: https://arxiv.org/pdf/2310.10131. Focus on the most important insights and any unique contributions of the source."
+                    content: `Summarize the key points of this paper content: ${paperContent}. Focus on the most important insights and any unique contributions of the source.`
                 }
             ],
             temperature: 0.7,
             max_tokens: 60
         });
 
-        const generatedTopic = topicCompletion.choices[0].message.content.trim();
+        const blogPostTopic = summarizeKeyPoints.choices[0].message.content.trim();
         
         // Generate the blog post using OpenAI directly
-        const completion = await openai.chat.completions.create({
+        const blogPostText = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: [
                 {
                     role: "user",
-                    content: `Create a short blog post about ${generatedTopic}, style: https://seths.blog/ by seth godin. Short, simple and easy to digest. Include a clear title on the first line. Keep the entire post under 500 words.`
+                    content: `Create a short blog post about ${blogPostTopic} in the style of Seth Godin. Focus on clarity, simplicity, and engagement. Keep the entire post under 500 words.`
                 }
             ],
             temperature: 0.7,
             max_tokens: 800
         });
 
-        const response = completion.choices[0].message.content;
+        const response = blogPostText.choices[0].message.content;
 
         // Extract title and content
         const lines = response.split('\n');
