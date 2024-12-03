@@ -39,6 +39,7 @@
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "mixpanel-browser": "^2.53.0",
+    "openai": "^4.74.0",
     "pg": "^8.12.0",
     "unpic": "^3.18.0"
   },

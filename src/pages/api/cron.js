@@ -1,11 +1,14 @@
-import { generateText } from 'ai';
+import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
-import { openai } from '@ai-sdk/openai';
 
 // Set maximum duration to 60 seconds
 export const config = {
   maxDuration: 60
 };
+
+const openai = new OpenAI({
+    apiKey: import.meta.env.OPENAI_API_KEY
+});
 
 /** @type {import('astro').APIRoute} */
 export const GET = async ({ request }) => {
@@ -19,11 +22,20 @@ export const GET = async ({ request }) => {
         const topics = ['Fitness Tips', 'Workout Plans', 'Nutrition Basics', 'Exercise Science', 'Health Goals'];
         const randomTopic = topics[Math.floor(Math.random() * topics.length)];
         
-        // Generate the blog post using generateText
-        const response = await generateText({
-            model: openai('gpt-4o-mini'),
-            prompt: `Write a concise blog post about ${randomTopic}. Include a clear title on the first line. Keep the entire post under 500 words.`
+        // Generate the blog post using OpenAI directly
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: `Write a concise blog post about ${randomTopic}. Include a clear title on the first line. Keep the entire post under 500 words.`
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 800
         });
+
+        const response = completion.choices[0].message.content;
 
         // Extract title and content
         const lines = response.split('\n');
