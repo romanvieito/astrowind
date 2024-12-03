@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "/api/cron": {
+      "maxDuration": 300
+    }
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -15,10 +20,5 @@
   "crons": [{
     "path": "/api/cron",
     "schedule": "0 6 * * *"
-  }],
-  "functions": {
-    "src/pages/api/cron.js": {
-      "maxDuration": 300
-    }
-  }
+  }]
 }
