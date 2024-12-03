@@ -19,23 +19,16 @@ export const GET = async ({ request }) => {
         const topics = ['Fitness Tips', 'Workout Plans', 'Nutrition Basics', 'Exercise Science', 'Health Goals'];
         const randomTopic = topics[Math.floor(Math.random() * topics.length)];
         
-        // Generate the blog post
+        // Generate the blog post using generateText
         const response = await generateText({
             model: openai('gpt-4o-mini'),
-            messages: [
-                {
-                    role: 'user',
-                    content: `Write a concise blog post about ${randomTopic}. Include a clear title on the first line. Keep the entire post under 500 words.`
-                }
-            ],
-            temperature: 0.7,
-            max_tokens: 800
+            prompt: `Write a concise blog post about ${randomTopic}. Include a clear title on the first line. Keep the entire post under 500 words.`
         });
 
         // Extract title and content
-        const lines = response.trim().split('\n');
+        const lines = response.split('\n');
         const title = lines[0].replace(/^#\s*/, '').trim();
-        const content = response.trim();
+        const content = response;
 
         // Save to database
         await sql`
