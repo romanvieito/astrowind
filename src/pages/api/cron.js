@@ -2,6 +2,11 @@ import { generateText } from 'ai';
 import { sql } from '@vercel/postgres';
 import { openai } from '@ai-sdk/openai';
 
+// This function can run for a maximum of 300 seconds
+export const config = {
+  maxDuration: 300
+};
+
 /** @type {import('astro').APIRoute} */
 export const GET = async ({ request }) => {
     try {

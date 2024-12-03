@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/cron": {
-      "maxDuration": 300
-    }
-  },
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
