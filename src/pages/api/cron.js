@@ -2,9 +2,9 @@ import { generateText } from 'ai';
 import { sql } from '@vercel/postgres';
 import { openai } from '@ai-sdk/openai';
 
-// This function can run for a maximum of 300 seconds
+// Set maximum duration to 60 seconds
 export const config = {
-  maxDuration: 300
+  maxDuration: 60
 };
 
 /** @type {import('astro').APIRoute} */
@@ -16,40 +16,23 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        // Define topics with more focused scope
-        const topics = [
-            'Ai Fitness Coach',
-            'Fitness Best Practices',
-            'Fitness Frameworks',
-            'Fitness Productivity',
-            'Fitness Quality'
-        ];
-        
+        const topics = ['Fitness Tips', 'Workout Plans', 'Nutrition Basics', 'Exercise Science', 'Health Goals'];
         const randomTopic = topics[Math.floor(Math.random() * topics.length)];
         
-        // Combine the first two prompts to reduce API calls
-        const combinedPrompt = `Generate 5 creative ideas for a blog post about ${randomTopic}, then select the best idea and explain why it's the best choice.`;
-        
-        const ideaAndSelection = await generateText({
-            model: openai('gpt-4o'),
-            prompt: combinedPrompt,
-            temperature: 0.7,
-            max_tokens: 1000
-        });
-
-        // Generate the blog post with a more focused prompt
+        // Single prompt to generate both idea and content
         const blogPostGeneration = await generateText({
-            model: openai('gpt-4o'),
-            prompt: `Create a concise but complete blog post about ${randomTopic} based on this idea: ${ideaAndSelection}. Include a clear title, and keep it under 400 words.`,
+            model: openai('gpt-3.5-turbo'),
+            prompt: `Write a concise blog post about ${randomTopic}. Include a clear title on the first line. Keep the entire post under 500 words.`,
             temperature: 0.7,
-            max_tokens: 1500
+            max_tokens: 800
         });
 
-        // Extract title and save to database
+        // Extract title and content
         const blogPostLines = blogPostGeneration.split('\n');
         const title = blogPostLines[0].replace(/^#\s*/, '').trim();
         const content = blogPostGeneration;
 
+        // Save to database
         await sql`
             INSERT INTO blog_posts (title, content, published_at)
             VALUES (${title}, ${content}, NOW())
@@ -59,7 +42,6 @@ export const GET = async ({ request }) => {
             message: "Blog post generated and saved successfully",
             savedPost: {
                 title,
-                content: content.substring(0, 100) + '...',
                 published_at: new Date()
             }
         }), {
@@ -72,8 +54,7 @@ export const GET = async ({ request }) => {
         console.error('Cron error:', error);
         return new Response(JSON.stringify({ 
             error: 'Internal Server Error', 
-            details: error.message,
-            stack: error.stack
+            details: error.message
         }), {
             status: 500,
             headers: {
