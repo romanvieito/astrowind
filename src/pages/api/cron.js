@@ -1,4 +1,5 @@
 import { generateText } from 'ai';
+import { openai } from '@ai-sdk/openai';
 import { sql } from '@vercel/postgres';
 
 /** @type {import('astro').APIRoute} */
@@ -24,13 +25,13 @@ export const GET = async ({ request }) => {
         
         // Generate blog post ideas
         const ideasGeneration = await generateText({
-            model: 'gpt-4',
+            model: openai('gpt-4o'),
             prompt: `Generate 5 creative ideas for a blog post about ${randomTopic}.`,
         });
 
         // Pick the best idea
         const bestIdeaGeneration = await generateText({
-            model: 'gpt-4',
+            model: openai('gpt-4o'),
             prompt: `Here are some blog post ideas about ${randomTopic}:
 ${ideasGeneration}
 
@@ -39,7 +40,7 @@ Pick the best idea from the list above and explain why it's the best.`,
 
         // Generate the full blog post
         const blogPostGeneration = await generateText({
-            model: 'gpt-4',
+            model: openai('gpt-4o'),
             prompt: `We've chosen the following blog post idea about ${randomTopic}:
 ${bestIdeaGeneration}
 
