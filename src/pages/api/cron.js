@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
 
 // Set maximum duration to 60 seconds
 export const config = {
@@ -25,18 +26,15 @@ export const GET = async ({ request }) => {
         
         // Add paper scraping
         const browser = await puppeteer.launch({
-            headless: 'new'
+            args: chromium.args,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
         });
         const page = await browser.newPage();
         await page.goto(paper, {
             waitUntil: 'networkidle0'
         });
-
-        // Extract text content from the PDF page
-        const paperContent = await page.evaluate(() => {
-            return document.body.innerText;
-        });
-
+        const paperContent = await page.evaluate(() => document.body.innerText);
         await browser.close();
 
         // Update OpenAI prompt to use scraped content
