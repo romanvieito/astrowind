@@ -21,7 +21,7 @@ export const GET = async ({ request }) => {
         
         // Generate the blog post
         const response = await generateText({
-            model: openai('gpt-3.5-turbo'),
+            model: openai('gpt-4o-mini'),
             messages: [
                 {
                     role: 'user',
