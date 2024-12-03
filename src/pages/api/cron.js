@@ -1,6 +1,6 @@
 import { generateText } from 'ai';
 import { sql } from '@vercel/postgres';
-import OpenAI from 'openai';
+import { openai } from '@ai-sdk/openai';
 
 /** @type {import('astro').APIRoute} */
 export const GET = async ({ request }) => {
@@ -10,11 +10,6 @@ export const GET = async ({ request }) => {
         if (authHeader !== `Bearer ${import.meta.env.CRON_SECRET}`) {
             return new Response('Unauthorized', { status: 401 });
         }
-
-        // Initialize OpenAI client
-        const openai = new OpenAI({
-            apiKey: import.meta.env.OPENAI_API_KEY
-        });
 
         // Define topics for blog post generation
         const topics = [
