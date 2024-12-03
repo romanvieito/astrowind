@@ -15,5 +15,10 @@
   "crons": [{
     "path": "/api/cron",
     "schedule": "0 6 * * *"
-  }]
+  }],
+  "functions": {
+    "api/cron.js": {
+      "maxDuration": 300
+    }
+  }
 }

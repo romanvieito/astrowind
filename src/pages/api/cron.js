@@ -11,7 +11,7 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        // Define topics for blog post generation
+        // Define topics with more focused scope
         const topics = [
             'Ai Fitness Coach',
             'Fitness Best Practices',
@@ -20,59 +20,41 @@ export const GET = async ({ request }) => {
             'Fitness Quality'
         ];
         
-        // Randomly select a topic
         const randomTopic = topics[Math.floor(Math.random() * topics.length)];
         
-        // Generate blog post ideas
-        const ideasGeneration = await generateText({
+        // Combine the first two prompts to reduce API calls
+        const combinedPrompt = `Generate 5 creative ideas for a blog post about ${randomTopic}, then select the best idea and explain why it's the best choice.`;
+        
+        const ideaAndSelection = await generateText({
             model: openai('gpt-4o'),
-            prompt: `Generate 5 creative ideas for a blog post about ${randomTopic}.`,
+            prompt: combinedPrompt,
+            temperature: 0.7,
+            max_tokens: 1000
         });
 
-        // Pick the best idea
-        const bestIdeaGeneration = await generateText({
-            model: openai('gpt-4o'),
-            prompt: `Here are some blog post ideas about ${randomTopic}:
-${ideasGeneration}
-
-Pick the best idea from the list above and explain why it's the best.`,
-        });
-
-        // Generate the full blog post
+        // Generate the blog post with a more focused prompt
         const blogPostGeneration = await generateText({
             model: openai('gpt-4o'),
-            prompt: `We've chosen the following blog post idea about ${randomTopic}:
-${bestIdeaGeneration}
-
-Create a complete, well-structured blog post based on this idea. Include an engaging title, introduction, main content with subheadings, and a conclusion.`,
+            prompt: `Create a concise but complete blog post about ${randomTopic} based on this idea: ${ideaAndSelection}. Include a clear title, and keep it under 400 words.`,
+            temperature: 0.7,
+            max_tokens: 1500
         });
 
-        // Extract title from the blog post (assuming it's the first line)
+        // Extract title and save to database
         const blogPostLines = blogPostGeneration.split('\n');
-        const title = blogPostLines[0].replace('#', '').trim();
+        const title = blogPostLines[0].replace(/^#\s*/, '').trim();
         const content = blogPostGeneration;
 
-        // Save to database
         await sql`
             INSERT INTO blog_posts (title, content, published_at)
             VALUES (${title}, ${content}, NOW())
         `;
 
-        console.log("Blog post generated and saved successfully!", {
-            topic: randomTopic,
-            title: title,
-            selectedIdea: bestIdeaGeneration.slice(0, 100) + '...' // Log preview
-        });
-        
         return new Response(JSON.stringify({ 
             message: "Blog post generated and saved successfully",
-            topic: randomTopic,
-            ideas: ideasGeneration,
-            selectedIdea: bestIdeaGeneration,
-            blogPost: blogPostGeneration,
             savedPost: {
                 title,
-                content,
+                content: content.substring(0, 100) + '...',
                 published_at: new Date()
             }
         }), {
@@ -83,7 +65,11 @@ Create a complete, well-structured blog post based on this idea. Include an enga
         });
     } catch (error) {
         console.error('Cron error:', error);
-        return new Response(JSON.stringify({ error: 'Internal Server Error', details: error.message }), {
+        return new Response(JSON.stringify({ 
+            error: 'Internal Server Error', 
+            details: error.message,
+            stack: error.stack
+        }), {
             status: 500,
             headers: {
                 "Content-Type": "application/json"
