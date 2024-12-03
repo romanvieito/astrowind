@@ -19,8 +19,20 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        const topics = ['Fitness Tips', 'Workout Plans', 'Nutrition Basics', 'Exercise Science', 'Health Goals'];
-        const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+        // Generate a topic using OpenAI
+        const topicCompletion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: "Summarize the key points of link: https://arxiv.org/pdf/2310.10131. Focus on the most important insights and any unique contributions of the source."
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 60
+        });
+
+        const generatedTopic = topicCompletion.choices[0].message.content.trim();
         
         // Generate the blog post using OpenAI directly
         const completion = await openai.chat.completions.create({
@@ -28,7 +40,7 @@ export const GET = async ({ request }) => {
             messages: [
                 {
                     role: "user",
-                    content: `Write a concise blog post about ${randomTopic}. Include a clear title on the first line. Keep the entire post under 500 words.`
+                    content: `Create a short blog post about ${generatedTopic}, style: https://seths.blog/ by seth godin. Short, simple and easy to digest. Include a clear title on the first line. Keep the entire post under 500 words.`
                 }
             ],
             temperature: 0.7,
