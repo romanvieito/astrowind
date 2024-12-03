@@ -20,10 +20,6 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-         // Configure Vercel Postgres with the connection string
-         sql.setConfig({
-            connectionString: import.meta.env.POSTGRES_URL
-        });
 
         const paper = "https://arxiv.org/pdf/2310.10131.pdf";
         
