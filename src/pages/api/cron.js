@@ -33,9 +33,9 @@ export const GET = async ({ request }) => {
         });
 
         // Extract title and content
-        const contentLines = response.content.split('\n');
-        const title = contentLines[0].replace(/^#\s*/, '').trim();
-        const content = response.content;
+        const lines = response.trim().split('\n');
+        const title = lines[0].replace(/^#\s*/, '').trim();
+        const content = response.trim();
 
         // Save to database
         await sql`
