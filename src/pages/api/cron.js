@@ -37,7 +37,7 @@ export const GET = async ({ request }) => {
             waitUntil: 'networkidle0'
         });
 
-        // Get PDF buffer directly from the response
+        // Fetch the PDF as a buffer
         const pdfBuffer = await page.evaluate(async () => {
             const response = await fetch(window.location.href);
             const arrayBuffer = await response.arrayBuffer();
