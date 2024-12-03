@@ -1,3 +1,6 @@
+import { generateText } from 'ai';
+import { sql } from '@vercel/postgres';
+
 /** @type {import('astro').APIRoute} */
 export const GET = async ({ request }) => {
     try {
@@ -7,31 +10,71 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        // Generate blog post content using AI
-        const blogPost = {
-            publishDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
-            title: "Sample AI Generated Title",
-            content: "Sample AI Generated Content"
-        };
-
-        // Create the markdown content
-        const markdownContent = `---
-publishDate: ${blogPost.publishDate}
-title: ${blogPost.title}
----
-${blogPost.content}`;
-
-        // Generate a unique filename (you might want to implement your own naming logic)
-        const postNumber = Math.floor(Math.random() * 1000);
-        const filePath = `src/content/post/${postNumber}.md`;
-
-        // Write to file system
-        const fs = await import('fs/promises');
-        await fs.writeFile(filePath, markdownContent);
+        // Define topics for blog post generation
+        const topics = [
+            'Ai Fitness Coach',
+            'Fitness Best Practices',
+            'Fitness Frameworks',
+            'Fitness Productivity',
+            'Fitness Quality'
+        ];
         
-        console.log(`Blog post created: ${filePath}`);
+        // Randomly select a topic
+        const randomTopic = topics[Math.floor(Math.random() * topics.length)];
         
-        return new Response(JSON.stringify({ message: "Blog post generated successfully", filePath }), {
+        // Generate blog post ideas
+        const ideasGeneration = await generateText({
+            model: 'gpt-4',
+            prompt: `Generate 5 creative ideas for a blog post about ${randomTopic}.`,
+        });
+
+        // Pick the best idea
+        const bestIdeaGeneration = await generateText({
+            model: 'gpt-4',
+            prompt: `Here are some blog post ideas about ${randomTopic}:
+${ideasGeneration}
+
+Pick the best idea from the list above and explain why it's the best.`,
+        });
+
+        // Generate the full blog post
+        const blogPostGeneration = await generateText({
+            model: 'gpt-4',
+            prompt: `We've chosen the following blog post idea about ${randomTopic}:
+${bestIdeaGeneration}
+
+Create a complete, well-structured blog post based on this idea. Include an engaging title, introduction, main content with subheadings, and a conclusion.`,
+        });
+
+        // Extract title from the blog post (assuming it's the first line)
+        const blogPostLines = blogPostGeneration.split('\n');
+        const title = blogPostLines[0].replace('#', '').trim();
+        const content = blogPostGeneration;
+
+        // Save to database
+        await sql`
+            INSERT INTO blog_posts (title, content, published_at)
+            VALUES (${title}, ${content}, NOW())
+        `;
+
+        console.log("Blog post generated and saved successfully!", {
+            topic: randomTopic,
+            title: title,
+            selectedIdea: bestIdeaGeneration.slice(0, 100) + '...' // Log preview
+        });
+        
+        return new Response(JSON.stringify({ 
+            message: "Blog post generated and saved successfully",
+            topic: randomTopic,
+            ideas: ideasGeneration,
+            selectedIdea: bestIdeaGeneration,
+            blogPost: blogPostGeneration,
+            savedPost: {
+                title,
+                content,
+                published_at: new Date()
+            }
+        }), {
             status: 200,
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +82,7 @@ ${blogPost.content}`;
         });
     } catch (error) {
         console.error('Cron error:', error);
-        return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+        return new Response(JSON.stringify({ error: 'Internal Server Error', details: error.message }), {
             status: 500,
             headers: {
                 "Content-Type": "application/json"
