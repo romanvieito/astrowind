@@ -1,7 +1,6 @@
 import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
 import puppeteer from 'puppeteer';
-import pdf from 'pdf-parse';
 
 // Set maximum duration to 60 seconds
 export const config = {
@@ -37,19 +36,12 @@ export const GET = async ({ request }) => {
             waitUntil: 'networkidle0'
         });
 
-        // Fetch the PDF as a buffer
-        const pdfBuffer = await page.evaluate(async () => {
-            const response = await fetch(window.location.href);
-            const arrayBuffer = await response.arrayBuffer();
-            return Array.from(new Uint8Array(arrayBuffer));
+        // Extract text content from the PDF page
+        const paperContent = await page.evaluate(() => {
+            return document.body.innerText;
         });
 
         await browser.close();
-
-        // Convert array back to Buffer and parse PDF
-        const buffer = Buffer.from(pdfBuffer);
-        const pdfData = await pdf(buffer);
-        const paperContent = pdfData.text;
 
         // Update OpenAI prompt to use scraped content
         const summarizeKeyPoints = await openai.chat.completions.create({
