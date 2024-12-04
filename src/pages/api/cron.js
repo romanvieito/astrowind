@@ -48,11 +48,11 @@ export const GET = async ({ request }) => {
         
         // Generate the blog post using OpenAI
         const blogPostText = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
+            model: "gpt-4o",
             messages: [
                 {
                     role: "user",
-                    content: `Write a blog post about ${blogPostTopic} in Seth Godin's style. Keep it friendly, simple, and engaging. Use short, impactful sentences. Limit the post to 500 words or less. Every word should earn its place.`
+                    content: `Write a blog post about ${blogPostTopic} in Seth Godin's style. Keep it friendly, simple, and engaging. Use short, impactful sentences. Limit the post to 100 words or less. Every word should earn its place.`
                 }
             ],
             temperature: 0.7,
