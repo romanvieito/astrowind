@@ -1,86 +1,87 @@
-import { parseStringPromise } from 'xml2js';
+import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
 
+// Set maximum duration to 5 minutes
 export const config = {
-  maxDuration: 300
+  maxDuration: 60
 };
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
+const openai = new OpenAI({
+    apiKey: import.meta.env.OPENAI_API_KEY
+});
 
-  try {
-    const papers = await fetchArxivPapers('cat:cs.LG');
-    await savePapersToDb(papers);
-    
-    return res.status(200).json({ message: 'Papers updated successfully' });
-  } catch (error) {
-    console.error('Cron job failed:', error);
-    return res.status(500).json({ error: error.message });
-  }
-}
+/** @type {import('astro').APIRoute} */
+export const GET = async ({ request }) => {
+    try {
+        // Check for authorization
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader !== `Bearer ${import.meta.env.CRON_SECRET}`) {
+            return new Response('Unauthorized', { status: 401 });
+        }
 
-async function fetchArxivPapers(query, maxResults = 100) {
-  const today = new Date();
-  const lastMonth = new Date(today.setMonth(today.getMonth() - 1));
-  
-  const startDate = lastMonth.toISOString().split('T')[0];
-  const endDate = new Date().toISOString().split('T')[0];
-  
-  const baseUrl = 'http://export.arxiv.org/api/query';
-  const fullQuery = `${baseUrl}?search_query=${encodeURIComponent(query)}+AND+submittedDate:[${startDate}+TO+${endDate}]&start=0&max_results=${maxResults}&sortBy=submittedDate&sortOrder=descending`;
-  
-  const response = await fetch(fullQuery);
-  if (!response.ok) {
-    throw new Error(`Error fetching data: ${response.status}`);
-  }
-  
-  const xmlData = await response.text();
-  const parsedData = await parseStringPromise(xmlData);
-  
-  return parsedData.feed.entry?.map(entry => ({
-    title: entry.title[0],
-    abstract: entry.summary[0],
-    authors: entry.author?.map(author => author.name[0]),
-    arxivId: entry.id[0].split('/abs/')[1],
-    pdfUrl: entry.link?.find(link => link.$.title === 'pdf')?.$.href,
-    categories: entry.category?.map(cat => cat.$.term),
-    publishedDate: new Date(entry.published[0]),
-    updatedDate: new Date(entry.updated[0])
-  })) || [];
-}
+        // Generate a random topic for the blog post
+        const topicResponse = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: "Generate an interesting blog topic about technology, business, or marketing. Be specific but concise."
+                }
+            ],
+            temperature: 0.8,
+            max_tokens: 50
+        });
 
-async function savePapersToDb(papers) {
-  for (const paper of papers) {
-    await sql`
-      INSERT INTO papers (
-        arxiv_id,
-        title,
-        abstract,
-        authors,
-        pdf_url,
-        categories,
-        published_date,
-        updated_date
-      ) VALUES (
-        ${paper.arxivId},
-        ${paper.title},
-        ${paper.abstract},
-        ${paper.authors},
-        ${paper.pdfUrl},
-        ${paper.categories},
-        ${paper.publishedDate},
-        ${paper.updatedDate}
-      )
-      ON CONFLICT (arxiv_id) DO UPDATE SET
-        title = EXCLUDED.title,
-        abstract = EXCLUDED.abstract,
-        authors = EXCLUDED.authors,
-        pdf_url = EXCLUDED.pdf_url,
-        categories = EXCLUDED.categories,
-        published_date = EXCLUDED.published_date,
-        updated_date = EXCLUDED.updated_date
-    `;
-  }
-}
+        const blogPostTopic = topicResponse.choices[0].message.content.trim();
+        
+        // Generate the blog post using OpenAI
+        const blogPostText = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: `Write a blog post about ${blogPostTopic} in Seth Godin's style. Keep it friendly, simple, and engaging. Use short, impactful sentences. Limit the post to 500 words or less. Every word should earn its place.`
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 800
+        });
+
+        const response = blogPostText.choices[0].message.content;
+
+        // Extract title and content
+        const lines = response.split('\n');
+        const title = lines[0].replace(/^#\s*/, '').trim();
+        const content = response;
+
+        // Save to database
+        await sql`
+            INSERT INTO blog_posts (title, content, published_at)
+            VALUES (${title}, ${content}, NOW())
+        `;
+
+        return new Response(JSON.stringify({ 
+            message: "Blog post generated and saved successfully",
+            savedPost: {
+                title,
+                published_at: new Date()
+            }
+        }), {
+            status: 200,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    } catch (error) {
+        console.error('Cron error:', error);
+        return new Response(JSON.stringify({ 
+            error: 'Internal Server Error', 
+            details: error.message
+        }), {
+            status: 500,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+};
