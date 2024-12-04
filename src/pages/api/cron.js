@@ -1,116 +1,86 @@
-import OpenAI from 'openai';
+import { parseStringPromise } from 'xml2js';
 import { sql } from '@vercel/postgres';
-import chromium from '@sparticuz/chromium';
-import puppeteer from 'puppeteer-core';
 
-// Set maximum duration to 5 minutes
 export const config = {
   maxDuration: 300
 };
 
-const openai = new OpenAI({
-    apiKey: import.meta.env.OPENAI_API_KEY
-});
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
 
-/** @type {import('astro').APIRoute} */
-export const GET = async ({ request }) => {
-    try {
-        // Check for authorization
-        const authHeader = request.headers.get('Authorization');
-        if (authHeader !== `Bearer ${import.meta.env.CRON_SECRET}`) {
-            return new Response('Unauthorized', { status: 401 });
-        }
+  try {
+    const papers = await fetchArxivPapers('cat:cs.LG');
+    await savePapersToDb(papers);
+    
+    return res.status(200).json({ message: 'Papers updated successfully' });
+  } catch (error) {
+    console.error('Cron job failed:', error);
+    return res.status(500).json({ error: error.message });
+  }
+}
 
+async function fetchArxivPapers(query, maxResults = 100) {
+  const today = new Date();
+  const lastMonth = new Date(today.setMonth(today.getMonth() - 1));
+  
+  const startDate = lastMonth.toISOString().split('T')[0];
+  const endDate = new Date().toISOString().split('T')[0];
+  
+  const baseUrl = 'http://export.arxiv.org/api/query';
+  const fullQuery = `${baseUrl}?search_query=${encodeURIComponent(query)}+AND+submittedDate:[${startDate}+TO+${endDate}]&start=0&max_results=${maxResults}&sortBy=submittedDate&sortOrder=descending`;
+  
+  const response = await fetch(fullQuery);
+  if (!response.ok) {
+    throw new Error(`Error fetching data: ${response.status}`);
+  }
+  
+  const xmlData = await response.text();
+  const parsedData = await parseStringPromise(xmlData);
+  
+  return parsedData.feed.entry?.map(entry => ({
+    title: entry.title[0],
+    abstract: entry.summary[0],
+    authors: entry.author?.map(author => author.name[0]),
+    arxivId: entry.id[0].split('/abs/')[1],
+    pdfUrl: entry.link?.find(link => link.$.title === 'pdf')?.$.href,
+    categories: entry.category?.map(cat => cat.$.term),
+    publishedDate: new Date(entry.published[0]),
+    updatedDate: new Date(entry.updated[0])
+  })) || [];
+}
 
-        const paper = "https://arxiv.org/abs/2407.08101";
-        
-        // Add paper scraping with timeout and optimization
-        const browser = await puppeteer.launch({
-            args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(),
-            headless: chromium.headless,
-            timeout: 30000, // 30 second timeout
-        });
-        const page = await browser.newPage();
-        await page.setDefaultNavigationTimeout(30000); // 30 second navigation timeout
-        
-        // Only wait for the specific content we need
-        await page.goto(paper, {
-            waitUntil: 'domcontentloaded' // Changed from 'networkidle0' for faster loading
-        });
-        
-        // More specific content extraction
-        const paperContent = await page.evaluate(() => {
-            const abstract = document.querySelector('.abstract').innerText;
-            const title = document.querySelector('.title').innerText;
-            return `${title}\n\n${abstract}`;
-        });
-        await browser.close();
-
-        // Update OpenAI prompt to use scraped content
-        const summarizeKeyPoints = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                {
-                    role: "user",
-                    content: `Summarize the key points of this paper content: ${paperContent}. Focus on the most important insights and any unique contributions of the source.`
-                }
-            ],
-            temperature: 0.7,
-            max_tokens: 60
-        });
-
-        const blogPostTopic = summarizeKeyPoints.choices[0].message.content.trim();
-        
-        // Generate the blog post using OpenAI directly
-        const blogPostText = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                {
-                    role: "user",
-                    content: `Write a blog post about ${blogPostTopic} in Seth Godin’s style. Keep it friendly, simple, and engaging. Use short, impactful sentences. Limit the post to 500 words or less. Every word should earn its place.`
-                }
-            ],
-            temperature: 0.7,
-            max_tokens: 800
-        });
-
-        const response = blogPostText.choices[0].message.content;
-
-        // Extract title and content
-        const lines = response.split('\n');
-        const title = lines[0].replace(/^#\s*/, '').trim();
-        const content = response;
-
-        // Save to database
-        await sql`
-            INSERT INTO blog_posts (title, content, published_at)
-            VALUES (${title}, ${content}, NOW())
-        `;
-
-        return new Response(JSON.stringify({ 
-            message: "Blog post generated and saved successfully",
-            savedPost: {
-                title,
-                published_at: new Date()
-            }
-        }), {
-            status: 200,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    } catch (error) {
-        console.error('Cron error:', error);
-        return new Response(JSON.stringify({ 
-            error: 'Internal Server Error', 
-            details: error.message
-        }), {
-            status: 500,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    }
-};
+async function savePapersToDb(papers) {
+  for (const paper of papers) {
+    await sql`
+      INSERT INTO papers (
+        arxiv_id,
+        title,
+        abstract,
+        authors,
+        pdf_url,
+        categories,
+        published_date,
+        updated_date
+      ) VALUES (
+        ${paper.arxivId},
+        ${paper.title},
+        ${paper.abstract},
+        ${paper.authors},
+        ${paper.pdfUrl},
+        ${paper.categories},
+        ${paper.publishedDate},
+        ${paper.updatedDate}
+      )
+      ON CONFLICT (arxiv_id) DO UPDATE SET
+        title = EXCLUDED.title,
+        abstract = EXCLUDED.abstract,
+        authors = EXCLUDED.authors,
+        pdf_url = EXCLUDED.pdf_url,
+        categories = EXCLUDED.categories,
+        published_date = EXCLUDED.published_date,
+        updated_date = EXCLUDED.updated_date
+    `;
+  }
+}
