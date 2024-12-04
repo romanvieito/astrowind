@@ -1,11 +1,10 @@
 import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
-import chromium from '@sparticuz/chromium';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 
-// Set maximum duration to 60 seconds
+// Set maximum duration to 5 minutes
 export const config = {
-  maxDuration: 60
+  maxDuration: 300
 };
 
 const openai = new OpenAI({
@@ -24,18 +23,28 @@ export const GET = async ({ request }) => {
 
         const paper = "https://arxiv.org/abs/2407.08101";
         
-        // Add paper scraping
+        // Add paper scraping with timeout and optimization
         const browser = await puppeteer.launch({
-            args: chromium.args,
+            args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
             defaultViewport: chromium.defaultViewport,
             executablePath: await chromium.executablePath(),
             headless: chromium.headless,
+            timeout: 30000, // 30 second timeout
         });
         const page = await browser.newPage();
+        await page.setDefaultNavigationTimeout(30000); // 30 second navigation timeout
+        
+        // Only wait for the specific content we need
         await page.goto(paper, {
-            waitUntil: 'networkidle0'
+            waitUntil: 'domcontentloaded' // Changed from 'networkidle0' for faster loading
         });
-        const paperContent = await page.evaluate(() => document.body.innerText);
+        
+        // More specific content extraction
+        const paperContent = await page.evaluate(() => {
+            const abstract = document.querySelector('.abstract').innerText;
+            const title = document.querySelector('.title').innerText;
+            return `${title}\n\n${abstract}`;
+        });
         await browser.close();
 
         // Update OpenAI prompt to use scraped content
