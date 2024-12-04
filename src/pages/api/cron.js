@@ -1,7 +1,6 @@
 import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
-import puppeteer from 'puppeteer-core';
-import chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer';
 
 // Set maximum duration to 60 seconds
 export const config = {
@@ -22,13 +21,11 @@ export const GET = async ({ request }) => {
         }
 
 
-        const paper = "https://arxiv.org/pdf/2310.10131.pdf";
+        const paper = "https://arxiv.org/abs/2407.08101";
         
         // Add paper scraping
         const browser = await puppeteer.launch({
-            args: chromium.args,
-            executablePath: await chromium.executablePath(),
-            headless: chromium.headless,
+            headless: 'new'
         });
         const page = await browser.newPage();
         await page.goto(paper, {
