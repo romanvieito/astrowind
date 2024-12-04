@@ -19,20 +19,32 @@ export const GET = async ({ request }) => {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        // Generate a random topic for the blog post
-        const topicResponse = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                {
-                    role: "user",
-                    content: "Generate an interesting blog topic about technology, business, or marketing. Be specific but concise."
-                }
-            ],
-            temperature: 0.8,
-            max_tokens: 50
-        });
+        // Get an unused topic from the articles table
+        const result = await sql`
+            UPDATE articles 
+            SET used = true 
+            WHERE id = (
+                SELECT id 
+                FROM articles 
+                WHERE used = false 
+                LIMIT 1
+            )
+            RETURNING summary;
+        `;
 
-        const blogPostTopic = topicResponse.choices[0].message.content.trim();
+        // Check if we have any unused topics left
+        if (result.rows.length === 0) {
+            return new Response(JSON.stringify({ 
+                error: 'No unused topics available'
+            }), {
+                status: 404,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+
+        const blogPostTopic = result.rows[0].summary;
         
         // Generate the blog post using OpenAI
         const blogPostText = await openai.chat.completions.create({
