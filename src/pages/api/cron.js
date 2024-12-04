@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import { sql } from '@vercel/postgres';
-import puppeteer from 'puppeteer';
+import chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer-core';
 
 // Set maximum duration to 5 minutes
 export const config = {
