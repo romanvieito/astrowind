@@ -55,7 +55,7 @@ export const GET = async ({ request }) => {
             messages: [
                 {
                     role: "user",
-                    content: `Create a short blog post about ${blogPostTopic} in the style of Seth Godin. Focus on clarity, simplicity, and engagement. Keep the entire post under 500 words.`
+                    content: `Write a blog post about ${blogPostTopic} in Seth Godin’s style. Keep it friendly, simple, and engaging. Use short, impactful sentences. Limit the post to 500 words or less. Every word should earn its place.`
                 }
             ],
             temperature: 0.7,
