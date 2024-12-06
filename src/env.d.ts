@@ -16,6 +16,7 @@ interface ImportMetaEnv {
     readonly TOKEN_API_KEY?: string;
     readonly CRON_SECRET: string;
     readonly OPENAI_API_KEY: string;
+    readonly POSELANDMARKER_URL: string;
 }
 
 interface ImportMeta {
