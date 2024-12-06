@@ -13,11 +13,11 @@ const poselandmarmkerurl = import.meta.env.POSELANDMARKER_URL;
 const token_api_key = import.meta.env.TOKEN_API_KEY;
 ---
 
-<Layout metadata={metadata}>
-  <SignedIn>
-    <IframePoseLandMarker pose_landmarker_url={poselandmarmkerurl} token_api_key={token_api_key} client:load />
-  </SignedIn>
-  <SignedOut>
+<SignedIn>
+  <IframePoseLandMarker pose_landmarker_url={poselandmarmkerurl} token_api_key={token_api_key} client:load />
+</SignedIn>
+<SignedOut>
+    <Layout metadata={metadata}>
     <CallToAction
       title="Ready for some fun and fitness?"
       subtitle="Please sign in to access your AI Coach"
@@ -32,8 +32,8 @@ const token_api_key = import.meta.env.TOKEN_API_KEY;
         },
       ]}
     />
+  </Layout>
   </SignedOut>
-</Layout>
 
 <script>
   import { trackEvent } from '~/utils/mixpanel-config';
