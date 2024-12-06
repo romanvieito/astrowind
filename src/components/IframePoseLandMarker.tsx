@@ -54,7 +54,7 @@ const IframePoseLandMarker = ({ pose_landmarker_url, token_api_key }: ViewProps)
         }}
         className="hover:bg-gray-700 transition-colors"
       >
-        &lt; Home
+        Home
       </a>
       
       <div className="items-center justify-center flex w-full md:w-auto">
