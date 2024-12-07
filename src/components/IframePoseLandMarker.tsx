@@ -39,24 +39,6 @@ const IframePoseLandMarker = ({ pose_landmarker_url, token_api_key }: ViewProps)
 
   return (
     <div className="relative w-full md:w-auto">
-      <a
-        href="/"
-        style={{ 
-          position: 'absolute',
-          top: '1rem',
-          left: '1rem',
-          zIndex: 10,
-          padding: '0.5rem 1rem',
-          backgroundColor: '#1f2937',
-          color: 'black',
-          borderRadius: '0.375rem',
-          textDecoration: 'none'
-        }}
-        className="hover:bg-gray-700 transition-colors"
-      >
-        Home
-      </a>
-      
       <div className="items-center justify-center flex w-full md:w-auto">
         {loading() ? ( // Verifica si está cargando
           <p>Loading AI Coach ...</p>
