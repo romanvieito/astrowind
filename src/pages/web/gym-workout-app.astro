@@ -14,8 +14,8 @@ import Video from '~/components/widgets/Video.astro';
 import StepsLanding from '~/components/widgets/StepsLanding.astro';
 
 const metadata = {
-  title: 'Gym Workout App with AI Coaching | Core Exercise Trainer | 24up',
-  description: 'Transform your gym workouts with our AI-powered workout app. Get real-time form coaching, track progress, and master core exercises with your virtual gym trainer.',
+  title: 'Gym Workout App | Core Exercise Trainer | 24up',
+  description: 'Transform your workouts with our AI-powered workout app. Get real-time form coaching, track progress, and master your exercises with your virtual gym trainer.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -41,13 +41,25 @@ const metadata = {
       { text: 'Discover How It Works', href: '#features' },
     ]}
   >
-    <Fragment slot="title">
-      Transform Your <span class="text-accent dark:text-white highlight">Gym Routine</span> with AI-Powered Coaching
-    </Fragment>
+  <Fragment slot="title">
+    <div class="mb-6">
+      <span class="hidden sm:inline">
+        A Workout Coach<span class="text-accent dark:text-white highlight"> For Busy People </span>
+      </span>
+      <span class="sm:hidden"
+        >A Workout Coach <span class="text-accent dark:text-white highlight">For Busy People</span>
+      </span>
+    </div>
+  </Fragment>
 
-    <Fragment slot="subtitle">
-      Unlock personalized workouts and real-time AI feedback to perfect your form — your ultimate smart gym trainer is here.
-    </Fragment>
+  <Fragment slot="subtitle">
+    <span class="hidden sm:inline text-2xl">
+      <span class="font-bold">24up.</span> Because Life’s Easier with a Helping Hand, Anytime, Anywhere.
+    </span>
+    <span class="text-2xl sm:hidden">
+      <span class="font-bold">24up.</span> Because Life’s Easier with a Helping Hand, Anytime, Anywhere.
+    </span>
+  </Fragment>
   </Hero>
 
   <Video />
@@ -56,7 +68,7 @@ const metadata = {
 
   <Testimonials
     title="Early User Insights"
-    subtitle="Feedback from fitness enthusiasts who've experienced our AI-powered core exercise coaching"
+    subtitle="Feedback from fitness enthusiasts who've experienced our smart workout coach"
     testimonials={[
       {
         testimonial: `Being new to core exercises, I was initially unsure about proper form. The app's instant feedback reassured me that I was maintaining correct positions, which gave me the confidence to keep going. As a UX specialist, I appreciate how easy the experience is—it feels like having a supportive coach by my side, guiding me at every step.`,
