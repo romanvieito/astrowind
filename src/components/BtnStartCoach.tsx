@@ -9,14 +9,6 @@ const ButtonSC = ({ fullname, email }: ButtonProps) => {
 
   const handleClick = () => {
     trackEvent("Start Coach Click Button", { fullname, email });
-    
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-16510475658/GlFUCOH8hMEZEIq758A9t',
-        'value': 1.0,
-        'currency': 'USD'
-      });
-    }
     window.location.href = '/aicoach';
   };
 
