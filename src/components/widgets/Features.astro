@@ -21,7 +21,15 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
   <Gallery /><br/>  
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />    
+  <Headline 
+    title={title} 
+    subtitle={subtitle} 
+    tagline={tagline} 
+    classes={{
+      title: 'my-2',
+      ...((classes?.headline as Record<string, string>) ?? {}),
+    }} 
+  />    
   <ItemGrid
     items={items}
     columns={columns}
